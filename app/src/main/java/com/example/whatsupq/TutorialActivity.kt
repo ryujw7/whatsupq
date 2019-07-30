@@ -31,7 +31,7 @@ class TutorialActivity : AppCompatActivity() {
         })
         tutorial_indicator.setupWithViewPager(tutorial_viewpager,true)
         tutorial_btn.setOnClickListener {
-            intent = Intent(this, SplashActivity::class.java)
+            intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
