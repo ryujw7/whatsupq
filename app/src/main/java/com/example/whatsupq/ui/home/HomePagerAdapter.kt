@@ -1,36 +1,28 @@
-package com.example.whatsupq.ui.main
+package com.example.whatsupq.ui.home
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.whatsupq.R
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2,
-    R.string.tab_text_3,
-    R.string.tab_text_4
+    R.string.tab_text_5,
+    R.string.tab_text_6,
+    R.string.tab_text_7,
+    R.string.tab_text_8
 )
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
+class HomePagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        if (position == 0) {
-            return PlaceholderFragment.newInstance(position + 1)
-        } else if(position == 1) {
-            return SearchPlaceholderFragment.newInstance(position + 1)
-        } else if(position == 2) {
-            return PlaceholderFragment.newInstance(position + 1)
-        } else {
-            return PlaceholderFragment.newInstance(position + 1)
-        }
+        return HomePlaceholderFragment.newInstance(position + 1)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

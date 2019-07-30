@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">whatsupq</string>
-    <string name="tab_text_1">모두의선택</string>
-    <string name="tab_text_2">생필품</string>
-    <string name="tab_text_3">테마박스</string>
-    <string name="tab_text_4">특별기획</string>
+    <string name="tab_text_1">홈</string>
+    <string name="tab_text_2">검색</string>
+    <string name="tab_text_3">큐레이션</string>
+    <string name="tab_text_4">마이큐</string>
+    <string name="tab_text_5">모두의선택</string>
+    <string name="tab_text_6">생필품</string>
+    <string name="tab_text_7">테마박스</string>
+    <string name="tab_text_8">특별기획</string>
 </resources>
