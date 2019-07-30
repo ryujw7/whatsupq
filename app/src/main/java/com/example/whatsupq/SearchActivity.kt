@@ -11,11 +11,5 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-
-        val listAdapter = ListAdapter(this, searchList)
-        searchListView.adapter = listAdapter
-        search_bar.setOnClickListener {
-            search_bar.isIconified = false
-        }
     }
 }

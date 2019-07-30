@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.PlaceholderFragment">
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabBackground="@android:color/white"
-            style="@style/AppTheme.TabStyle"
-    />
-    <androidx.viewpager.widget.ViewPager
+            android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@android:color/white"
+                style="@style/AppTheme.TabBottomStyle"
+        />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.example.whatsupq.SwipeViewPager
             android:id="@+id/view_pager_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-    </androidx.viewpager.widget.ViewPager>
-</LinearLayout>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </com.example.whatsupq.SwipeViewPager>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

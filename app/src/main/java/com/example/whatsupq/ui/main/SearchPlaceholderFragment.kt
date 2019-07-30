@@ -5,31 +5,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.example.whatsupq.ListAdapter
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.home.HomePagerAdapter
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_search.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class SearchPlaceholderFragment : Fragment() {
+    var searchList = arrayListOf<String>("콘돔","라면","생수","콜라","세제") // 테스트 용으로 우겨넣은 리스트
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container,false)
-        val homePagerAdapter = HomePagerAdapter(root.context, childFragmentManager)
-        val viewPager: SwipeViewPager = root.findViewById(R.id.view_pager_home)
-        viewPager.setPagingEnabled(false)
-        viewPager.adapter = homePagerAdapter
-        val tabs_home: TabLayout = root.findViewById(R.id.tabs)
-        tabs_home.setupWithViewPager(viewPager)
-        tabs_home.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
-        tabs_home.setSelectedTabIndicatorColor(Color.rgb(16,106,150))
+        val root = inflater.inflate(R.layout.activity_search, container,false)
+        val listAdapter = ListAdapter(root.context, searchList)
+        val searchListView:ListView = root.findViewById(R.id.searchListView)
+        val search_bar:SearchView = root.findViewById(R.id.search_bar)
+        searchListView.adapter = listAdapter
+        search_bar.setOnClickListener {
+            search_bar.isIconified = false
+        }
         return root
     }
 
@@ -45,8 +49,8 @@ class PlaceholderFragment : Fragment() {
          * number.
          */
         @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
+        fun newInstance(sectionNumber: Int): SearchPlaceholderFragment {
+            return SearchPlaceholderFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
