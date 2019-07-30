@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:orientation="vertical" android:gravity="center">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="뭔가 없다는 내용" android:textSize="24sp" android:layout_marginBottom="25dp" android:textColor="#016a97"/>
+        <Button android:layout_width="300dp" android:layout_height="60dp" android:text="어딘가로 가라는 버튼" android:textSize="30sp" android:background="@drawable/tutorial_btn" android:textColor="@drawable/tutorial_btn_textcolor"/>
+    </LinearLayout>
+</RelativeLayout>
