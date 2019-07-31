@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="12"
+                android:background="@color/peacock_blue">
+            <ImageButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:src="@drawable/rewind"
+                    android:background="@android:color/transparent"
+            />
+
+            <ImageView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:gravity="center"
+                    android:minHeight="?actionBarSize"
+                    android:src="@mipmap/ic_launcher"/>
+            <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:src="@drawable/cart"
+                    android:background="@android:color/transparent"
+            />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                  android:gravity="center_horizontal">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="start" android:orientation="vertical" android:layout_marginTop="81dp">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="example@gmail.com" android:textSize="18sp"
+                          android:textColor="@color/peacock_blue"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="로" android:textColor="#707070" android:textSize="15sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="임시 비밀번호가 발급되었습니다."
+                      android:textColor="#707070" android:textSize="15sp"/>
+        </LinearLayout>
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="아이디"
+                  android:layout_marginTop="13dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
+                  android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="임시 비밀번호"
+                  android:inputType="textPassword"
+                  android:layout_marginTop="13dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
+                  android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="새롭게 사용하고 싶은 비밀번호"
+                  android:inputType="textPassword"
+                  android:layout_marginTop="13dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
+                  android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
+        <Button android:layout_width="280dp" android:layout_height="60dp" android:background="@drawable/tutorial_btn"
+                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp" android:text="로그인"
+                android:layout_marginTop="20dp"/>
+        <View android:layout_width="280dp" android:layout_height="2dp" android:background="#d1d3d4"
+              android:layout_marginTop="23dp"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

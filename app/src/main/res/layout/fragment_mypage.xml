@@ -2,19 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:orientation="vertical">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="166dp" android:layout_gravity="center_horizontal" android:gravity="center_horizontal" android:orientation="vertical" android:layout_marginTop="15dp">
-        <TextView android:layout_width="100dp" android:layout_height="100dp" android:text="LV3" android:textSize="22sp" android:textColor="#002a42" android:gravity="center" android:background="@drawable/profile_border"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="이이름" android:textSize="22sp" android:textColor="#002a42"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="example@gmail.com" android:textSize="16sp" android:textColor="#a2a2a2"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="166dp"
+                  android:layout_gravity="center_horizontal" android:gravity="center_horizontal"
+                  android:orientation="vertical" android:layout_marginTop="15dp">
+        <TextView android:layout_width="100dp" android:layout_height="100dp" android:text="LV3" android:textSize="22sp"
+                  android:textColor="#002a42" android:gravity="center" android:background="@drawable/profile_border"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="이이름"
+                  android:textSize="22sp" android:textColor="#002a42"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="example@gmail.com" android:textSize="16sp" android:textColor="#a2a2a2"/>
     </LinearLayout>
-    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="#d1d3d4">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
-            <View android:layout_width="match_parent" android:layout_height="10dp" android:background="#d1d3d4"
-            />
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+                android:background="#d1d3d4">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical">
             <Button android:layout_width="match_parent" android:layout_height="60dp" android:textSize="22sp"
                     android:text="주문내역"
                     android:drawableRight="@drawable/forward"
                     android:textColor="#002a42" android:textAlignment="viewStart" android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
                     android:paddingRight="4dp" android:background="#FFFFFF"/>
             <View android:layout_width="match_parent" android:layout_height="1dp"
                   android:background="#d1d3d4" android:layout_marginLeft="16dp" android:layout_marginRight="4dp"
@@ -50,11 +56,10 @@
             <View android:layout_width="match_parent" android:layout_height="1dp"
                   android:background="#d1d3d4" android:layout_marginLeft="16dp" android:layout_marginRight="4dp"
             />
-            <View android:layout_width="match_parent" android:layout_height="10dp" android:background="#d1d3d4"
-            />
             <Button android:layout_width="match_parent" android:layout_height="60dp" android:textSize="22sp"
                     android:text="개인정보 수정" android:drawableRight="@drawable/forward"
                     android:textColor="#002a42" android:textAlignment="viewStart" android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
                     android:paddingRight="4dp" android:background="#FFFFFF"/>
             <View android:layout_width="match_parent" android:layout_height="1dp"
                   android:background="#d1d3d4" android:layout_marginLeft="16dp" android:layout_marginRight="4dp"

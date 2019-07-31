@@ -11,7 +11,7 @@ class TutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
-
+        tutorial_btn.isEnabled = false
         tutorial_viewpager.adapter = TutorialViewpagerAdapter(supportFragmentManager)
         tutorial_viewpager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageSelected(position: Int) {
