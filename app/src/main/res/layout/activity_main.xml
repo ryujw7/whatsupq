@@ -42,23 +42,26 @@
             />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
     <com.example.whatsupq.SwipeViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/main_bottom_appbar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_constraintTop_toBottomOf="@id/view_pager"
+            app:layout_constraintStart_toEndOf="@id/view_pager"
+            android:background="@drawable/rectangle_top">
         <com.google.android.material.tabs.TabLayout
+                app:tabPaddingTop="10dp"
                 android:id="@+id/tabs_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:tabBackground="@android:color/white"
+                android:layout_height="60dp"
                 style="@style/AppTheme.TabBottomStyle"
+                app:tabTextAppearance="@style/tab_text_bottom"
         />
     </com.google.android.material.bottomappbar.BottomAppBar>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

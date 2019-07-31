@@ -1,21 +1,17 @@
 package com.example.whatsupq.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.PageViewModel
-import com.example.whatsupq.ui.main.PlaceholderFragment
+import com.google.android.material.tabs.TabLayout
 
-/**
- * A placeholder fragment containing a simple view.
- */
-class HomePlaceholderFragment : Fragment() {
+class LivingPlaceholderFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +22,13 @@ class HomePlaceholderFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        textView.text = "예제"
+        val root = inflater.inflate(R.layout.fragment_home_living, container, false)
+        val tabs_living:TabLayout = root.findViewById(R.id.tabs_living)
+        tabs_living.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
+        tabs_living.setSelectedTabIndicatorColor(Color.rgb(16,106,150))
         return root
     }
 
@@ -47,8 +44,8 @@ class HomePlaceholderFragment : Fragment() {
          * number.
          */
         @JvmStatic
-        fun newInstance(sectionNumber: Int): HomePlaceholderFragment {
-            return HomePlaceholderFragment().apply {
+        fun newInstance(sectionNumber: Int): LivingPlaceholderFragment {
+            return LivingPlaceholderFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }

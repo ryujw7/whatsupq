@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="160dp"
+              android:weightSum="10">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:weightSum="20">
+        <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:src="@mipmap/ic_launcher_round"
+                android:background="@android:color/transparent"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5sp"
+                    android:textSize="10sp"
+                    android:text="브랜드명"
+                    android:textColor="@color/peacock_blue"
+                    android:fontFamily="@font/notosanssemibold"
+                    android:gravity="center_vertical"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10sp"
+                    android:textSize="15sp"
+                    android:text="제품명"
+                    android:textColor="@color/peacock_blue"
+                    android:fontFamily="@font/notosanssemibold"
+                    android:gravity="center_vertical"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5sp"
+                    android:textSize="18sp"
+                    android:text="판매가격(할인 적용)"
+                    android:textColor="@color/peacock_blue"
+                    android:fontFamily="@font/notosanssemibold"
+                    android:gravity="center_vertical"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="원가"
+                    android:background="@drawable/strike_through"
+                    android:textColor="@color/peacock_blue"
+                    android:fontFamily="@font/notosanssemibold"
+                    android:gravity="center_vertical"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
