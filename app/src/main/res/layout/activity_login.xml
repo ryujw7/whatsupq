@@ -47,7 +47,7 @@
                   android:gravity="center_horizontal">
         <ImageView android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="100dp"
                    android:background="#d1d3d4"/>
-        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="아이디"
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="아이디" android:inputType="textVisiblePassword"
                   android:layout_marginTop="27dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
                   android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
         <EditText android:layout_width="280dp" android:layout_height="40dp" android:layout_marginTop="15dp"
@@ -64,13 +64,13 @@
         />
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:orientation="horizontal" android:layout_marginTop="12dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="아이디 찾기"
+            <TextView android:id="@+id/find_id_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="아이디 찾기"
                       android:textSize="14sp"/>
             <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#d1d3d4" android:layout_marginHorizontal="5dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="비밀번호 찾기"
+            <TextView android:id="@+id/find_pw_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="비밀번호 찾기"
                       android:textSize="14sp"/>
             <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#d1d3d4" android:layout_marginHorizontal="5dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="회원가입"
+            <TextView android:id="@+id/find_register_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="회원가입"
                       android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>

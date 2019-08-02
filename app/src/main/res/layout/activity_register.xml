@@ -47,25 +47,41 @@
                   android:gravity="center_horizontal">
         <LinearLayout android:layout_width="360dp" android:layout_height="wrap_content" android:orientation="horizontal"
                       android:layout_marginTop="83dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="17%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="33%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="50%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="67%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="83%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="100%"
-                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp" android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg0" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="0%"
+                      android:layout_weight="1" android:textColor="#016a97" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg1" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="17%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg2" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="33%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg3" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="50%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg4" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="67%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg5" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="83%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
+            <TextView android:id="@+id/register_pg6" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" android:text="100%"
+                      android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                      android:textAlignment="center"/>
         </LinearLayout>
         <ProgressBar
+                android:id="@+id/register_progrss"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="335dp"
-                android:layout_height="7dp" android:layout_marginBottom="35dp"/>
+                android:layout_height="7dp" android:layout_marginBottom="35dp"
+                android:max="6"/>
         <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                      android:layout_marginHorizontal="17dp" android:stretchColumns="1,2">
             <TableRow>
@@ -77,7 +93,7 @@
                           android:background="@drawable/edit_text_box" android:hint="example@gmail.com"
                           android:inputType="textEmailAddress"
                           android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
-                          android:textSize="11sp"/>
+                          android:textSize="11sp" android:id="@+id/register_email"/>
             </TableRow>
             <TableRow android:layout_marginTop="20dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -88,7 +104,7 @@
                           android:background="@drawable/edit_text_box" android:hint="영문 + 숫자 6자리 이상"
                           android:inputType="textPassword"
                           android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
-                          android:textSize="11sp"/>
+                          android:textSize="11sp" android:id="@+id/register_pw"/>
             </TableRow>
 
             <TableRow android:layout_marginTop="20dp">
@@ -100,7 +116,7 @@
                           android:background="@drawable/edit_text_box" android:hint="ex) 01012345678"
                           android:inputType="phone"
                           android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
-                          android:textSize="11sp"/>
+                          android:textSize="11sp" android:id="@+id/register_phone"/>
             </TableRow>
             <TableRow android:layout_marginTop="20dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -111,31 +127,30 @@
                           android:background="@drawable/edit_text_box" android:hint="ex) 000102"
                           android:inputType="date"
                           android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
-                          android:textSize="11sp"/>
+                          android:textSize="11sp" android:id="@+id/register_birth"/>
             </TableRow>
             <TableRow android:layout_marginTop="20dp">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_gravity="center_vertical" android:text="성별" android:layout_marginRight="24dp"/>
                 <RadioGroup android:orientation="horizontal">
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="10">
-                        <RadioButton android:layout_width="0dp" android:layout_height="40dp"
-                                     android:button="@android:color/transparent"
-                                     android:background="@drawable/radio_btn" android:text="남자"
-                                     android:gravity="center" android:layout_weight="4.5"
-                                     android:textColor="@drawable/radio_btn_textcolor"/>
-                        <View android:layout_height="0dp" android:layout_width="0dp" android:layout_weight="1"></View>
-                        <RadioButton android:layout_width="0dp" android:layout_height="40dp"
-                                     android:button="@android:color/transparent"
-                                     android:background="@drawable/radio_btn" android:text="여자"
-                                     android:gravity="center" android:layout_weight="4.5"
-                                     android:textColor="@drawable/radio_btn_textcolor"/>
-                    </LinearLayout>
+                    <RadioButton android:layout_width="0dp" android:layout_height="40dp"
+                                 android:button="@android:color/transparent"
+                                 android:background="@drawable/radio_btn" android:text="남자"
+                                 android:gravity="center" android:layout_weight="4.5"
+                                 android:textColor="@drawable/radio_btn_textcolor" android:id="@+id/register_m"/>
+                    <View android:layout_height="0dp" android:layout_width="0dp" android:layout_weight="1"></View>
+                    <RadioButton android:layout_width="0dp" android:layout_height="40dp"
+                                 android:button="@android:color/transparent"
+                                 android:background="@drawable/radio_btn" android:text="여자"
+                                 android:gravity="center" android:layout_weight="4.5"
+                                 android:textColor="@drawable/radio_btn_textcolor" android:id="@+id/register_f"/>
                 </RadioGroup>
             </TableRow>
         </TableLayout>
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:layout_marginTop="40dp" android:orientation="horizontal">
-            <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+            <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_gravity="center" android:id="@+id/register_agree"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:orientation="vertical">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -144,9 +159,10 @@
                           android:text="왓섭큐 이용약관, 개인정보처리방침" android:textColor="#707070"/>
             </LinearLayout>
         </LinearLayout>
-        <Button android:layout_width="280dp" android:layout_height="60dp" android:enabled="false"
+        <Button android:id="@+id/register_btn" android:layout_width="280dp" android:layout_height="60dp"
+                android:enabled="false"
                 android:background="@drawable/tutorial_btn"
-                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp" android:text="로그인"
+                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp" android:text="회원가입"
                 android:layout_marginTop="20dp"/>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

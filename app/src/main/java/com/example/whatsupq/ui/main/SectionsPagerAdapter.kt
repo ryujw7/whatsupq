@@ -24,12 +24,13 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : 
         // Return a PlaceholderFragment (defined as a static inner class below).
         if (position == 0) {
             return PlaceholderFragment.newInstance(position + 1)
-        } else if(position == 1) {
+        } else if (position == 1) {
             return SearchPlaceholderFragment.newInstance(position + 1)
-        } else if(position == 2) {
+        } else if (position == 2) {
             return PlaceholderFragment.newInstance(position + 1)
         } else {
-            return PlaceholderFragment.newInstance(position + 1)
+            return MyPageFragment.newInstance(position + 1)
+
         }
     }
 
