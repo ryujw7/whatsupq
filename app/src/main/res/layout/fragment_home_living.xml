@@ -8,47 +8,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/appbar_living">
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs_living"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:tabBackground="@android:color/white"
                     style="@style/AppTheme.SubTabStyle"
-                    app:tabTextAppearance="@style/tab_text"
+                    app:tabTextAppearance="@style/tab_text_sub"
                     app:tabMode="scrollable">
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="생수/음료"/>
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="휴지/물티슈"/>
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="세제/섬유유연제"/>
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="욕실용품"/>
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="청소용품"/>
-                <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="디퓨저"/>
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.appbar.AppBarLayout>
         <com.example.whatsupq.SwipeViewPager
                 android:id="@+id/view_pager_living"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
         </com.example.whatsupq.SwipeViewPager>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

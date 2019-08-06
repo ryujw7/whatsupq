@@ -10,9 +10,10 @@
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/appbar_living">
+                android:id="@+id/appbar_theme"
+                android:layout_marginBottom="20dp">
             <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabs_living"
+                    android:id="@+id/tabs_themebox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:tabBackground="@android:color/white"
@@ -22,11 +23,9 @@
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.appbar.AppBarLayout>
         <com.example.whatsupq.SwipeViewPager
-                android:id="@+id/view_pager_living"
-                android:layout_width="wrap_content"
+                android:id="@+id/view_pager_themebox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
         </com.example.whatsupq.SwipeViewPager>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

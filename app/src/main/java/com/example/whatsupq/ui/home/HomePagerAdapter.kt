@@ -27,9 +27,9 @@ class HomePagerAdapter(private val context: Context, fm: FragmentManager) : Frag
         } else if(position == 1) {
             return LivingPlaceholderFragment.newInstance(position + 1)
         } else if(position == 2) {
-            return ChoicePlaceholderFragment.newInstance(position + 1)
+            return ThemeboxPlaceholderFragment.newInstance(position + 1)
         } else {
-            return ChoicePlaceholderFragment.newInstance(position + 1)
+            return SpecialPlaceholderFragment.newInstance(position + 1)
         }
     }
 

@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/appbar_theme"
-                android:layout_marginBottom="20dp">
-            <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabs_themebox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:tabBackground="@android:color/white"
-                    style="@style/AppTheme.SubTabStyle"
-                    app:tabTextAppearance="@style/tab_text_sub"
-                    app:tabMode="scrollable">
-            </com.google.android.material.tabs.TabLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-        <com.example.whatsupq.SwipeViewPager
-                android:id="@+id/view_pager_themebox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        </com.example.whatsupq.SwipeViewPager>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</ScrollView>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          android:id="@+id/lv_special"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scrollbars="none"
+          android:paddingBottom="60dp"
+          android:paddingLeft="10dp"
+          android:divider="@android:color/transparent"
+          android:dividerHeight="0dp"
+          android:paddingRight="10dp">
+</ListView>

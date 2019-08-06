@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:app="http://schemas.android.com/apk/res-auto"
-          android:id="@+id/lv_living"
+          android:id="@+id/lv_themebox"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:scrollbars="none"
-          android:paddingBottom="60dp">
+          android:paddingBottom="60dp"
+          android:paddingLeft="40dp"
+          android:divider="@android:color/transparent"
+          android:dividerHeight="0dp"
+          android:paddingRight="40dp">
 </ListView>

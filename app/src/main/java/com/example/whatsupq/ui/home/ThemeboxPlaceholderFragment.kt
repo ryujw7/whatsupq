@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager.widget.ViewPager
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.PageViewModel
 import com.google.android.material.tabs.TabLayout
 
-class LivingPlaceholderFragment : Fragment() {
+class ThemeboxPlaceholderFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +25,15 @@ class LivingPlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home_living, container, false)
-        val tabs_living:TabLayout = root.findViewById(R.id.tabs_living)
-        val viewPager: SwipeViewPager = root.findViewById(R.id.view_pager_living)
-        val livingListAdapter = LivingListAdapter(root.context, childFragmentManager)
-        viewPager.adapter = livingListAdapter
+        val root = inflater.inflate(R.layout.fragment_home_themebox, container, false)
+        val tabs_themebox:TabLayout = root.findViewById(R.id.tabs_themebox)
+        val viewPager: SwipeViewPager = root.findViewById(R.id.view_pager_themebox)
+        val themeboxListAdapter = ThemeboxListAdapter(root.context, childFragmentManager)
+        viewPager.adapter = themeboxListAdapter
         viewPager.setPagingEnabled(true)
-        tabs_living.setupWithViewPager(viewPager)
-        tabs_living.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
-        tabs_living.setSelectedTabIndicatorColor(Color.rgb(16,106,150))
+        tabs_themebox.setupWithViewPager(viewPager)
+        tabs_themebox.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
+        tabs_themebox.setSelectedTabIndicatorColor(Color.rgb(16,106,150))
         return root
     }
 
@@ -50,8 +49,8 @@ class LivingPlaceholderFragment : Fragment() {
          * number.
          */
         @JvmStatic
-        fun newInstance(sectionNumber: Int): LivingPlaceholderFragment {
-            return LivingPlaceholderFragment().apply {
+        fun newInstance(sectionNumber: Int): ThemeboxPlaceholderFragment {
+            return ThemeboxPlaceholderFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }

@@ -1,20 +1,14 @@
 package com.example.whatsupq.ui.home
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.example.whatsupq.R
 
-class LivingItem(s: String, s1: String, s2: String, s3: String, s4: String) {
-    lateinit var livingImg : String
-    lateinit var livingBrand : String
-    lateinit var livingName : String
-    lateinit var livingCharge : String
-    lateinit var livingBeforeCharge : String
-}
-class LivingListAdapter(val context: LivingListPlaceholderFragment, val itemList:ArrayList<LivingItem>) : BaseAdapter() {
+class LivingItem(val livingImg: String, val livingBrand: String, val livingName: String,val livingCharge: String,val livingBeforeCharge: String)
+
+class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val itemList:ArrayList<LivingItem>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view: View = LayoutInflater.from(context.context).inflate(R.layout.fragment_home_living_list_item, null)
         val livingImageView = view.findViewById<ImageButton>(R.id.item_image)
