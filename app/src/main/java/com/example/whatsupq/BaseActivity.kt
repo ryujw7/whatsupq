@@ -1,6 +1,7 @@
 package com.example.whatsupq
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
  */
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
+    val actList : ArrayList<Activity>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (actList != null) {
+            actList.clear()
+        }
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN

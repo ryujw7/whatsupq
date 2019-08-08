@@ -3,9 +3,6 @@ package com.example.whatsupq
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_register.*
 
