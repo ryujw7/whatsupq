@@ -9,7 +9,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.example.whatsupq.SplashActivity">
+        <activity android:name=".ui.cart.CartActivity">
+        </activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,17 +19,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name="com.example.whatsupq.TutorialActivity">
+        <activity android:name=".ui.tutorial.TutorialActivity">
         </activity>
-        <activity android:name="com.example.whatsupq.SearchActivity">
+        <activity android:name=".SearchActivity">
         </activity>
-        <activity android:name="com.example.whatsupq.LoginActivity">
+        <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name="com.example.whatsupq.FindIDActivity">
+        <activity android:name=".FindIDActivity">
         </activity>
-        <activity android:name="com.example.whatsupq.FindPWActivity">
+        <activity android:name=".FindPWActivity">
         </activity>
-        <activity android:name="com.example.whatsupq.RegisterActivity">
+        <activity android:name=".RegisterActivity">
         </activity>
     </application>
 

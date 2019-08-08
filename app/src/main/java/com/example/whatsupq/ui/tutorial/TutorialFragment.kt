@@ -1,10 +1,11 @@
-package com.example.whatsupq
+package com.example.whatsupq.ui.tutorial
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.tutorial_page.*
 
 class TutorialFragment(tutoText: String, resId: Int) : Fragment() {

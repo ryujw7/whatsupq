@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
 
-class ListAdapter(val context: Context, val searchList: ArrayList<String>) : BaseAdapter() {
+class SearchListAdapter(val context: Context, val searchList: ArrayList<String>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View = LayoutInflater.from(context).inflate(R.layout.search_item, null)
         val itemText = view.findViewById<TextView>(R.id.search_item)

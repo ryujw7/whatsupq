@@ -1,5 +1,6 @@
 package com.example.whatsupq
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.whatsupq.ui.cart.CartActivity
 import com.example.whatsupq.ui.main.SectionsPagerAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,5 +30,9 @@ class MainActivity : AppCompatActivity() {
         tabs.getTabAt(1)?.setIcon(R.drawable.tab_bottom_2)
         tabs.getTabAt(2)?.setIcon(R.drawable.tab_bottom_3)
         tabs.getTabAt(3)?.setIcon(R.drawable.tab_bottom_4)
+        cart_btn.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
