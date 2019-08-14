@@ -11,9 +11,6 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ui.cart.CartActivity">
         </activity>
-        <activity android:name=".SplashActivity">
-            android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true">
         <activity android:name="com.example.whatsupq.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
