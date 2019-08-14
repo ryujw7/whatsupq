@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import com.example.whatsupq.ListAdapter
+import com.example.whatsupq.SearchListAdapter
 import com.example.whatsupq.R
 
 /**
@@ -20,7 +20,7 @@ class SearchPlaceholderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_search, container,false)
-        val listAdapter = ListAdapter(root.context, searchList)
+        val listAdapter = SearchListAdapter(root.context, searchList)
         val searchListView:ListView = root.findViewById(R.id.searchListView)
         val search_bar:SearchView = root.findViewById(R.id.search_bar)
         searchListView.adapter = listAdapter

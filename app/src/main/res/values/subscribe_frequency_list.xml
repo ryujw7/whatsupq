@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="frequency">
+        <item>1달에 한번</item>
+        <item>2달에 한번</item>
+        <item>3달에 한번</item>
+        <item>4달에 한번</item>
+        <item>5달에 한번</item>
+        <item>6달에 한번</item>
+    </string-array>
+</resources>

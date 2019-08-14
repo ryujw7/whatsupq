@@ -1,9 +1,11 @@
-package com.example.whatsupq
+package com.example.whatsupq.ui.tutorial
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
+import com.example.whatsupq.MainActivity
+import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
 class TutorialActivity : AppCompatActivity() {
@@ -11,16 +13,10 @@ class TutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
-        tutorial_btn.isEnabled = false
         tutorial_viewpager.adapter = TutorialViewpagerAdapter(supportFragmentManager)
         tutorial_viewpager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
             override fun onPageSelected(position: Int) {
-                if(position == 2){
-                    tutorial_btn.isEnabled=true
-                }
-                else{
-                    tutorial_btn.isEnabled=false
-                }
+                tutorial_btn.isEnabled = (position == 2)
             }
 
             override fun onPageScrollStateChanged(state: Int) {
