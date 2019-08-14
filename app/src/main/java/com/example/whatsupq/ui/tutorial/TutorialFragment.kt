@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.tutorial_page.*
@@ -17,7 +18,7 @@ class TutorialFragment(tutoText: String, resId: Int) : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        tutorial_img.scaleType = ImageView.ScaleType.FIT_XY
         tutorial_txt.text = txt
         tutorial_img.setImageResource(rid)
     }

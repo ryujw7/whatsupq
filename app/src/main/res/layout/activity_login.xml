@@ -42,35 +42,81 @@
             />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                  android:orientation="vertical" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  app:layout_behavior="@string/appbar_scrolling_view_behavior"
                   android:gravity="center_horizontal">
-        <ImageView android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="100dp"
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_marginTop="100dp"
                    android:background="#d1d3d4"/>
-        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="아이디" android:inputType="textVisiblePassword"
-                  android:layout_marginTop="27dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
-                  android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
-        <EditText android:layout_width="280dp" android:layout_height="40dp" android:layout_marginTop="15dp"
-                  android:background="@drawable/edit_text_box" android:hint="비밀번호" android:inputType="textPassword"
-                  android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
+        <EditText
+                android:id="@+id/login_id"
+                android:layout_width="280dp"
+                  android:layout_height="40dp"
+                  android:hint="아이디"
+                  android:inputType="textVisiblePassword"
+                  android:layout_marginTop="27dp"
+                  android:background="@drawable/edit_text_box"
+                  android:paddingTop="13dp"
+                  android:paddingBottom="13dp"
+                  android:paddingLeft="20dp"
                   android:textSize="11sp"/>
-        <Button android:layout_width="280dp" android:layout_height="60dp" android:layout_marginTop="25dp"
-                android:text="로그인" android:background="@drawable/tutorial_btn"
-                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp"/>
+        <EditText
+                android:id="@+id/login_password"
+                android:layout_width="280dp"
+                  android:layout_height="40dp"
+                  android:layout_marginTop="15dp"
+                  android:background="@drawable/edit_text_box"
+                  android:hint="비밀번호"
+                  android:inputType="textPassword"
+                  android:paddingTop="13dp"
+                  android:paddingBottom="13dp"
+                  android:paddingLeft="20dp"
+                  android:textSize="11sp"/>
+        <Button
+                android:id="@+id/login_btn"
+                android:layout_width="280dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="25dp"
+                android:text="로그인"
+                android:background="@drawable/tutorial_btn"
+                android:textColor="@drawable/tutorial_btn_textcolor"
+                android:textSize="20sp"/>
         <View
                 android:layout_width="280dp"
                 android:layout_height="2dp"
                 android:background="#d1d3d4" android:layout_marginTop="23dp"
         />
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="horizontal" android:layout_marginTop="12dp">
-            <TextView android:id="@+id/find_id_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="아이디 찾기"
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+            <TextView
+                    android:id="@+id/find_id_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이디 찾기"
+                    android:textSize="14sp"/>
+            <View android:layout_width="1dp"
+                  android:layout_height="match_parent"
+                  android:background="#d1d3d4"
+                  android:layout_marginHorizontal="5dp"/>
+            <TextView android:id="@+id/find_pw_btn"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="비밀번호 찾기"
                       android:textSize="14sp"/>
-            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#d1d3d4" android:layout_marginHorizontal="5dp"/>
-            <TextView android:id="@+id/find_pw_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="비밀번호 찾기"
-                      android:textSize="14sp"/>
-            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#d1d3d4" android:layout_marginHorizontal="5dp"/>
-            <TextView android:id="@+id/find_register_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="회원가입"
+            <View android:layout_width="1dp"
+                  android:layout_height="match_parent"
+                  android:background="#d1d3d4"
+                  android:layout_marginHorizontal="5dp"/>
+            <TextView android:id="@+id/find_register_btn"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="회원가입"
                       android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
