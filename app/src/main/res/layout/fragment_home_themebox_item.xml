@@ -28,6 +28,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="집에서 와인한잔, 어떠세요?"
+                    android:fontFamily="@font/locussangsang"
                     android:textColor="@color/warm_grey"
                     android:lineHeight="15sp"/>
             <TextView
@@ -35,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
+                    android:fontFamily="@font/locussangsang"
                     android:text="와인에 적합한 안주도 담아봤어요."
                     android:textColor="@color/silver"/>
         </LinearLayout>

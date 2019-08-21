@@ -2,6 +2,7 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="30dp"
                 android:paddingLeft="13dp"
-                android:fontFamily="@font/notosanssemibold"
+                android:fontFamily="@font/locussangsang"
                 android:text="오늘 이건 어때요?"
                 android:textSize="16sp"
                 android:lineHeight="17sp"
@@ -30,46 +31,20 @@
                 android:paddingTop="13dp"
                 android:paddingBottom="13dp"
         />
-        <HorizontalScrollView
-                android:id="@+id/today_choice_item"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:scrollbars="none">
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-            </LinearLayout>
 
-        </HorizontalScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_listview1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scrollbars="horizontal"
+                android:orientation="horizontal"
+                tools:listitem="@layout/fragment_home_choiceall_item"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="30dp"
                 android:paddingLeft="13dp"
-                android:fontFamily="@font/notosanssemibold"
+                android:fontFamily="@font/locussangsang"
                 android:text="생필품 TOP 5"
                 android:textSize="16sp"
                 android:lineHeight="17sp"
@@ -78,46 +53,19 @@
                 android:paddingTop="13dp"
                 android:paddingBottom="13dp"
         />
-        <HorizontalScrollView
-                android:id="@+id/top_5"
-                android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_listview2"
+                android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:scrollbars="none">
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-                <include
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        layout="@layout/fragment_home_choiceall_item"/>
-            </LinearLayout>
-
-        </HorizontalScrollView>
+                android:scrollbars="horizontal"
+                android:orientation="horizontal"
+                tools:listitem="@layout/fragment_home_choiceall_item"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="30dp"
                 android:paddingLeft="13dp"
-                android:fontFamily="@font/notosanssemibold"
+                android:fontFamily="@font/locussangsang"
                 android:text="새롭게 준비한 테마박스"
                 android:textSize="16sp"
                 android:lineHeight="17sp"

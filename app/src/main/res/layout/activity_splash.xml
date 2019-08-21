@@ -6,9 +6,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".SplashActivity">
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
-        <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/splash_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/splash_background"
+                android:scaleType="fitXY"/>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerHorizontal="true"
+                      android:layout_centerVertical="true"
+                      android:orientation="vertical">
+            <TextView
+                    android:text="What's up"
+                    android:gravity="center"
+                    android:fontFamily="@font/locussangsang"
+                    android:textSize="50sp"
+                    android:textColor="@color/lightblue_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"/>
+
+            <TextView
+                    android:text="왓섭큐"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/locussangsang"
+                    android:textSize="80sp"
+                    android:textColor="@color/lightblue_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"/>
+        </LinearLayout>
+        <TextView
+                android:text="ASWEMAKE"
+                android:gravity="center"
+                android:fontFamily="@font/goyangilsanl"
+                android:textSize="25sp"
+                android:textColor="@color/lightblue_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

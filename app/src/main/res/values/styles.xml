@@ -32,26 +32,26 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/notosansextrabold</item>
+        <item name="android:fontFamily">@font/locussangsang</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontStyle">normal</item>
     </style>
 
     <style name="tab_text_sub" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/notosansextrabold</item>
+        <item name="android:fontFamily">@font/locussangsang</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontStyle">normal</item>
     </style>
     <style name="tab_text_bottom" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/notosansextrabold</item>
+        <item name="android:fontFamily">@font/locussangsang</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontStyle">normal</item>
     </style>
     <style name="AppTheme.TabBottomStyle" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/AppTheme.TextStyle</item>
         <item name="tabTextColor">@color/warm_grey</item>
-        <item name="tabSelectedTextColor">@color/peacock_blue</item>
-        <item name="tabIndicatorColor">@color/cardview_light_background</item>
+        <item name="tabSelectedTextColor">@color/lightblue</item>
+        <item name="tabIndicatorColor">@color/lightblue</item>
         <item name="android:background">@drawable/rectangle_top</item>
     </style>
     <style name="AppTheme.TextStyle" parent="TextAppearance.Design.Tab">

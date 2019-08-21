@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.PageViewModel
 
@@ -13,6 +15,9 @@ import com.example.whatsupq.ui.PageViewModel
  * A placeholder fragment containing a simple view.
  */
 class ChoicePlaceholderFragment : Fragment() {
+
+    private var itemList1 = ArrayList<ChoiceItem>()
+    private var itemList2 = ArrayList<ChoiceItem>()
 
     private lateinit var pageViewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +28,28 @@ class ChoicePlaceholderFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
+        itemList1.add(ChoiceItem("ic_launcher_foreground"))
+        itemList1.add(ChoiceItem("ic_launcher_foreground"))
+        itemList1.add(ChoiceItem("ic_launcher_foreground"))
+        itemList1.add(ChoiceItem("ic_launcher_foreground"))
+        itemList1.add(ChoiceItem("ic_launcher_foreground"))
+        itemList2.add(ChoiceItem("ic_launcher_foreground"))
+        itemList2.add(ChoiceItem("ic_launcher_foreground"))
+        itemList2.add(ChoiceItem("ic_launcher_foreground"))
+        itemList2.add(ChoiceItem("ic_launcher_foreground"))
+        itemList2.add(ChoiceItem("ic_launcher_foreground"))
         val root = inflater.inflate(R.layout.fragment_home_choiceall, container, false)
+        val mAdapter1 = ChoiceItemAdapter(activity!!,itemList1)
+        val mAdapter2 = ChoiceItemAdapter(activity!!,itemList2)
+        val firstList = root.findViewById<RecyclerView>(R.id.main_listview1)
+        val secondList = root.findViewById<RecyclerView>(R.id.main_listview2)
+        firstList.adapter = mAdapter1
+        firstList.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
+        secondList.adapter = mAdapter2
+        secondList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         return root
     }
 
