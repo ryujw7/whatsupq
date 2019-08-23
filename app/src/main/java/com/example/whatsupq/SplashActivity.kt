@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.example.whatsupq.ui.tutorial.TutorialActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     private val SPLASH_TIME_OUT:Long = 1500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

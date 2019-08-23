@@ -1,16 +1,14 @@
 package com.example.whatsupq
 
 import android.content.Context
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.core.view.doOnNextLayout
 import kotlinx.android.synthetic.main.activity_register.*
 
-class RegisterActivity : AppCompatActivity() { // 문제 키워드: 키보드 스크롤
+class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크롤
     var finished = 0
     val PROGRESS_MAX = 6
     lateinit var checker: BooleanArray
@@ -60,7 +58,7 @@ class RegisterActivity : AppCompatActivity() { // 문제 키워드: 키보드 �
             if (i == EditorInfo.IME_ACTION_DONE) {
                 loseFocus()
                 val imm = textView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(textView.windowToken,0)
+                imm.hideSoftInputFromWindow(textView.windowToken, 0)
                 true
             } else {
                 false
@@ -95,9 +93,9 @@ class RegisterActivity : AppCompatActivity() { // 문제 키워드: 키보드 �
 
         for (index in percent.indices) {
             if (index == finished) {
-                percent[index].setTextColor(Color.parseColor("#016a97"))
+                percent[index].visibility = View.VISIBLE
             } else {
-                percent[index].setTextColor(Color.parseColor("#d1d3d4"))
+                percent[index].visibility = View.INVISIBLE
             }
         }
         register_btn.isEnabled = (finished == PROGRESS_MAX)

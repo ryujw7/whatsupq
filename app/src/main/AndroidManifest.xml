@@ -21,8 +21,6 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ui.tutorial.TutorialActivity">
         </activity>
-        <activity android:name=".SearchActivity">
-        </activity>
         <activity android:name=".LoginActivity">
         </activity>
         <activity android:name=".FindIDActivity">
