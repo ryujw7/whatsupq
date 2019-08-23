@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="12"
-                android:background="@color/peacock_blue">
+                android:background="@color/robins_egg_blue">
             <ImageButton
                     android:id="@+id/back_btn"
                     android:layout_width="0dp"
@@ -32,7 +32,7 @@
                     android:layout_weight="8"
                     android:gravity="center"
                     android:minHeight="?actionBarSize"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@drawable/main_banner"/>
             <ImageButton
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

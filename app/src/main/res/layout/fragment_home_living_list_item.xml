@@ -34,8 +34,8 @@
                     android:paddingBottom="5sp"
                     android:textSize="10sp"
                     android:text="브랜드명"
-                    android:textColor="@color/peacock_blue"
-                    android:fontFamily="@font/notosanssemibold"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/locussangsang"
                     android:gravity="center_vertical"/>
 
             <TextView
@@ -46,8 +46,8 @@
                     android:paddingBottom="10sp"
                     android:textSize="15sp"
                     android:text="제품명"
-                    android:textColor="@color/peacock_blue"
-                    android:fontFamily="@font/notosanssemibold"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/locussangsang"
                     android:gravity="center_vertical"/>
 
             <TextView
@@ -58,8 +58,8 @@
                     android:paddingBottom="5sp"
                     android:textSize="18sp"
                     android:text="판매가격(할인 적용)"
-                    android:textColor="@color/peacock_blue"
-                    android:fontFamily="@font/notosanssemibold"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/locussangsang"
                     android:gravity="center_vertical"/>
 
             <TextView
@@ -70,8 +70,8 @@
                     android:layout_weight="2"
                     android:text="원가"
                     android:background="@drawable/strike_through"
-                    android:textColor="@color/peacock_blue"
-                    android:fontFamily="@font/notosanssemibold"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/locussangsang"
                     android:gravity="center_vertical"/>
         </LinearLayout>
     </LinearLayout>

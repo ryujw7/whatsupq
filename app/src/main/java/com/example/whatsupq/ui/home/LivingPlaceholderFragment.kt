@@ -1,10 +1,12 @@
 package com.example.whatsupq.ui.home
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -34,7 +36,7 @@ class LivingPlaceholderFragment : Fragment() {
         viewPager.setPagingEnabled(true)
         tabs_living.setupWithViewPager(viewPager)
         tabs_living.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
-        tabs_living.setSelectedTabIndicatorColor(Color.rgb(16,106,150))
+        tabs_living.setSelectedTabIndicatorColor(ContextCompat.getColor(context!!.applicationContext, R.color.lightblue))
         return root
     }
 
