@@ -1,32 +1,32 @@
-package com.example.whatsupq.ui.main
+package com.example.whatsupq.ui.main.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import com.example.whatsupq.SearchListAdapter
 import com.example.whatsupq.R
+import kotlinx.android.synthetic.main.fragment_search.view.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class SearchPlaceholderFragment : Fragment() {
-    var searchList = arrayListOf<String>("콘돔","라면","생수","콜라","세제") // 테스트 용으로 우겨넣은 리스트
+    var recentList = arrayListOf("최근","검색","어어","어어","아앙") // 테스트 용으로 우겨넣은 리스트
+    var recommendList = arrayListOf("추천","검색","어어","으어","어어")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_search, container,false)
-        val listAdapter = SearchListAdapter(root.context, searchList)
-        val searchListView:ListView = root.findViewById(R.id.searchListView)
-        val search_bar:SearchView = root.findViewById(R.id.search_bar)
-        searchListView.adapter = listAdapter
-        search_bar.setOnClickListener {
-            search_bar.isIconified = false
+
+        val fragmentAdapter = SearchListViewPagerAdapter(childFragmentManager, recentList, recommendList)
+        root.search_viewpager.adapter = fragmentAdapter
+        root.search_bar.setOnClickListener {
+            root.search_bar.isIconified = false
         }
+        root.search_tab.setupWithViewPager(root.search_viewpager)
+
         return root
     }
 

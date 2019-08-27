@@ -14,7 +14,8 @@
                   android:text="홈카페 5종 컵 세트"
                   android:layout_alignParentLeft="true"
                   android:textSize="14sp"
-                  android:fontFamily="@font/goyangilsanl"/>
+                  android:fontFamily="@font/goyangilsanl"
+                  android:checked="true"/>
         <ImageView android:id="@+id/cart_item_delete"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -105,5 +106,5 @@
           android:layout_height="2dp"
           android:background="@color/silver"
           android:layout_alignParentBottom="true"
-          />
+    />
 </RelativeLayout>
