@@ -13,9 +13,13 @@
                   android:layout_height="wrap_content"
                   android:text="홈카페 5종 컵 세트"
                   android:layout_alignParentLeft="true"
+<<<<<<< HEAD
                   android:textSize="14sp"
                   android:fontFamily="@font/goyangilsanl"
                   android:checked="true"/>
+=======
+                  android:textSize="14sp"/>
+>>>>>>> parent of 0bea524... 디자인 변경사항 적용
         <ImageView android:id="@+id/cart_item_delete"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -44,8 +48,7 @@
                           android:layout_height="wrap_content"
                           android:text="수량"
                           android:textSize="12sp"
-                          android:layout_marginRight="15dp"
-                          android:fontFamily="@font/locussangsang"/>
+                          android:layout_marginRight="15dp"/>
                 <LinearLayout android:layout_width="wrap_content"
                               android:layout_height="24dp"
                               android:orientation="horizontal">
@@ -76,8 +79,7 @@
                           android:layout_height="wrap_content"
                           android:text="배송 주기"
                           android:textSize="12sp"
-                          android:layout_marginRight="15dp"
-                          android:fontFamily="@font/locussangsang"/>
+                          android:layout_marginRight="15dp"/>
                 <Spinner android:layout_width="88dp"
                          android:layout_height="24dp"
                          android:entries="@array/frequency"
@@ -89,22 +91,21 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textSize="19sp"
-                          android:text="19,000"
-                          android:fontFamily="@font/locussangsang"
-                          android:textColor="#000000"/>
+                          android:text="19,000"/>
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textSize="19sp"
-                          android:text="원"
-                          android:fontFamily="@font/locussangsang"
-                          android:textColor="#000000"/>
+                          android:text="원"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+<<<<<<< HEAD
     <View android:layout_width="match_parent"
           android:layout_marginHorizontal="10dp"
           android:layout_height="2dp"
           android:background="@color/silver"
           android:layout_alignParentBottom="true"
     />
+=======
+>>>>>>> parent of 0bea524... 디자인 변경사항 적용
 </RelativeLayout>

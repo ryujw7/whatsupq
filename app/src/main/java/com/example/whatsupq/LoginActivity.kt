@@ -23,17 +23,13 @@ import org.json.JSONObject
 import java.io.Console
 import java.net.URL
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : AppCompatActivity() {
     lateinit var login_id: EditText
     lateinit var login_password: EditText
     lateinit var login_btn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        back_btn.setOnClickListener {
-            finish()
-        }
         login_id = findViewById(R.id.login_id)
         login_password = findViewById(R.id.login_password)
         login_btn = findViewById(R.id.login_btn)

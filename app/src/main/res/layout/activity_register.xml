@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="12"
-                android:background="@color/robins_egg_blue">
+                android:background="@color/peacock_blue">
             <ImageButton
                     android:id="@+id/back_btn"
                     android:layout_width="0dp"
@@ -24,29 +24,19 @@
                     android:src="@drawable/rewind"
                     android:background="@android:color/transparent"
             />
-            <FrameLayout android:layout_width="0dp"
-                         android:layout_height="match_parent"
-                         android:layout_weight="2.5"></FrameLayout>
-            <TextView
-                    android:id="@+id/main_banner"
-                    android:layout_width="60dp"
-                    android:layout_height="?actionBarSize"
-                    android:background="@android:color/transparent"
-                    android:layout_weight="3"
+
+            <ImageView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
                     android:gravity="center"
-                    android:scaleType="fitCenter"
-                    android:text="회원가입"
-                    android:fontFamily="@font/locussangsang"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"/>
-            <FrameLayout android:layout_width="0dp"
-                         android:layout_height="match_parent"
-                         android:layout_weight="2"></FrameLayout>
+                    android:minHeight="?actionBarSize"
+                    android:src="@mipmap/ic_launcher"/>
             <ImageButton
-                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.5"
+                    android:layout_weight="2"
                     android:src="@drawable/cart"
                     android:background="@android:color/transparent"
             />
@@ -54,249 +44,131 @@
     </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical" app:layout_behavior="@string/appbar_scrolling_view_behavior"
                       android:gravity="center_horizontal">
-            <LinearLayout android:layout_width="360dp"
-                          android:layout_height="wrap_content"
+            <LinearLayout android:layout_width="360dp" android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:layout_marginTop="83dp">
-                <TextView android:id="@+id/register_pg0"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="0%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg1"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="17%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg2"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="33%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg3"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="50%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg4"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="67%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg5"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="83%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
-                <TextView android:id="@+id/register_pg6"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="100%"
-                          android:layout_weight="1"
-                          android:textColor="@color/robins_egg_blue"
-                          android:textSize="13sp"
-                          android:textAlignment="center"
-                          android:visibility="invisible"
-                          android:fontFamily="@font/locussangsang"/>
+                <TextView android:id="@+id/register_pg0" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="0%"
+                          android:layout_weight="1" android:textColor="#016a97" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg1" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="17%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg2" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="33%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg3" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="50%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg4" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="67%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg5" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="83%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
+                <TextView android:id="@+id/register_pg6" android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:text="100%"
+                          android:layout_weight="1" android:textColor="#d1d3d4" android:textSize="13sp"
+                          android:textAlignment="center"/>
             </LinearLayout>
             <ProgressBar
                     android:id="@+id/register_progrss"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="335dp"
-                    android:layout_height="7dp"
-                    android:layout_marginBottom="35dp"
-                    android:max="6"
-                    android:background="@drawable/progressbar"
-                    android:progressTint="@color/robins_egg_blue"/>
-            <TableLayout android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginHorizontal="17dp"
-                         android:stretchColumns="1,2">
+                    android:layout_height="7dp" android:layout_marginBottom="35dp"
+                    android:max="6"/>
+            <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                         android:layout_marginHorizontal="17dp" android:stretchColumns="1,2">
                 <TableRow>
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical" android:text="이메일"
+                              android:layout_marginRight="24dp"/>
+                    <EditText android:layout_width="250dp" android:layout_height="40dp"
                               android:layout_gravity="center_vertical"
-                              android:text="이메일"
-                              android:layout_marginRight="24dp"
-                              android:fontFamily="@font/locussangsang"/>
-                    <EditText android:layout_width="250dp"
-                              android:layout_height="40dp"
-                              android:layout_gravity="center_vertical"
-                              android:background="@drawable/edit_text_box"
-                              android:hint="example@gmail.com"
+                              android:background="@drawable/edit_text_box" android:hint="example@gmail.com"
                               android:inputType="textEmailAddress"
-                              android:paddingTop="13dp"
-                              android:paddingBottom="13dp"
-                              android:paddingLeft="20dp"
-                              android:textSize="11sp"
-                              android:id="@+id/register_email"
-                              android:fontFamily="@font/goyangilsanr"/>
+                              android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
+                              android:textSize="11sp" android:id="@+id/register_email"/>
                 </TableRow>
                 <TableRow android:layout_marginTop="20dp">
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical" android:text="비밀번호"
+                              android:layout_marginRight="24dp"/>
+                    <EditText android:layout_width="250dp" android:layout_height="40dp"
                               android:layout_gravity="center_vertical"
-                              android:text="비밀번호"
-                              android:layout_marginRight="24dp"
-                              android:fontFamily="@font/locussangsang"/>
-                    <EditText android:layout_width="250dp"
-                              android:layout_height="40dp"
-                              android:layout_gravity="center_vertical"
-                              android:background="@drawable/edit_text_box"
-                              android:hint="영문 + 숫자 6자리 이상"
+                              android:background="@drawable/edit_text_box" android:hint="영문 + 숫자 6자리 이상"
                               android:inputType="textPassword"
-                              android:paddingTop="13dp"
-                              android:paddingBottom="13dp"
-                              android:paddingLeft="20dp"
-                              android:textSize="11sp"
-                              android:id="@+id/register_pw"
-                              android:fontFamily="@font/goyangilsanr"/>
+                              android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
+                              android:textSize="11sp" android:id="@+id/register_pw"/>
                 </TableRow>
 
                 <TableRow android:layout_marginTop="20dp">
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical" android:text="휴대폰"
+                              android:layout_marginRight="24dp"/>
+                    <EditText android:layout_width="250dp" android:layout_height="40dp"
                               android:layout_gravity="center_vertical"
-                              android:text="휴대폰"
-                              android:layout_marginRight="24dp"
-                              android:fontFamily="@font/locussangsang"/>
-                    <EditText android:layout_width="250dp"
-                              android:layout_height="40dp"
-                              android:layout_gravity="center_vertical"
-                              android:background="@drawable/edit_text_box"
-                              android:hint="ex) 01012345678"
+                              android:background="@drawable/edit_text_box" android:hint="ex) 01012345678"
                               android:inputType="phone"
-                              android:paddingTop="13dp"
-                              android:paddingBottom="13dp"
-                              android:paddingLeft="20dp"
-                              android:maxLength="11"
-                              android:textSize="11sp"
-                              android:id="@+id/register_phone"
-                              android:fontFamily="@font/goyangilsanr"/>
+                              android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp" android:maxLength="11"
+                              android:textSize="11sp" android:id="@+id/register_phone"/>
                 </TableRow>
                 <TableRow android:layout_marginTop="20dp">
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical" android:text="생년월일"
+                              android:layout_marginRight="24dp"/>
+                    <EditText android:layout_width="250dp" android:layout_height="40dp"
                               android:layout_gravity="center_vertical"
-                              android:text="생년월일"
-                              android:layout_marginRight="24dp"
-                              android:fontFamily="@font/locussangsang"/>
-                    <EditText android:layout_width="250dp"
-                              android:layout_height="40dp"
-                              android:layout_gravity="center_vertical"
-                              android:background="@drawable/edit_text_box"
-                              android:hint="ex) 000102"
+                              android:background="@drawable/edit_text_box" android:hint="ex) 000102"
                               android:inputType="date"
-                              android:paddingTop="13dp"
-                              android:paddingBottom="13dp"
-                              android:paddingLeft="20dp"
-                              android:textSize="11sp"
-                              android:id="@+id/register_birth"
-                              android:maxLength="6"
-                              android:fontFamily="@font/goyangilsanr"/>
+                              android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
+                              android:textSize="11sp" android:id="@+id/register_birth" android:maxLength="6"/>
                 </TableRow>
                 <TableRow android:layout_marginTop="20dp">
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_gravity="center_vertical"
-                              android:text="성별"
-                              android:layout_marginRight="24dp"
-                              android:fontFamily="@font/locussangsang"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:layout_gravity="center_vertical" android:text="성별"
+                              android:layout_marginRight="24dp"/>
                     <RadioGroup android:orientation="horizontal">
-                        <RadioButton android:layout_width="0dp"
-                                     android:layout_height="40dp"
+                        <RadioButton android:layout_width="0dp" android:layout_height="40dp"
                                      android:button="@android:color/transparent"
-                                     android:background="@drawable/button_sex"
-                                     android:text="남자"
-                                     android:gravity="center"
-                                     android:layout_weight="1"
-                                     android:textColor="@drawable/button_sex_txtcolor"
-                                     android:id="@+id/register_m"
-                                     android:fontFamily="@font/goyangilsanr"/>
-                        <View android:layout_height="0dp"
-                              android:layout_width="20dp"/>
-                        <RadioButton android:layout_width="0dp"
-                                     android:layout_height="40dp"
+                                     android:background="@drawable/radio_btn" android:text="남자"
+                                     android:gravity="center" android:layout_weight="1"
+                                     android:textColor="@drawable/radio_btn_textcolor" android:id="@+id/register_m"/>
+                        <View android:layout_height="0dp" android:layout_width="20dp"/>
+                        <RadioButton android:layout_width="0dp" android:layout_height="40dp"
                                      android:button="@android:color/transparent"
-                                     android:background="@drawable/button_sex"
-                                     android:text="여자"
-                                     android:gravity="center"
-                                     android:layout_weight="1"
-                                     android:textColor="@drawable/button_sex_txtcolor"
-                                     android:id="@+id/register_f"
-                                     android:fontFamily="@font/goyangilsanr"/>
+                                     android:background="@drawable/radio_btn" android:text="여자"
+                                     android:gravity="center" android:layout_weight="1"
+                                     android:textColor="@drawable/radio_btn_textcolor" android:id="@+id/register_f"/>
                     </RadioGroup>
                 </TableRow>
             </TableLayout>
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="40dp"
-                          android:orientation="horizontal">
-                <CheckBox android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="center"
-                          android:id="@+id/register_agree"/>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginTop="40dp" android:orientation="horizontal">
+                <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center" android:id="@+id/register_agree"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                               android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="아래 약관과 회원가입에 동의합니다 (필수)"
-                              android:textColor="#002a42"
-                              android:fontFamily="@font/goyangilsanr"/>
-                    <TextView android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:text="왓섭큐 이용약관, 개인정보처리방침"
-                              android:textColor="#707070"
-                              android:fontFamily="@font/goyangilsanr"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:text="아래 약관과 회원가입에 동의합니다 (필수)" android:textColor="#002a42"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:text="왓섭큐 이용약관, 개인정보처리방침" android:textColor="#707070"/>
                 </LinearLayout>
             </LinearLayout>
-            <Button android:id="@+id/register_btn"
-                    android:layout_width="280dp"
-                    android:layout_height="60dp"
+            <Button android:id="@+id/register_btn" android:layout_width="280dp" android:layout_height="60dp"
                     android:enabled="false"
-                    android:background="@drawable/button_general"
-                    android:textColor="@drawable/button_general_txtcolor"
-                    android:textSize="20sp"
-                    android:text="가입 완료"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/locussangsang"/>
+                    android:background="@drawable/tutorial_btn"
+                    android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp" android:text="회원가입"
+                    android:layout_marginTop="20dp"/>
         </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

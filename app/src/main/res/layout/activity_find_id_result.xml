@@ -58,11 +58,11 @@
                           android:textColor="#707070" android:textSize="11sp"/>
             </LinearLayout>
         </LinearLayout>
-        <Button android:layout_width="280dp" android:layout_height="60dp" android:background="@drawable/button_general"
-                android:textColor="@drawable/button_general_txtcolor" android:textSize="20sp"
+        <Button android:layout_width="280dp" android:layout_height="60dp" android:background="@drawable/tutorial_btn"
+                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp"
                 android:text="이메일로 임시비밀번호 받기" android:layout_marginTop="25dp"/>
-        <Button android:layout_width="280dp" android:layout_height="60dp" android:background="@drawable/button_general"
-                android:textColor="@drawable/button_general_txtcolor" android:textSize="20sp" android:text="로그인 하러가기"
+        <Button android:layout_width="280dp" android:layout_height="60dp" android:background="@drawable/tutorial_btn"
+                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp" android:text="로그인 하러가기"
                 android:layout_marginTop="20dp"/>
         <View android:layout_width="280dp" android:layout_height="2dp" android:background="#d1d3d4"
               android:layout_marginTop="23dp"/>

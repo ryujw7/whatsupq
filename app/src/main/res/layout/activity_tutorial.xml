@@ -6,13 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.tutorial.TutorialActivity">
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                   android:orientation="vertical">
         <androidx.viewpager.widget.ViewPager android:id="@+id/tutorial_viewpager"
                                              android:layout_width="match_parent"
-                                             android:layout_height="0dp"
-                                             android:layout_weight="1">
+                                             android:layout_height="0dp" android:layout_weight="1">
         </androidx.viewpager.widget.ViewPager>
         <com.google.android.material.tabs.TabLayout android:id="@+id/tutorial_indicator"
                                                     android:layout_width="300dp"
@@ -23,16 +21,11 @@
                                                     app:tabBackground="@drawable/tab_selector"
                                                     app:tabGravity="center"
                                                     app:tabIndicatorHeight="0dp"/>
+
         <Button android:id="@+id/tutorial_btn"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginBottom="57dp"
-                android:layout_marginHorizontal="92dp"
-                android:text="시작하기"
-                android:textSize="27sp"
-                android:enabled="false"
-                android:background="@drawable/button_general"
-                android:textColor="@drawable/button_general_txtcolor"
-                android:fontFamily="@font/locussangsang"/>
+                android:layout_width="match_parent" android:layout_height="75dp"
+                android:layout_marginBottom="57dp" android:layout_marginLeft="92dp" android:layout_marginRight="92dp"
+                android:text="시작하기" android:textSize="27sp" android:enabled="false"
+                android:background="@drawable/tutorial_btn" android:textColor="@drawable/tutorial_btn_textcolor"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

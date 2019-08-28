@@ -7,13 +7,10 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
-class FindIDActivity : BaseActivity() {
+class FindIDActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_id)
-        back_btn.setOnClickListener {
-            finish()
-        }
     }
 }

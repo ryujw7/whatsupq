@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="12"
-                android:background="@color/robins_egg_blue">
+                android:background="@color/peacock_blue">
             <ImageButton
                     android:id="@+id/back_btn"
                     android:layout_width="0dp"
@@ -24,77 +24,42 @@
                     android:src="@drawable/rewind"
                     android:background="@android:color/transparent"
             />
-            <FrameLayout android:layout_width="0dp"
-                         android:layout_height="match_parent"
-                         android:layout_weight="2.5"></FrameLayout>
-            <TextView
-                    android:id="@+id/main_banner"
-                    android:layout_width="60dp"
-                    android:layout_height="?actionBarSize"
-                    android:background="@android:color/transparent"
-                    android:layout_weight="3"
+
+            <ImageView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
                     android:gravity="center"
-                    android:scaleType="fitCenter"
-                    android:text="아이디 찾기"
-                    android:fontFamily="@font/locussangsang"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"/>
-            <FrameLayout android:layout_width="0dp"
-                         android:layout_height="match_parent"
-                         android:layout_weight="2"></FrameLayout>
+                    android:minHeight="?actionBarSize"
+                    android:src="@mipmap/ic_launcher"/>
             <ImageButton
-                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.5"
+                    android:layout_weight="2"
                     android:src="@drawable/cart"
                     android:background="@android:color/transparent"
             />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical" app:layout_behavior="@string/appbar_scrolling_view_behavior"
                   android:gravity="center_horizontal">
-        <ImageView android:layout_width="100dp"
-                   android:layout_height="100dp"
-                   android:layout_marginTop="100dp"
-                   android:src="@drawable/main_banner"/>
-        <EditText android:layout_width="280dp"
-                  android:layout_height="40dp"
-                  android:hint="생년월일"
-                  android:inputType="date"
-                  android:background="@drawable/edit_text_box"
-                  android:paddingTop="13dp"
-                  android:paddingBottom="13dp"
-                  android:paddingLeft="20dp"
-                  android:textSize="11sp"
-                  android:fontFamily="@font/goyangilsanr"/>
-        <EditText android:layout_width="280dp"
-                  android:layout_height="40dp"
-                  android:layout_marginTop="15dp"
-                  android:background="@drawable/edit_text_box"
-                  android:hint="휴대폰 번호"
-                  android:inputType="phone"
-                  android:paddingTop="13dp"
-                  android:paddingBottom="13dp"
-                  android:paddingLeft="20dp"
-                  android:textSize="11sp"
-                  android:fontFamily="@font/goyangilsanr"/>
-        <Button android:layout_width="280dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="25dp"
-                android:text="아이디 찾기"
-                android:background="@drawable/button_general"
-                android:textColor="@drawable/button_general_txtcolor"
-                android:textSize="20sp"
-                android:fontFamily="@font/locussangsang"/>
+        <ImageView android:layout_width="100dp" android:layout_height="100dp" android:layout_marginTop="100dp" android:background="#d1d3d4"/>
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:hint="생년월일" android:inputType="date"
+                  android:layout_marginTop="27dp" android:background="@drawable/edit_text_box" android:paddingTop="13dp"
+                  android:paddingBottom="13dp" android:paddingLeft="20dp" android:textSize="11sp"/>
+        <EditText android:layout_width="280dp" android:layout_height="40dp" android:layout_marginTop="15dp"
+                  android:background="@drawable/edit_text_box" android:hint="휴대폰 번호" android:inputType="phone"
+                  android:paddingTop="13dp" android:paddingBottom="13dp" android:paddingLeft="20dp"
+                  android:textSize="11sp"/>
+        <Button android:layout_width="280dp" android:layout_height="60dp" android:layout_marginTop="25dp"
+                android:text="아이디 찾기" android:background="@drawable/tutorial_btn"
+                android:textColor="@drawable/tutorial_btn_textcolor" android:textSize="20sp"/>
         <View
                 android:layout_width="280dp"
                 android:layout_height="2dp"
-                android:background="#d1d3d4"
-                android:layout_marginTop="23dp"
+                android:background="#d1d3d4" android:layout_marginTop="23dp"
         />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
