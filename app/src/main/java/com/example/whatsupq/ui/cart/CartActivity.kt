@@ -2,10 +2,11 @@ package com.example.whatsupq.ui.cart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_cart.*
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : BaseActivity() {
 
     var category_item_list = mutableMapOf<String, ArrayList<CartItem>>(
         Pair(
@@ -52,7 +53,9 @@ class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-
+        back_btn.setOnClickListener {
+            finish()
+        }
         val cartItemAdapter = CartItemAdapter(this, category_item_list)
         cart_listView.adapter = cartItemAdapter
         cart_checkall.setOnClickListener {

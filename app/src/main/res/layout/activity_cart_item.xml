@@ -43,7 +43,8 @@
                           android:layout_height="wrap_content"
                           android:text="수량"
                           android:textSize="12sp"
-                          android:layout_marginRight="15dp"/>
+                          android:layout_marginRight="15dp"
+                          android:fontFamily="@font/locussangsang"/>
                 <LinearLayout android:layout_width="wrap_content"
                               android:layout_height="24dp"
                               android:orientation="horizontal">
@@ -74,7 +75,8 @@
                           android:layout_height="wrap_content"
                           android:text="배송 주기"
                           android:textSize="12sp"
-                          android:layout_marginRight="15dp"/>
+                          android:layout_marginRight="15dp"
+                          android:fontFamily="@font/locussangsang"/>
                 <Spinner android:layout_width="88dp"
                          android:layout_height="24dp"
                          android:entries="@array/frequency"
@@ -86,11 +88,15 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textSize="19sp"
-                          android:text="19,000"/>
+                          android:text="19,000"
+                          android:fontFamily="@font/locussangsang"
+                          android:textColor="#000000"/>
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textSize="19sp"
-                          android:text="원"/>
+                          android:text="원"
+                          android:fontFamily="@font/locussangsang"
+                          android:textColor="#000000"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

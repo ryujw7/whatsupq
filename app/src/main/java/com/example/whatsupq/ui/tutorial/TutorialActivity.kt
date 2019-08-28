@@ -4,11 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
+import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.MainActivity
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
-class TutorialActivity : AppCompatActivity() {
+class TutorialActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

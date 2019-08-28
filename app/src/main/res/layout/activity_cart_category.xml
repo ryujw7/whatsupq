@@ -10,5 +10,6 @@
               android:layout_height="wrap_content"
               android:textSize="14sp"
               android:text="카테고리"
-              android:layout_marginLeft="20dp"/>
+              android:layout_marginLeft="17dp"
+              android:fontFamily="@font/goyangilsanr"/>
 </LinearLayout>

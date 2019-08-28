@@ -18,7 +18,6 @@ class TutorialFragment(tutoText: String, resId: Int) : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        tutorial_img.scaleType = ImageView.ScaleType.FIT_XY
         tutorial_txt.text = txt
         tutorial_img.setImageResource(rid)
     }
