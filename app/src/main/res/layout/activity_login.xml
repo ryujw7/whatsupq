@@ -24,19 +24,29 @@
                     android:src="@drawable/rewind"
                     android:background="@android:color/transparent"
             />
-
-            <ImageView
-                    android:id="@+id/title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8"
+            <FrameLayout android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="2.5"></FrameLayout>
+            <TextView
+                    android:id="@+id/main_banner"
+                    android:layout_width="60dp"
+                    android:layout_height="?actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:layout_weight="3"
                     android:gravity="center"
-                    android:minHeight="?actionBarSize"
-                    android:src="@drawable/main_banner"/>
+                    android:scaleType="fitCenter"
+                    android:text="로그인"
+                    android:fontFamily="@font/locussangsang"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"/>
+            <FrameLayout android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="2"></FrameLayout>
             <ImageButton
+                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
                     android:src="@drawable/cart"
                     android:background="@android:color/transparent"
             />
@@ -50,44 +60,47 @@
         <ImageView android:layout_width="100dp"
                    android:layout_height="100dp"
                    android:layout_marginTop="100dp"
-                   android:background="#d1d3d4"/>
+                   android:src="@drawable/main_banner"/>
         <EditText
                 android:id="@+id/login_id"
                 android:layout_width="280dp"
-                  android:layout_height="40dp"
-                  android:hint="아이디"
-                  android:inputType="textVisiblePassword"
-                  android:layout_marginTop="27dp"
-                  android:background="@drawable/edit_text_box"
-                  android:paddingTop="13dp"
-                  android:paddingBottom="13dp"
-                  android:paddingLeft="20dp"
-                  android:textSize="11sp"/>
+                android:layout_height="40dp"
+                android:hint="아이디"
+                android:inputType="textVisiblePassword"
+                android:background="@drawable/edit_text_box"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="20dp"
+                android:textSize="11sp"
+                android:fontFamily="@font/goyangilsanr"/>
         <EditText
                 android:id="@+id/login_password"
                 android:layout_width="280dp"
-                  android:layout_height="40dp"
-                  android:layout_marginTop="15dp"
-                  android:background="@drawable/edit_text_box"
-                  android:hint="비밀번호"
-                  android:inputType="textPassword"
-                  android:paddingTop="13dp"
-                  android:paddingBottom="13dp"
-                  android:paddingLeft="20dp"
-                  android:textSize="11sp"/>
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edit_text_box"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="20dp"
+                android:textSize="11sp"
+                android:fontFamily="@font/goyangilsanr"/>
         <Button
                 android:id="@+id/login_btn"
                 android:layout_width="280dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="25dp"
                 android:text="로그인"
-                android:background="@drawable/tutorial_btn"
-                android:textColor="@drawable/tutorial_btn_textcolor"
-                android:textSize="20sp"/>
+                android:background="@drawable/button_general"
+                android:textColor="@drawable/button_general_txtcolor"
+                android:textSize="20sp"
+                android:fontFamily="@font/locussangsang"/>
         <View
                 android:layout_width="280dp"
                 android:layout_height="2dp"
-                android:background="#d1d3d4" android:layout_marginTop="23dp"
+                android:background="#d1d3d4"
+                android:layout_marginTop="23dp"
         />
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -99,7 +112,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아이디 찾기"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:fontFamily="@font/goyangilsanr"
+                    android:padding="5dp"/>
             <View android:layout_width="1dp"
                   android:layout_height="match_parent"
                   android:background="#d1d3d4"
@@ -108,7 +123,9 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="비밀번호 찾기"
-                      android:textSize="14sp"/>
+                      android:textSize="14sp"
+                      android:fontFamily="@font/goyangilsanr"
+                      android:padding="5dp"/>
             <View android:layout_width="1dp"
                   android:layout_height="match_parent"
                   android:background="#d1d3d4"
@@ -117,7 +134,9 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="회원가입"
-                      android:textSize="14sp"/>
+                      android:textSize="14sp"
+                      android:fontFamily="@font/goyangilsanr"
+                      android:padding="5dp"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -10,13 +10,12 @@
                android:layout_marginBottom="50dp"
                android:background="@android:color/transparent"/>
     <TextView android:id="@+id/tutorial_txt"
-              android:fontFamily="@font/notosanssemibold"
+              android:fontFamily="@font/goyangilsanl"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginLeft="70dp"
-              android:layout_marginRight="70dp"
+              android:layout_marginHorizontal="70dp"
               android:text="텍스트"
               android:textSize="24sp"
-              android:textColor="#002a42"
+              android:textColor="@color/lightblue"
     />
 </LinearLayout>
