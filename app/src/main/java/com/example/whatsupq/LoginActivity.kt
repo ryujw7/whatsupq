@@ -23,7 +23,7 @@ import org.json.JSONObject
 import java.io.Console
 import java.net.URL
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     lateinit var login_id: EditText
     lateinit var login_password: EditText
     lateinit var login_btn: Button
@@ -71,8 +71,12 @@ class LoginActivity : AppCompatActivity() {
                         status = it.getString("status")
                         isSuccess = it.getString("success")
                         message = it.getString("message")
-                        data = it.getJSONObject("data")
                         if (status.equals("200")) {
+                            val intent = Intent()
+                            data = it.getJSONObject("data")
+                            intent.putExtra("data", data.getString("token"))
+                            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                            setResult(status.toInt(), intent)
                             finish()
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                         } else {

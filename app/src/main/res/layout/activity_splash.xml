@@ -21,9 +21,9 @@
                       android:layout_centerVertical="true"
                       android:orientation="vertical">
             <TextView
-                    android:text="What's up"
+                    android:text="What`s up"
                     android:gravity="center"
-                    android:fontFamily="@font/locussangsang"
+                    android:fontFamily="@font/goyangilsanr"
                     android:textSize="50sp"
                     android:textColor="@color/lightblue_two"
                     android:layout_width="wrap_content"

@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.R
+import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.PageViewModel
 
 /**
@@ -18,7 +20,6 @@ class ChoicePlaceholderFragment : Fragment() {
 
     private var itemList1 = ArrayList<ChoiceItem>()
     private var itemList2 = ArrayList<ChoiceItem>()
-
     private lateinit var pageViewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +47,13 @@ class ChoicePlaceholderFragment : Fragment() {
         val mAdapter2 = ChoiceItemAdapter(activity!!,itemList2)
         val firstList = root.findViewById<RecyclerView>(R.id.main_listview1)
         val secondList = root.findViewById<RecyclerView>(R.id.main_listview2)
+        val bannerList : SwipeViewPager = root.findViewById(R.id.fragment_home_banner)
         firstList.adapter = mAdapter1
         firstList.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         secondList.adapter = mAdapter2
         secondList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        bannerList.setPagingEnabled(true)
+        bannerList.adapter = HomeBannerItemAdapter(childFragmentManager)
         return root
     }
 

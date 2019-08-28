@@ -12,11 +12,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="70dp">
-        <androidx.viewpager.widget.ViewPager
+        <com.example.whatsupq.SwipeViewPager
                 android:id="@+id/fragment_home_banner"
                 android:layout_width="match_parent"
-                android:layout_height="160dp">
-        </androidx.viewpager.widget.ViewPager>
+                android:layout_height="160dp"
+                android:scrollIndicators="top">
+        </com.example.whatsupq.SwipeViewPager>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
