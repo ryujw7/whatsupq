@@ -12,6 +12,7 @@ import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_buy.*
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import com.example.whatsupq.ResultTradeActivity
 import java.util.*
 
 
@@ -150,7 +151,10 @@ class BuyActivity : BaseActivity() {
             }
             toggleExpand(buy_expand_total_target)
         }
-
+        themebox_addcart_final.setOnClickListener {
+            startActivity(Intent(this, ResultTradeActivity::class.java))
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
     }
 
     private fun updateDate() {

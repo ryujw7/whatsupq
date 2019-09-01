@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ResultTradeActivity
+import com.example.whatsupq.ui.buy.BuyActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 
 class CartActivity : BaseActivity() {
@@ -68,7 +69,7 @@ class CartActivity : BaseActivity() {
             refreshCost()
         }
         cart_order.setOnClickListener {
-            startActivity(Intent(this,ResultTradeActivity::class.java))
+            startActivity(Intent(this,BuyActivity::class.java))
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }

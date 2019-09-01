@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".LivingItemInfoActivity"/>
         <activity android:name=".ResultTradeActivity"/>
+        <activity android:name=".ui.buy.BuyActivity"/>
+        <activity android:name=".ui.buy.BuyDestFindActivity"/>
     </application>
 
 </manifest>
