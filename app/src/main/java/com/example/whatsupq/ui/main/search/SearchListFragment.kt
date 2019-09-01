@@ -1,4 +1,4 @@
-package com.example.whatsupq.ui.main.search
+package com.example.whatsupq.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,6 @@ import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.fragment_search_list.view.*
 
 class SearchListFragment(val searchList : ArrayList<String>) : Fragment(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_search_list, container, false)
         val searchItemAdapter = SearchItemAdapter(searchList)

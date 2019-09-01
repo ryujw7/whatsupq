@@ -1,13 +1,10 @@
 package com.example.whatsupq.ui.main
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.home.HomePagerAdapter
@@ -16,7 +13,7 @@ import com.google.android.material.tabs.TabLayout
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class HomePlaceholderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,24 +28,13 @@ class PlaceholderFragment : Fragment() {
         return root
     }
 
-    companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private const val ARG_SECTION_NUMBER = "section_number"
+    fun newInstance(): HomePlaceholderFragment
+    {
+        val args = Bundle()
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
+        val frag = HomePlaceholderFragment()
+        frag.arguments = args
+
+        return frag
     }
 }
