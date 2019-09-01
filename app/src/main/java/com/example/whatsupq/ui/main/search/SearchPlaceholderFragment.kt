@@ -1,4 +1,4 @@
-package com.example.whatsupq.ui.main
+package com.example.whatsupq.ui.main.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,8 +29,7 @@ class SearchPlaceholderFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_search, container,false)
 
-        val fragmentAdapter =
-            SearchListViewPagerAdapter(childFragmentManager, recentList, recommendList)
+        val fragmentAdapter = SearchListViewPagerAdapter(childFragmentManager, recentList, recommendList)
         root.search_viewpager.adapter = fragmentAdapter
         root.search_bar.setOnClickListener {
             root.search_bar.isIconified = false

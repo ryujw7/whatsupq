@@ -2,15 +2,17 @@ package com.example.whatsupq.ui.home
 
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
 
-class ChoiceItem(val thumbnailImg: String)
+class ChoiceItem(val thumbnailImg: Bitmap)
 
 
 class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceItem>) :
@@ -26,17 +28,20 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(itemList[position])
+        val item = itemList[position]
+        (holder).apply{
+            bind(item)
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val thumbnail = itemView.findViewById<ImageButton>(R.id.image_thumbnail)
         fun bind(item: ChoiceItem) {
-            if (item.thumbnailImg != "") {
-                val resourceId = itemView.resources.getIdentifier(item.thumbnailImg, "drawable", "com.example.whatsupq")
-                thumbnail.setImageResource(R.drawable.ic_launcher_foreground)
+            thumbnail.scaleType = ImageView.ScaleType.FIT_XY
+            if(item.thumbnailImg != null) {
+                thumbnail.setImageBitmap(item.thumbnailImg)
             } else {
-                thumbnail.setImageResource(R.drawable.ic_launcher_foreground)
+                thumbnail?.setImageResource(R.drawable.ic_launcher_foreground)
             }
         }
     }

@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.example.whatsupq.R
+import com.makeramen.roundedimageview.RoundedImageView
 
 class ThemeboxItem(val themeImg: String, val themeTitle: String, val themeSubTitle: String)
 
 class ThemeboxItemAdapter(val context: ThemeboxListPlaceHolderFragment, val itemList:ArrayList<ThemeboxItem>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view: View = LayoutInflater.from(context.context).inflate(R.layout.fragment_home_themebox_item, null)
-        val themeImg = view.findViewById<ImageButton>(R.id.theme_image)
+        val themeImg = view.findViewById<RoundedImageView>(R.id.theme_image)
         val themeTitle = view.findViewById<TextView>(R.id.theme_title)
         val themeSubTitle = view.findViewById<TextView>(R.id.theme_subtitle)
         val themeboxItem = itemList[p0]

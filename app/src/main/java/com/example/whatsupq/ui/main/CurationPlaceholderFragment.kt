@@ -13,26 +13,20 @@ import com.google.android.material.tabs.TabLayout
 /**
  * A placeholder fragment containing a simple view.
  */
-class HomePlaceholderFragment : Fragment() {
+class CurationPlaceholderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container,false)
-        val homePagerAdapter = HomePagerAdapter(root.context, childFragmentManager)
-        val viewPager: SwipeViewPager = root.findViewById(R.id.view_pager_home)
-        viewPager.setPagingEnabled(true)
-        viewPager.adapter = homePagerAdapter
-        val tabs_home: TabLayout = root.findViewById(R.id.tabs)
-        tabs_home.setupWithViewPager(viewPager)
+        val root = inflater.inflate(R.layout.fragment_curation, container,false)
         return root
     }
 
-    fun newInstance(): HomePlaceholderFragment
+    fun newInstance(): CurationPlaceholderFragment
     {
         val args = Bundle()
 
-        val frag = HomePlaceholderFragment()
+        val frag = CurationPlaceholderFragment()
         frag.arguments = args
 
         return frag

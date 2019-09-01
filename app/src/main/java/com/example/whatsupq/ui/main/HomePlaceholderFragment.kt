@@ -1,23 +1,19 @@
 package com.example.whatsupq.ui.main
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.home.HomePagerAdapter
-import com.example.whatsupq.ui.main.search.SearchPlaceholderFragment
 import com.google.android.material.tabs.TabLayout
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class HomePlaceholderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,13 +28,12 @@ class PlaceholderFragment : Fragment() {
         return root
     }
 
-    fun newInstance(): PlaceholderFragment
+    fun newInstance(): HomePlaceholderFragment
     {
         val args = Bundle()
 
-        val frag = PlaceholderFragment()
+        val frag = HomePlaceholderFragment()
         frag.arguments = args
-
         return frag
     }
 }

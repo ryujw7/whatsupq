@@ -1,4 +1,4 @@
-package com.example.whatsupq.ui.main
+package com.example.whatsupq.ui.main.search
 
 import android.os.Bundle
 import android.view.LayoutInflater

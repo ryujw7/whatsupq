@@ -1,6 +1,5 @@
 package com.example.whatsupq.ui.home
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
-import kotlinx.android.synthetic.main.fragment_home_living_list_item.view.*
 
 class LivingItem(val livingImg: String, val livingBrand: String, val livingName: String,val livingCharge: String,val livingBeforeCharge: String)
 
@@ -31,6 +29,7 @@ class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val item
         livingBeforeCharge.text = livingItem.livingBeforeCharge
         view.setOnClickListener {
             var intent = Intent(context.context, LivingItemInfoActivity::class.java)
+
             context.startActivity(intent)
         }
         return view

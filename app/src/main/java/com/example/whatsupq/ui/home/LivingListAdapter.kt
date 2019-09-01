@@ -18,7 +18,7 @@ private val TAB_TITLES = arrayOf(
 class LivingListAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
+        // Return a HomePlaceholderFragment (defined as a static inner class below).
         if (position == 0) {
             return LivingListPlaceholderFragment.newInstance(position + 1)
         } else if (position == 1) {

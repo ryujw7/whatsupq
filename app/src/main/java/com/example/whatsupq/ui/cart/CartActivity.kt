@@ -1,13 +1,13 @@
 package com.example.whatsupq.ui.cart
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.R
+import com.example.whatsupq.ResultTradeActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 
 class CartActivity : BaseActivity() {
-
     var category_item_list = mutableMapOf<String, ArrayList<CartItem>>(
         Pair(
             "생필품",
@@ -66,6 +66,10 @@ class CartActivity : BaseActivity() {
             }
             cartItemAdapter.notifyDataSetChanged()
             refreshCost()
+        }
+        cart_order.setOnClickListener {
+            startActivity(Intent(this,ResultTradeActivity::class.java))
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 }
