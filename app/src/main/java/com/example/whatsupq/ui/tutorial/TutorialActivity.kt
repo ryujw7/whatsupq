@@ -7,6 +7,8 @@ import androidx.viewpager.widget.ViewPager
 import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.MainActivity
 import com.example.whatsupq.R
+import com.example.whatsupq.ui.buy.BuyActivity
+import com.example.whatsupq.ui.themebox.ThemeboxActivity
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
 class TutorialActivity : BaseActivity() {
@@ -28,6 +30,7 @@ class TutorialActivity : BaseActivity() {
         })
         tutorial_indicator.setupWithViewPager(tutorial_viewpager,true)
         tutorial_btn.setOnClickListener {
+//            intent = Intent(this, MainActivity::class.java)
             intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
