@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
@@ -22,8 +23,9 @@ import org.json.JSONObject
 
 class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크롤
     var finished = 0
-    val PROGRESS_MAX = 6
+    val PROGRESS_MAX = 7
     lateinit var checker: BooleanArray
+    var name = ""
     var email = ""
     var password = ""
     var phone = ""
@@ -32,9 +34,12 @@ class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크�
     override fun onCreate(savedInstanceState: Bundle?) {
         // 주석 처리된 친구들은 시도해보고 싶은데 에러떄문에 보류
 //        var editTextArray = arrayListOf<EditText>(register_email, register_pw, register_phone, register_birth)
-        checker = BooleanArray(4) { false }
+        checker = BooleanArray(5) { false }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        back_btn.setOnClickListener {
+            finish()
+        }
         var jsonObject: JSONObject
         var queue: RequestQueue
         var status: String
@@ -50,27 +55,33 @@ class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크�
 //            }
 //        }
         //////////// 대체하고 싶은 코드
+        register_name.setOnFocusChangeListener { view, hasFocus ->
+            if (!hasFocus) {
+                checker[0] = register_name.text.isNotEmpty()
+                applyProgress()
+            }
+        }
         register_email.setOnFocusChangeListener { view, hasFocus ->
             if (!hasFocus) {
-                checker[0] = register_email.text.isNotEmpty()
+                checker[1] = register_email.text.isNotEmpty()
                 applyProgress()
             }
         }
         register_pw.setOnFocusChangeListener { view, hasFocus ->
             if (!hasFocus) {
-                checker[1] = register_pw.text.isNotEmpty()
+                checker[2] = register_pw.text.isNotEmpty()
                 applyProgress()
             }
         }
         register_phone.setOnFocusChangeListener { view, hasFocus ->
             if (!hasFocus) {
-                checker[2] = register_phone.text.isNotEmpty()
+                checker[3] = register_phone.text.isNotEmpty()
                 applyProgress()
             }
         }
         register_birth.setOnFocusChangeListener { view, hasFocus ->
             if (!hasFocus) {
-                checker[3] = register_birth.text.isNotEmpty()
+                checker[4] = register_birth.text.isNotEmpty()
                 applyProgress()
             }
         }
@@ -98,6 +109,7 @@ class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크�
             applyProgress()
         }
         register_btn.setOnClickListener {
+            name = register_name.text.toString()
             email = register_email.text.toString()
             password = register_pw.text.toString()
             phone = register_phone.text.toString()
@@ -112,7 +124,7 @@ class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크�
                 jsonObject = JSONObject()
                 jsonObject.accumulate("email", email)
                 jsonObject.accumulate("password", password)
-                jsonObject.accumulate("name", null)
+                jsonObject.accumulate("name", name)
                 jsonObject.accumulate("birth", birthday)
                 jsonObject.accumulate("phone", phone)
                 jsonObject.accumulate("gender", gender)
@@ -148,16 +160,17 @@ class RegisterActivity : BaseActivity() { // 문제 키워드: 키보드 스크�
             register_pg3,
             register_pg4,
             register_pg5,
-            register_pg6
+            register_pg6,
+            register_pg7
         )
         finished = checkCount(checker)
         register_progrss.progress = finished
 
         for (index in percent.indices) {
             if (index == finished) {
-                percent[index].setTextColor(Color.parseColor("#016a97"))
+                percent[index].visibility = View.VISIBLE
             } else {
-                percent[index].setTextColor(Color.parseColor("#d1d3d4"))
+                percent[index].visibility = View.INVISIBLE
             }
         }
         register_btn.isEnabled = (finished == PROGRESS_MAX)
