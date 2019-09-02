@@ -20,17 +20,17 @@ class ThemeboxListAdapter(private val context: Context, fm: FragmentManager) : F
         // getItem is called to instantiate the fragment for the given page.
         // Return a HomePlaceholderFragment (defined as a static inner class below).
         if (position == 0) {
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 1) {
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 2) {
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 3){
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 4){
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else {
-            return ThemeboxListPlaceHolderFragment.newInstance(position + 1)
+            return ThemeboxListPlaceHolderFragment().newInstance(getPageTitle(position).toString(),"1")
         }
     }
     override fun getPageTitle(position: Int): CharSequence? {

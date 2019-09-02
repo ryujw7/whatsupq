@@ -20,17 +20,17 @@ class LivingListAdapter(private val context: Context, fm: FragmentManager) : Fra
         // getItem is called to instantiate the fragment for the given page.
         // Return a HomePlaceholderFragment (defined as a static inner class below).
         if (position == 0) {
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 1) {
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 2) {
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 3){
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else if (position == 4){
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         } else {
-            return LivingListPlaceholderFragment.newInstance(position + 1)
+            return LivingListPlaceholderFragment().newInstance(getPageTitle(position).toString(),"1")
         }
     }
     override fun getPageTitle(position: Int): CharSequence? {

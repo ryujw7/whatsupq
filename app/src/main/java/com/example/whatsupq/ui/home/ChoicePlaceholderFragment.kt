@@ -1,6 +1,7 @@
 package com.example.whatsupq.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.util.Log
@@ -18,8 +19,10 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
+import com.example.whatsupq.ui.themebox.ThemeboxActivity
 import kotlinx.android.synthetic.main.fragment_home_themebox_item.view.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -97,6 +100,9 @@ class ChoicePlaceholderFragment : Fragment() {
                         themeBoxJsonObject = data.getJSONObject("themabox")
                         for (i in 0 until specialJSONArray.length()) {
                             try {
+                                if(mAdapter3.resIdList.isNotEmpty()) {
+                                    mAdapter3.resIdList.clear()
+                                }
                                 imageRequest = ImageRequest(
                                     specialJSONArray.getJSONObject(i).getString("main_img"),
                                     object : Response.Listener<Bitmap> {
@@ -174,6 +180,10 @@ class ChoicePlaceholderFragment : Fragment() {
                                         themebox.theme_image.setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY)
                                         themebox.theme_image.setImageBitmap(response)
                                         themebox.theme_image.clipToOutline = true
+                                        themebox.theme_image.setOnClickListener {
+                                            val intent = Intent(context, ThemeboxActivity::class.java)
+                                            startActivity(intent)
+                                        }
                                     }
                                 }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                                 object : Response.ErrorListener {
@@ -187,7 +197,6 @@ class ChoicePlaceholderFragment : Fragment() {
                         } catch (e: JSONException) {
                             Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                         }
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
