@@ -203,6 +203,7 @@
                           android:textSize="11sp"
                           android:fontFamily="@font/goyangilsanr"
                           android:visibility="invisible"
+                          android:gravity="right"
                 />
                 <Button android:id="@+id/buy_destination_register"
                         android:layout_width="100dp"

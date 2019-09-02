@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="45dp">
+    <LinearLayout android:layout_width="150dp"
+                  android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/container_drag">
+        <TextView android:id="@+id/curation_set_priority_text"
+                android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:layout_height="wrap_content"
+                  android:text="먹는 것"
+                  android:paddingLeft="10dp"/>
+        <ImageButton android:id="@+id/curation_set_priority_btn"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent"
+                     android:paddingHorizontal="10dp"
+                     android:src="@drawable/dragbtn"
+                     android:background="@android:color/transparent"/>
+    </LinearLayout>
+</LinearLayout>
