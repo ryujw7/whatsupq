@@ -2,6 +2,7 @@ package com.example.whatsupq.ui.home
 
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
 
@@ -20,6 +22,7 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_choiceall_item, parent, false)
+
         return Holder(view)
     }
 
@@ -42,6 +45,10 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
                 thumbnail.setImageBitmap(item.thumbnailImg)
             } else {
                 thumbnail?.setImageResource(R.drawable.ic_launcher_foreground)
+            }
+            thumbnail.setOnClickListener {
+                val intent = Intent(context, LivingItemInfoActivity::class.java)
+                context.startActivity(intent)
             }
         }
     }
