@@ -1,27 +1,20 @@
 package com.example.whatsupq
 
-import android.app.DownloadManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.Animation
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.viewpager.widget.ViewPager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.whatsupq.DB.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_tutorial.*
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.Console
-import java.net.URL
 
 class LoginActivity : BaseActivity() {
     lateinit var login_id: EditText
@@ -37,7 +30,7 @@ class LoginActivity : BaseActivity() {
         var password: String? = null
         var jsonObject: JSONObject
         var queue: RequestQueue
-        var result : JSONObject
+        var result: JSONObject
         var status: String
         var isSuccess: String
         var message: String
@@ -66,7 +59,7 @@ class LoginActivity : BaseActivity() {
                 jsonObject.accumulate("email", id)
                 jsonObject.accumulate("password", password)
                 val jsonObjectRequest = JsonObjectRequest(Request.Method.POST,
-                    "http://54.180.46.143:3000/api/auth/signin",jsonObject,
+                    "http://54.180.46.143:3000/api/auth/signin", jsonObject,
                     Response.Listener {
                         status = it.getString("status")
                         isSuccess = it.getString("success")
@@ -74,7 +67,8 @@ class LoginActivity : BaseActivity() {
                         if (status.equals("200")) {
                             val intent = Intent()
                             data = it.getJSONObject("data")
-                            intent.putExtra("data", data.getString("token"))
+                            val token = data.getString("token")
+                            SharedPreferenceController.setUserToken(applicationContext, token)
                             Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                             setResult(status.toInt(), intent)
                             finish()

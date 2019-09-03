@@ -14,7 +14,7 @@ import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
 
-class ChoiceItem(val thumbnailImg: Bitmap)
+class ChoiceItem(var index : Int, val thumbnailImg: Bitmap)
 
 
 class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceItem>) :

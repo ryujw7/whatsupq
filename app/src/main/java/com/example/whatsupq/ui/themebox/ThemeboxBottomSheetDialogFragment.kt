@@ -1,10 +1,13 @@
 package com.example.whatsupq.ui.themebox
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.example.whatsupq.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -43,7 +46,7 @@ class ThemeboxBottomSheetDialogFragment(cost : Int) : BottomSheetDialogFragment(
             val bottomSheetInternal = d.findViewById<View>(R.id.design_bottom_sheet)
             BottomSheetBehavior.from(bottomSheetInternal!!).state = BottomSheetBehavior.STATE_EXPANDED
         }
+        dialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         return dialog
     }
-
 }

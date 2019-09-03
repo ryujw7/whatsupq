@@ -38,7 +38,7 @@
                 android:id="@+id/main_listview1"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:scrollbars="horizontal"
+                android:scrollbars="none"
                 android:orientation="horizontal"
                 tools:listitem="@layout/fragment_home_choiceall_item"/>
         <TextView
@@ -59,8 +59,9 @@
                 android:id="@+id/main_listview2"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:scrollbars="horizontal"
+                android:scrollbars="none"
                 android:orientation="horizontal"
+                android:fadeScrollbars="true"
                 tools:listitem="@layout/fragment_home_choiceall_item"/>
         <TextView
                 android:layout_width="match_parent"

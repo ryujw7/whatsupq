@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.whatsupq.R
+import com.example.whatsupq.ui.main.curation.CurationPlaceholderFragment
 import com.example.whatsupq.ui.main.search.SearchPlaceholderFragment
 
 private val TAB_TITLES = arrayOf(
