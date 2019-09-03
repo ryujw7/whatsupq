@@ -1,7 +1,6 @@
 package com.example.whatsupq
 
 import android.os.Bundle
-import com.example.whatsupq.ui.cart.CartActivity
 import kotlinx.android.synthetic.main.activity_result_trade.*
 
 class ResultTradeActivity : BaseActivity() {

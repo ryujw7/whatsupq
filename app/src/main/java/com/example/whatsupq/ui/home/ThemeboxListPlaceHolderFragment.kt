@@ -33,7 +33,10 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
         listView.adapter = listAdapter
         return root
     }
-
+    fun selecter(themeboxItem: ThemeboxItem) : Int = themeboxItem.index
+    fun sortLIst() {
+        itemList.sortBy { selecter(it) }
+    }
     fun newInstance(category: String, flag: String): ThemeboxListPlaceHolderFragment {
         val args = Bundle()
         val frag = ThemeboxListPlaceHolderFragment()
@@ -69,11 +72,14 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
                                     Response.Listener<Bitmap> { response ->
                                         itemList.add(
                                             ThemeboxItem(
+                                                i,
+                                                themeBoxItemJSONArray.getJSONObject(i).getString("themebox_id"),
                                                 response,
                                                 themeBoxItemJSONArray.getJSONObject(i).getString("name"),
                                                 themeBoxItemJSONArray.getJSONObject(i).getString("content")
                                             )
                                         )
+                                        sortLIst()
                                         listAdapter.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {

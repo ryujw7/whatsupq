@@ -33,7 +33,10 @@ class LivingListPlaceholderFragment : Fragment() {
         listView.adapter = listAdapter
         return root
     }
-
+    fun selecter(livingItem : LivingItem) : Int = livingItem.index
+    fun sortLIst() {
+        itemList.sortBy { selecter(it) }
+    }
     fun newInstance(category: String, flag: String): LivingListPlaceholderFragment {
         val args = Bundle()
         val frag = LivingListPlaceholderFragment()
@@ -68,12 +71,15 @@ class LivingListPlaceholderFragment : Fragment() {
                                     livingItemJSONArray.getJSONObject(i).getString("main_img"),
                                     Response.Listener<Bitmap> { response ->
                                         itemList.add(LivingItem(
+                                            i,
+                                            livingItemJSONArray.getJSONObject(i).getString("product_id"),
                                             response,
                                             livingItemJSONArray.getJSONObject(i).getString("name"),
                                             livingItemJSONArray.getJSONObject(i).getString("content"),
-                                            livingItemJSONArray.getJSONObject(i).getString("saled_price"),
-                                            livingItemJSONArray.getJSONObject(i).getString("price")
+                                            livingItemJSONArray.getJSONObject(i).getString("saled_price") + "원",
+                                            livingItemJSONArray.getJSONObject(i).getString("price") + "원"
                                         ))
+                                        sortLIst()
                                         listAdapter.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
