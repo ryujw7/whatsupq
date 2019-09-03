@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     android:orientation="vertical"
-                                                     android:layout_width="match_parent"
-                                                     android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="12"
-                android:background="@color/robins_egg_blue">
+                android:background="@color/robins_egg_blue"
+                android:weightSum="12">
+
             <ImageButton
                     android:id="@+id/back_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:src="@drawable/rewind"
                     android:background="@android:color/transparent"
-            />
+                    android:src="@drawable/rewind" />
 
             <ImageView
                     android:id="@+id/title"
@@ -29,53 +31,60 @@
                     android:layout_weight="8"
                     android:gravity="center"
                     android:minHeight="?actionBarSize"
-                    android:src="@drawable/main_banner"/>
+                    android:src="@drawable/main_banner" />
+
             <ImageButton
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:src="@drawable/cart"
                     android:background="@android:color/transparent"
-            />
+                    android:src="@drawable/cart" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                  android:orientation="vertical"
-                  android:id="@+id/fragment_living_item_info"
-    ></LinearLayout>
-    <com.google.android.material.bottomappbar.BottomAppBar
+
+    <LinearLayout
+            android:id="@+id/fragment_living_item_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"></LinearLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
             style="?bottomAppBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="80dp"
-                      android:background="@color/robins_egg_blue">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/robins_egg_blue">
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="21,900원"
                     android:layout_gravity="center_vertical"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/white"
-                    android:fontFamily="@font/locussangsang"
                     android:layout_marginLeft="25dp"
-            />
-            <Button android:layout_width="wrap_content"
+                    android:fontFamily="@font/locussangsang"
+                    android:text="21,900원"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            <Button
+                    android:id="@+id/living_item_info_addcart"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
-                    android:text="장바구니 담기"
-                    android:textSize="25sp"
-                    android:lineSpacingExtra="7sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/notosansextrabold"
-                    android:textColor="@color/robins_egg_blue"
                     android:background="@drawable/radius_rectangle_white"
+                    android:fontFamily="@font/notosansextrabold"
+                    android:lineSpacingExtra="7sp"
                     android:paddingLeft="55dp"
-                    android:paddingRight="45dp"/>
+                    android:paddingRight="45dp"
+                    android:text="장바구니 담기"
+                    android:textColor="@color/robins_egg_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.bottomappbar.BottomAppBar>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,67 +8,75 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.whatsupq.DB.CartDBHelper
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_cart_category.view.*
 import kotlinx.android.synthetic.main.activity_cart_item.view.*
 
-class CartItemAdapter(val context: Context, val category_item_list: MutableMap<String, ArrayList<CartItem>>) :
+class CartItemAdapter(
+    val context: Context,
+    val category_item_list: MutableMap<String, ArrayList<CartItem>>,
+    val cartDBHelper: CartDBHelper
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
     val VIEW_TYPE_CATEGORY = 0
     val VIEW_TYPE_ITEM = 1
-    var categoryList = category_item_list.keys.toTypedArray()
-    var category_position = arrayListOf<Int>()
+    var category_list = category_item_list.keys.toTypedArray()
+    var category_index = arrayListOf<Int>()
 
     init {
-        calculateCategoryPosition()
+        categoryPositionCalculate()
     }
 
-    fun refreshCategory() {
-        for(category in categoryList) {
-            if(category_item_list.getValue(category).size == 0) {
+    fun categoryRefresh() { // 카테고리 비어있을 시 카테고리 제거
+        for (category in category_list) {
+            if (category_item_list.getValue(category).size == 0) {
                 category_item_list.remove(category)
             }
         }
-        categoryList = category_item_list.keys.toTypedArray()
+        category_list = category_item_list.keys.toTypedArray()
+        categoryPositionCalculate()
     }
 
-    fun calculateCategoryPosition() {
+    fun categoryPositionCalculate() { // 카테고리가 들어갈 position 구하기
         var tempIndex = 0
-        category_position.clear()
+        category_index.clear()
         for (itemList in category_item_list.values) {
-            category_position.add(tempIndex)
+            category_index.add(tempIndex)
             tempIndex += itemList.size + 1
         }
     }
 
-    fun isCategoryPosition(position: Int): Boolean {
-        return position in category_position
+    fun isCategoryPosition(position: Int): Boolean { // 카테고리 position인지 확인
+        return position in category_index
     }
 
-    fun positionForCategory(position: Int): Int {
-        return category_position.indexOf(position)
+    fun convertPosToCategoryIndex(position: Int): Int { // position을 카테고리 배열에 맞는 index로 변환
+        return category_index.indexOf(position)
     }
 
-    fun getItemCategoryPosition(position: Int): Int {
-        for (c_index in category_position.indices) {
-            if (category_position[c_index] > position) {
+    fun findCategoryIndexOfItem(position: Int): Int { // position을 통해서 item 의 카테고리(의 index) 찾기
+        for (c_index in category_index.indices) {
+            if (category_index[c_index] > position) {
                 return c_index - 1
             }
         }
-        return category_position.size - 1
+        return category_index.size - 1
     }
 
-    fun positionForItem(position: Int): Int {
-        for (c_index in category_position.indices) {
-            if (category_position[c_index] > position) {
-                return position - category_position[c_index - 1] - 1
+    fun positionForItem(position: Int): Int { // 카테고리 내부에서 아이템의 index 위치 찾기
+        for (c_index in category_index.indices) {
+            if (category_index[c_index] > position) {
+                return position - category_index[c_index - 1] - 1
             }
         }
-        return position - category_position.last() - 1
+        return position - category_index.last() - 1
     }
 
-    override fun getItemViewType(position: Int): Int { // 1개 이상의 아이템이 있다고 가정함. 없으면 애초에 이 페이지로 안 옴
+    override fun getItemViewType(position: Int): Int {
         if (isCategoryPosition(position)) return VIEW_TYPE_CATEGORY
         else return VIEW_TYPE_ITEM
     }
@@ -84,46 +92,74 @@ class CartItemAdapter(val context: Context, val category_item_list: MutableMap<S
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             VIEW_TYPE_CATEGORY -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_cart_category, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.activity_cart_category, parent, false)
                 return ViewHolder_category(context, view)
             }
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_cart_item, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.activity_cart_item, parent, false)
                 return ViewHolder_item(context, view)
             }
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         if (holder is ViewHolder_category) {
-            var item = categoryList[positionForCategory(position)]
+            var item = category_list[convertPosToCategoryIndex(position)]
             holder.apply {
                 bind(item)
             }
         } else if (holder is ViewHolder_item) {
-            var categoryIndex = getItemCategoryPosition(position)
-            var key = categoryList[categoryIndex]
+            var categoryIndex = findCategoryIndexOfItem(position)
+            var key = category_list[categoryIndex]
             var index = positionForItem(position)
             var item = category_item_list[key]!![index]
             holder.apply {
                 bind(item)
                 itemView.tag = item
                 itemView.cart_item_delete.setOnClickListener {
-                    category_item_list[categoryList[categoryIndex]]!!.removeAt(positionForItem(position))
-                    refreshCategory()
-                    calculateCategoryPosition()
+                    category_item_list[category_list[categoryIndex]]!!.removeAt(
+                        positionForItem(
+                            position
+                        )
+                    )
+                    when (category_list[findCategoryIndexOfItem(position)]) {
+                        "생필품" -> cartDBHelper.removeAtCart("CART_ESSENTIAL",item.product_id)
+                        "테마박스" -> cartDBHelper.removeAtCart("CART_BOX_THEME",item.product_id)
+                        else -> {
+                        }
+                    }
+
+                    categoryRefresh()
                     notifyDataSetChanged()
                     (context as CartActivity).refreshCost()
                 }
                 itemView.cart_item_plus.setOnClickListener {
                     item.amount++
                     item.total_cost = item.cost * item.amount
+
+                    when (category_list[findCategoryIndexOfItem(position)]) {
+                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        "테마박스" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        else -> {
+                        }
+                    }
                     notifyDataSetChanged()
                     (context as CartActivity).refreshCost()
                 }
                 itemView.cart_item_minus.setOnClickListener {
                     item.amount--
                     item.total_cost = item.cost * item.amount
+
+                    when (category_list[findCategoryIndexOfItem(position)]) {
+                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        "테마박스" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        else -> {
+                        }
+                    }
+
                     notifyDataSetChanged()
                     (context as CartActivity).refreshCost()
                 }
@@ -140,13 +176,15 @@ class CartItemAdapter(val context: Context, val category_item_list: MutableMap<S
     }
 
     class ViewHolder_item(val context: Context, v: View) : RecyclerView.ViewHolder(v) {
+
         val MAXAMOUNT = 10
         private var view: View = v
         fun bind(item: CartItem) {
             val act = context as Activity
             view.cart_item_cost.text = item.total_cost.toString()
             view.cart_item_check.text = item.name
-            val resId = context.resources.getIdentifier(item.imgSrc, "drawable", context.packageName)
+            val resId =
+                context.resources.getIdentifier(item.imgSrc, "drawable", context.packageName)
             view.cart_item_img.setImageResource(resId)
             view.cart_item_plus.isEnabled = (item.amount < MAXAMOUNT)
             view.cart_item_plus.addTextChangedListener(object : TextWatcher {
@@ -180,6 +218,9 @@ class CartItemAdapter(val context: Context, val category_item_list: MutableMap<S
                     act.cart_checkall.isChecked = false
                 }
                 (context as CartActivity).refreshCost()
+            }
+            view.cart_item_delete.setOnClickListener {
+
             }
 
         }

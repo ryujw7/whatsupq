@@ -3,61 +3,52 @@ package com.example.whatsupq.ui.cart
 import android.content.Intent
 import android.os.Bundle
 import com.example.whatsupq.BaseActivity
+import com.example.whatsupq.DB.CartDBHelper
 import com.example.whatsupq.R
-import com.example.whatsupq.ResultTradeActivity
 import com.example.whatsupq.ui.buy.BuyActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 
 class CartActivity : BaseActivity() {
-    var category_item_list = mutableMapOf<String, ArrayList<CartItem>>(
-        Pair(
-            "생필품",
-            arrayListOf(
-                CartItem("생필품", "mipmap/ic_launcher", "1", 5000),
-                CartItem("생필품", "ic_launcher", "2", 50000),
-                CartItem("생필품", "mipmap/ic_launcher", "3", 5000),
-                CartItem("생필품", "ic_launcher", "4", 50000),
-                CartItem("생필품", "mipmap/ic_launcher", "5", 5000),
-                CartItem("생필품", "ic_launcher", "6", 50000)
-            )
-        ), Pair(
-            "주방가전",
-            arrayListOf(
-                CartItem("주방가전", "mipmap/ic_launcher", "7", 5000),
-                CartItem("주방가전", "ic_launcher", "8", 50000),
-                CartItem("주방가전", "mipmap/ic_launcher", "9", 5000),
-                CartItem("주방가전", "ic_launcher", "10", 50000),
-                CartItem("주방가전", "mipmap/ic_launcher", "11", 5000),
-                CartItem("주방가전", "ic_launcher", "12", 50000),
-                CartItem("주방가전", "mipmap/ic_launcher", "13", 5000),
-                CartItem("주방가전", "ic_launcher", "14", 50000)
-            )
-        )
-    )
 
-    fun refreshCost() {
-        var total = 0
-        var isEmpty = true
-        for (itemList in category_item_list.values) {
-            for (item in itemList) {
-                if (item.checked) {
-                    total += item.total_cost
-                    isEmpty = false
-                }
-            }
-
-        }
-        cart_total_cost.text = total.toString()
-        cart_order.isEnabled = !isEmpty
-    }
+    lateinit var cartDBHelper: CartDBHelper
+    var category_item_list = mutableMapOf<String, ArrayList<CartItem>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
+
+        cartDBHelper = CartDBHelper(this, null)
+
+        var cursor = cartDBHelper.getCartProduct("CART_ESSENTIAL")
+        if (!cursor!!.isAfterLast) {
+            if (category_item_list.get("생필품") == null) {
+                category_item_list.put("생필품", arrayListOf())
+            }
+            cursor.moveToFirst()
+            while (!cursor.isAfterLast) {
+                val product_id = cursor.getString(cursor.getColumnIndex("PRODUCT_ID"))
+                // 아래 내용들은 product_id 조회해서 넣을 것, 아마
+                val imgSrc = "mipmap/ic_launcher"
+                val name = "상품명"
+                val cost = 1200
+                val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
+                category_item_list.get("생필품")!!.add(
+                    CartItem(
+                        product_id,
+                        imgSrc,
+                        name,
+                        cost,
+                        amount
+                    )
+                )
+                cursor.moveToNext()
+            }
+        }
+
         back_btn.setOnClickListener {
             finish()
         }
-        val cartItemAdapter = CartItemAdapter(this, category_item_list)
+        val cartItemAdapter = CartItemAdapter(this, category_item_list, cartDBHelper)
         cart_listView.adapter = cartItemAdapter
         cart_checkall.setOnClickListener {
             for (itemList in category_item_list.values) {
@@ -69,8 +60,23 @@ class CartActivity : BaseActivity() {
             refreshCost()
         }
         cart_order.setOnClickListener {
-            startActivity(Intent(this,BuyActivity::class.java))
+            startActivity(Intent(this, BuyActivity::class.java))
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
+    }
+
+    fun refreshCost() {
+        var total = 0
+        var isEmpty = true
+        for (itemList in category_item_list.values) {
+            for (item in itemList) {
+                if (item.checked) {
+                    total += item.total_cost
+                    isEmpty = false
+                }
+            }
+        }
+        cart_total_cost.text = total.toString()
+        cart_order.isEnabled = !isEmpty
     }
 }

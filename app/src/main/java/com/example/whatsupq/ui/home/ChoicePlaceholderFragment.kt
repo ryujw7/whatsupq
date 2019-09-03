@@ -97,7 +97,7 @@ class ChoicePlaceholderFragment : Fragment() {
                         specialJSONArray = data.getJSONArray("special")
                         todayJsonArray = data.getJSONArray("today")
                         productJsonArray = data.getJSONArray("product")
-                        themeBoxJsonObject = data.getJSONObject("themabox")
+                        themeBoxJsonObject = data.getJSONObject("themebox")
                         for (i in 0 until specialJSONArray.length()) {
                             try {
                                 if(mAdapter3.resIdList.isNotEmpty()) {
