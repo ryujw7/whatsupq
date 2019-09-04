@@ -4,6 +4,7 @@ class CartItem(
     val product_id : String,
     val name: String,
     val cost: Int,
+    var category : String,
     var amount: Int = 1,
     var frequency : Int = 1,
     var total_cost: Int = cost,

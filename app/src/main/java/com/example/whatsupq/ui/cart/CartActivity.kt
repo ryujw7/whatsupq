@@ -31,7 +31,8 @@ class CartActivity : BaseActivity() {
                 val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
                 val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
-                category_item_list.get("생필품")!!.add(CartItem(product_id, name, cost, amount, frequency))
+                val category = "1"
+                category_item_list.get("생필품")!!.add(CartItem(product_id, name, cost, category, amount, frequency))
                 cursor.moveToNext()
             }
         }
@@ -47,7 +48,8 @@ class CartActivity : BaseActivity() {
                 val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
                 val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
-                category_item_list.get("테마박스")!!.add(CartItem(product_id, name, cost, amount, frequency))
+                val category = "2"
+                category_item_list.get("테마박스")!!.add(CartItem(product_id, name, cost, category, amount, frequency))
                 cursor.moveToNext()
             }
         }

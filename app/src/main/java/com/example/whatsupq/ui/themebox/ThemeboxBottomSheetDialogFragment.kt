@@ -18,23 +18,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_themebox_bottom_sheet_dialog.view.*
 
 
-class ThemeboxBottomSheetDialogFragment(cost: Int) : BottomSheetDialogFragment() {
+class ThemeboxBottomSheetDialogFragment(var cost: Int,var product_id : String) : BottomSheetDialogFragment() {
 
     lateinit var cartDBHelper: CartDBHelper
-    lateinit var product_id: String
 
-    val itemCost = cost
     var item_amount = 1
     val MAX_COUNT = 10
     var available = true
     var currentAmountOnDB = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         cartDBHelper = CartDBHelper(activity!!, null)
-        product_id = "test"
-        val name = "test_name"
-        val price = 10000
+        val name = "테마박스 상품"
+        val price = cost
         var frequency = -1
         val root = inflater.inflate(R.layout.activity_themebox_bottom_sheet_dialog, container, false)
         val cursor = cartDBHelper.getCartProduct(CartDBHelper.CART_BOX_THEME, product_id)
@@ -50,7 +46,7 @@ class ThemeboxBottomSheetDialogFragment(cost: Int) : BottomSheetDialogFragment()
                 root.themebox_addcart_plus.isEnabled = false
             }
         }
-        root.themebox_addcart_totalcost.text = (itemCost * item_amount).toString()
+        root.themebox_addcart_totalcost.text = (cost * item_amount).toString()
         root.themebox_addcart_frequency.setOnCheckedChangeListener { radioGroup, i ->
             var frequencyString = root.findViewById<RadioButton>(i).text
             frequency = frequencyString[0].toString().toInt()
@@ -61,14 +57,14 @@ class ThemeboxBottomSheetDialogFragment(cost: Int) : BottomSheetDialogFragment()
             root.themebox_addcart_amount.text = item_amount.toString()
             root.themebox_addcart_plus.isEnabled = (item_amount + currentAmountOnDB < MAX_COUNT)
             root.themebox_addcart_minus.isEnabled = (item_amount > 1)
-            root.themebox_addcart_totalcost.text = (itemCost * item_amount).toString()
+            root.themebox_addcart_totalcost.text = (cost * item_amount).toString()
         }
         root.themebox_addcart_minus.setOnClickListener {
             item_amount--
             root.themebox_addcart_amount.text = item_amount.toString()
             root.themebox_addcart_plus.isEnabled = (item_amount + currentAmountOnDB < MAX_COUNT)
             root.themebox_addcart_minus.isEnabled = (item_amount > 1)
-            root.themebox_addcart_totalcost.text = (itemCost * item_amount).toString()
+            root.themebox_addcart_totalcost.text = (cost * item_amount).toString()
         }
         root.themebox_addcart_final.setOnClickListener {
             cartDBHelper = CartDBHelper(context!!, null)

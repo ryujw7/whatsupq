@@ -214,41 +214,81 @@ class CartItemAdapter(
             val product_id = item.product_id
             imgQueue = Volley.newRequestQueue(context)
             queue = Volley.newRequestQueue(context)
-            try {
-                val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
-                    "http://54.180.46.143:3000/api/product/regular/detail?product_id=$product_id", null,
-                    Response.Listener {
-                        var status = it.getString("status")
-                        var isSuccess = it.getString("success")
-                        var message = it.getString("message")
-                        if (status.equals("200")) {
-                            data = it.getJSONObject("data")
-                            Log.e("data", data.toString())
-                            try {
-                                imageRequest = ImageRequest(
-                                    data.getString("main_img"),
-                                    Response.Listener<Bitmap> { response ->
-                                        view.cart_item_img.setImageBitmap(response)
-                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
-                                        Log.e("error", "통신 오류")
-                                    }
-                                )
-                                imgQueue.add(imageRequest)
-                            } catch (e: JSONException) {
-                                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+            if(item.category == "1") {
+                try {
+                    val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
+                        "http://54.180.46.143:3000/api/product/regular/detail?product_id=$product_id", null,
+                        Response.Listener {
+                            var status = it.getString("status")
+                            var isSuccess = it.getString("success")
+                            var message = it.getString("message")
+                            if (status.equals("200")) {
+                                data = it.getJSONObject("data")
+                                Log.e("data", data.toString())
+                                try {
+                                    imageRequest = ImageRequest(
+                                        data.getString("main_img"),
+                                        Response.Listener<Bitmap> { response ->
+                                            view.cart_item_img.setImageBitmap(response)
+                                        }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
+                                        Response.ErrorListener {
+                                            Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
+                                            Log.e("error", "통신 오류")
+                                        }
+                                    )
+                                    imgQueue.add(imageRequest)
+                                } catch (e: JSONException) {
+                                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+                                }
                             }
-                        }
-                    }, Response.ErrorListener {
-                        Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                        Log.e("error", "통신 오류")
-                    }) {
+                        }, Response.ErrorListener {
+                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                            Log.e("error", "통신 오류")
+                        }) {
 
+                    }
+                    queue.add(jsonObjectRequest)
+                } catch (e: JSONException) {
+                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                 }
-                queue.add(jsonObjectRequest)
-            } catch (e: JSONException) {
-                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+            } else if (item.category == "2") {
+                try {
+                    val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
+                        "http://54.180.46.143:3000/api/product/themebox/detail?themebox_id=$product_id", null,
+                        Response.Listener {
+                            var status = it.getString("status")
+                            var isSuccess = it.getString("success")
+                            var message = it.getString("message")
+                            if (status.equals("200")) {
+                                data = it.getJSONObject("data")
+                                var imgArray = data.getJSONArray("img")
+                                Log.e("data", data.toString())
+                                try {
+                                    imageRequest = ImageRequest(
+                                        imgArray.getString(3),
+                                        Response.Listener<Bitmap> { response ->
+                                            view.cart_item_img.setImageBitmap(response)
+                                        }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
+                                        Response.ErrorListener {
+                                            Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
+                                            Log.e("error", "통신 오류")
+                                        }
+                                    )
+                                    imgQueue.add(imageRequest)
+                                } catch (e: JSONException) {
+                                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+                                }
+                            }
+                        }, Response.ErrorListener {
+                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                            Log.e("error", "통신 오류")
+                        }) {
+
+                    }
+                    queue.add(jsonObjectRequest)
+                } catch (e: JSONException) {
+                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+                }
             }
             view.cart_item_cost.text = item.total_cost.toString()
             view.cart_item_check.text = item.name
