@@ -7,6 +7,8 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.DB.CartDBHelper
 import com.example.whatsupq.R
@@ -15,11 +17,11 @@ import kotlinx.android.synthetic.main.activity_cart_category.view.*
 import kotlinx.android.synthetic.main.activity_cart_item.view.*
 
 class CartItemAdapter(
-    val context: Context,
-    val category_item_list: MutableMap<String, ArrayList<CartItem>>,
-    val cartDBHelper: CartDBHelper
+        val context: Context,
+        val category_item_list: MutableMap<String, ArrayList<CartItem>>,
+        val cartDBHelper: CartDBHelper
 ) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     val VIEW_TYPE_CATEGORY = 0
@@ -93,12 +95,12 @@ class CartItemAdapter(
         when (viewType) {
             VIEW_TYPE_CATEGORY -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.activity_cart_category, parent, false)
+                        .inflate(R.layout.activity_cart_category, parent, false)
                 return ViewHolder_category(context, view)
             }
             else -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.activity_cart_item, parent, false)
+                        .inflate(R.layout.activity_cart_item, parent, false)
                 return ViewHolder_item(context, view)
             }
         }
@@ -119,18 +121,33 @@ class CartItemAdapter(
             holder.apply {
                 bind(item)
                 itemView.tag = item
+                itemView.cart_item_frequency.setSelection(item.frequency - 1)
+                itemView.cart_item_frequency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(p0: AdapterView<*>?) {}
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, spinnerPosition: Int, p3: Long) {
+                        when (category_list[findCategoryIndexOfItem(position)]) {
+                            "생필품" -> cartDBHelper.updateFrequency("CART_ESSENTIAL", item.product_id, spinnerPosition + 1)
+                            "테마박스" -> cartDBHelper.updateFrequency("CART_BOX_THEME", item.product_id, spinnerPosition + 1)
+                            else -> {
+                            }
+                        }
+                        item.frequency = spinnerPosition + 1
+                    }
+
+                }
                 itemView.cart_item_delete.setOnClickListener {
                     category_item_list[category_list[categoryIndex]]!!.removeAt(
-                        positionForItem(
-                            position
-                        )
+                            positionForItem(
+                                    position
+                            )
                     )
                     when (category_list[findCategoryIndexOfItem(position)]) {
-                        "생필품" -> cartDBHelper.removeAtCart("CART_ESSENTIAL",item.product_id)
-                        "테마박스" -> cartDBHelper.removeAtCart("CART_BOX_THEME",item.product_id)
+                        "생필품" -> cartDBHelper.removeAtCart("CART_ESSENTIAL", item.product_id)
+                        "테마박스" -> cartDBHelper.removeAtCart("CART_BOX_THEME", item.product_id)
                         else -> {
                         }
                     }
+                    Toast.makeText(context, "상품을 장바구니에서 제외했습니다.", Toast.LENGTH_SHORT).show()
 
                     categoryRefresh()
                     notifyDataSetChanged()
@@ -141,8 +158,8 @@ class CartItemAdapter(
                     item.total_cost = item.cost * item.amount
 
                     when (category_list[findCategoryIndexOfItem(position)]) {
-                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
-                        "테마박스" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL", item.product_id, item.amount)
+                        "테마박스" -> cartDBHelper.updateAmount("CART_BOX_THEME", item.product_id, item.amount)
                         else -> {
                         }
                     }
@@ -154,8 +171,8 @@ class CartItemAdapter(
                     item.total_cost = item.cost * item.amount
 
                     when (category_list[findCategoryIndexOfItem(position)]) {
-                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
-                        "테마박스" -> cartDBHelper.updateAmount("CART_ESSENTIAL",item.product_id,item.amount)
+                        "생필품" -> cartDBHelper.updateAmount("CART_ESSENTIAL", item.product_id, item.amount)
+                        "테마박스" -> cartDBHelper.updateAmount("CART_BOX_THEME", item.product_id, item.amount)
                         else -> {
                         }
                     }
@@ -184,7 +201,7 @@ class CartItemAdapter(
             view.cart_item_cost.text = item.total_cost.toString()
             view.cart_item_check.text = item.name
             val resId =
-                context.resources.getIdentifier(item.imgSrc, "drawable", context.packageName)
+                    context.resources.getIdentifier(item.imgSrc, "drawable", context.packageName)
             view.cart_item_img.setImageResource(resId)
             view.cart_item_plus.isEnabled = (item.amount < MAXAMOUNT)
             view.cart_item_plus.addTextChangedListener(object : TextWatcher {

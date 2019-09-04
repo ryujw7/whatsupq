@@ -27,20 +27,29 @@ class CartActivity : BaseActivity() {
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
                 val product_id = cursor.getString(cursor.getColumnIndex("PRODUCT_ID"))
-                // 아래 내용들은 product_id 조회해서 넣을 것, 아마
                 val imgSrc = "mipmap/ic_launcher"
-                val name = "상품명"
-                val cost = 1200
+                val name = cursor.getString(cursor.getColumnIndex("NAME"))
+                val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
-                category_item_list.get("생필품")!!.add(
-                    CartItem(
-                        product_id,
-                        imgSrc,
-                        name,
-                        cost,
-                        amount
-                    )
-                )
+                val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
+                category_item_list.get("생필품")!!.add(CartItem(product_id, imgSrc, name, cost, amount, frequency))
+                cursor.moveToNext()
+            }
+        }
+        cursor = cartDBHelper.getCartProduct("CART_BOX_THEME")
+        if (!cursor!!.isAfterLast) {
+            if (category_item_list.get("테마박스") == null) {
+                category_item_list.put("테마박스", arrayListOf())
+            }
+            cursor.moveToFirst()
+            while (!cursor.isAfterLast) {
+                val product_id = cursor.getString(cursor.getColumnIndex("PRODUCT_ID"))
+                val imgSrc = "mipmap/ic_launcher"
+                val name = cursor.getString(cursor.getColumnIndex("NAME"))
+                val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
+                val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
+                val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
+                category_item_list.get("테마박스")!!.add(CartItem(product_id, imgSrc, name, cost, amount, frequency))
                 cursor.moveToNext()
             }
         }

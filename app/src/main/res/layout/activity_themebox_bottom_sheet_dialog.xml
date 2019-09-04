@@ -78,7 +78,8 @@
                       android:text="배송 주기"
                       android:textSize="16sp"
                       android:fontFamily="@font/goyangilsanr"/>
-            <RadioGroup android:layout_width="match_parent"
+            <RadioGroup android:id="@+id/themebox_addcart_frequency"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="10dp">
                 <RadioButton android:layout_width="match_parent"
@@ -147,10 +148,11 @@
     <Button android:id="@+id/themebox_addcart_final"
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:background="@color/robins_egg_blue"
+            android:background="@drawable/button_general"
             android:gravity="center"
             android:text="장바구니 담기"
             android:textSize="21sp"
             android:fontFamily="@font/locussangsang"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@drawable/button_general_txtcolor"
+            android:enabled="false"/>
 </LinearLayout>
