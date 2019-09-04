@@ -56,8 +56,12 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
             itemList.clear()
         }
         try {
+            var url = "http://54.180.46.143:3000/api/product/themebox?category=${URLEncoder.encode(category,"utf-8")}&flag=$flag"
+            if(category == "19") {
+                url = "http://54.180.46.143:3000/api/product/themebox?category=$category&flag=$flag"
+            }
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
-                "http://54.180.46.143:3000/api/product/themebox?category=${URLEncoder.encode(category,"utf-8")}&flag=$flag", null,
+                url, null,
                 Response.Listener {
                     var status = it.getString("status")
                     var isSuccess = it.getString("success")
@@ -74,16 +78,13 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
                                             ThemeboxItem(
                                                 i,
                                                 themeBoxItemJSONArray.getJSONObject(i).getString("themebox_id"),
-                                                response,
-                                                themeBoxItemJSONArray.getJSONObject(i).getString("name"),
-                                                themeBoxItemJSONArray.getJSONObject(i).getString("content")
+                                                response
                                             )
                                         )
                                         sortLIst()
                                         listAdapter.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )
@@ -92,12 +93,10 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }
                         }
-                        Toast.makeText(context, message + category, Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
                 }, Response.ErrorListener {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     Log.e("error", "통신 오류")
                 }) {
                 override fun getParams(): MutableMap<String, String> {

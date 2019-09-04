@@ -2,19 +2,29 @@ package com.example.whatsupq.ui.cart
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.ImageRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.whatsupq.DB.CartDBHelper
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_cart_category.view.*
 import kotlinx.android.synthetic.main.activity_cart_item.view.*
+import org.json.JSONException
+import org.json.JSONObject
 
 class CartItemAdapter(
         val context: Context,
@@ -193,16 +203,55 @@ class CartItemAdapter(
     }
 
     class ViewHolder_item(val context: Context, v: View) : RecyclerView.ViewHolder(v) {
-
+        lateinit var data: JSONObject
+        lateinit var imageRequest: ImageRequest
+        lateinit var imgQueue: RequestQueue
+        lateinit var queue : RequestQueue
         val MAXAMOUNT = 10
         private var view: View = v
         fun bind(item: CartItem) {
             val act = context as Activity
+            val product_id = item.product_id
+            imgQueue = Volley.newRequestQueue(context)
+            queue = Volley.newRequestQueue(context)
+            try {
+                val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
+                    "http://54.180.46.143:3000/api/product/regular/detail?product_id=$product_id", null,
+                    Response.Listener {
+                        var status = it.getString("status")
+                        var isSuccess = it.getString("success")
+                        var message = it.getString("message")
+                        if (status.equals("200")) {
+                            data = it.getJSONObject("data")
+                            Log.e("data", data.toString())
+                            try {
+                                imageRequest = ImageRequest(
+                                    data.getString("main_img"),
+                                    Response.Listener<Bitmap> { response ->
+                                        view.cart_item_img.setImageBitmap(response)
+                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
+                                    Response.ErrorListener {
+                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
+                                        Log.e("error", "통신 오류")
+                                    }
+                                )
+                                imgQueue.add(imageRequest)
+                            } catch (e: JSONException) {
+                                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+                            }
+                        }
+                    }, Response.ErrorListener {
+                        Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                        Log.e("error", "통신 오류")
+                    }) {
+
+                }
+                queue.add(jsonObjectRequest)
+            } catch (e: JSONException) {
+                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+            }
             view.cart_item_cost.text = item.total_cost.toString()
             view.cart_item_check.text = item.name
-            val resId =
-                    context.resources.getIdentifier(item.imgSrc, "drawable", context.packageName)
-            view.cart_item_img.setImageResource(resId)
             view.cart_item_plus.isEnabled = (item.amount < MAXAMOUNT)
             view.cart_item_plus.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

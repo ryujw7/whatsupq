@@ -2,7 +2,6 @@ package com.example.whatsupq.ui.cart
 
 class CartItem(
     val product_id : String,
-    val imgSrc: String,
     val name: String,
     val cost: Int,
     var amount: Int = 1,

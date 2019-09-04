@@ -27,12 +27,11 @@ class CartActivity : BaseActivity() {
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
                 val product_id = cursor.getString(cursor.getColumnIndex("PRODUCT_ID"))
-                val imgSrc = "mipmap/ic_launcher"
                 val name = cursor.getString(cursor.getColumnIndex("NAME"))
                 val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
                 val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
-                category_item_list.get("생필품")!!.add(CartItem(product_id, imgSrc, name, cost, amount, frequency))
+                category_item_list.get("생필품")!!.add(CartItem(product_id, name, cost, amount, frequency))
                 cursor.moveToNext()
             }
         }
@@ -44,12 +43,11 @@ class CartActivity : BaseActivity() {
             cursor.moveToFirst()
             while (!cursor.isAfterLast) {
                 val product_id = cursor.getString(cursor.getColumnIndex("PRODUCT_ID"))
-                val imgSrc = "mipmap/ic_launcher"
                 val name = cursor.getString(cursor.getColumnIndex("NAME"))
                 val cost = cursor.getInt(cursor.getColumnIndex("PRICE"))
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
                 val frequency = cursor.getInt(cursor.getColumnIndex("FREQUENCY"))
-                category_item_list.get("테마박스")!!.add(CartItem(product_id, imgSrc, name, cost, amount, frequency))
+                category_item_list.get("테마박스")!!.add(CartItem(product_id, name, cost, amount, frequency))
                 cursor.moveToNext()
             }
         }
