@@ -2,9 +2,10 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:layout_width="280dp"
         android:layout_height="320dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
         android:paddingTop="20dp"
         android:paddingBottom="20dp">
     <com.makeramen.roundedimageview.RoundedImageView
@@ -12,8 +13,10 @@
             android:layout_width="280dp"
             android:layout_height="320dp"
             android:background="@drawable/radius_rectangle"
-            app:riv_corner_radius="17dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
             app:riv_border_color="#000000"
+            app:riv_corner_radius="17dp"
             app:riv_mutate_background="true"
             app:riv_oval="false"
     />
@@ -21,26 +24,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/theme_image"
+            android:gravity="bottom"
             android:orientation="vertical"
             android:paddingLeft="18dp"
-            android:paddingBottom="18dp"
-            android:gravity="bottom">
+            android:paddingBottom="18dp">
         <TextView
                 android:id="@+id/theme_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="집에서 와인한잔, 어떠세요?"
                 android:fontFamily="@font/locussangsang"
+                android:lineHeight="15sp"
+                android:text=""
                 android:textColor="@android:color/white"
-                android:lineHeight="15sp"/>
+                android:textSize="20sp"/>
         <TextView
                 android:id="@+id/theme_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:fontFamily="@font/locussangsang"
-                android:text="와인에 적합한 안주도 담아봤어요."
-                android:textColor="@color/silver"/>
+                android:text=""
+                android:textColor="@color/silver"
+                android:textSize="15sp"/>
     </LinearLayout>
 </RelativeLayout>

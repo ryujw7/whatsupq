@@ -45,7 +45,7 @@ class MyPageFragment : Fragment() { // 아마 파라미터는 수정되어야 �
         var root= inflater.inflate(R.layout.mypage_notfound, container, false)
         token = SharedPreferenceController.getUserToken(root.context.applicationContext)
         Log.e("token : ", token)
-        isLogin = token != null
+        isLogin = token != ""
         if (isLogin) {
             root = inflater.inflate(R.layout.fragment_mypage, container, false)
             try {
@@ -62,13 +62,11 @@ class MyPageFragment : Fragment() { // 아마 파라미터는 수정되어야 �
                             root.mypage_name.text = data.getString("name")
                             root.mypage_email.text = data.getString("email")
                             SharedPreferenceController.setUserToken(context!!.applicationContext, token)
-                            Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()
                         }
                     }, Response.ErrorListener {
                         token = ""
-                        Toast.makeText(context!!.applicationContext, it.message, Toast.LENGTH_SHORT).show()
                         Log.e("error", "통신 오류")
                     }) {
                     override fun getHeaders(): MutableMap<String, String> {
@@ -85,6 +83,7 @@ class MyPageFragment : Fragment() { // 아마 파라미터는 수정되어야 �
                 isLogin = false
                 SharedPreferenceController.clearUserToken(root.context.applicationContext)
                 Log.e("token : ", token)
+                root= inflater.inflate(R.layout.mypage_notfound, container, false)
                 Toast.makeText(context!!.applicationContext, token, Toast.LENGTH_SHORT).show()
                 fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
             }

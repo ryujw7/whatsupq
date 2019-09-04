@@ -10,7 +10,7 @@ import com.example.whatsupq.R
 import com.example.whatsupq.ui.themebox.ThemeboxActivity
 import com.makeramen.roundedimageview.RoundedImageView
 
-class ThemeboxItem(var index : Int, var id : String, val themeImg: Bitmap, val themeTitle: String, val themeSubTitle: String)
+class ThemeboxItem(var index : Int, var id : String, val themeImg: Bitmap)
 
 class ThemeboxItemAdapter(val context: ThemeboxListPlaceHolderFragment, val itemList:ArrayList<ThemeboxItem>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
@@ -22,8 +22,6 @@ class ThemeboxItemAdapter(val context: ThemeboxListPlaceHolderFragment, val item
         themeboxItem.id = itemList[p0].id
         themeboxItem.index = itemList[p0].index
         themeImg.setImageBitmap(themeboxItem.themeImg)
-        themeTitle.text = themeboxItem.themeTitle
-        themeSubTitle.text = themeboxItem.themeSubTitle
         view.setOnClickListener {
             val intent = Intent(context.context,ThemeboxActivity::class.java)
             intent.putExtra("themebox_id" , themeboxItem.id)

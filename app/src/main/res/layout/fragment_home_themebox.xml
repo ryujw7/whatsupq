@@ -26,6 +26,7 @@
                 android:id="@+id/view_pager_themebox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
         </com.example.whatsupq.SwipeViewPager>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

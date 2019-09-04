@@ -121,12 +121,10 @@ class LivingListPlaceholderFragment : Fragment() {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }
                         }
-                        Toast.makeText(context, message + category, Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
                 }, Response.ErrorListener {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     Log.e("error", "통신 오류")
                 }) {
                 override fun getParams(): MutableMap<String, String> {

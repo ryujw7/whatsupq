@@ -1,13 +1,19 @@
 package com.example.whatsupq.ui.home
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,7 +28,10 @@ import com.android.volley.toolbox.Volley
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.themebox.ThemeboxActivity
+import kotlinx.android.synthetic.main.activity_living_item_info.*
+import kotlinx.android.synthetic.main.activity_loading.*
 import kotlinx.android.synthetic.main.fragment_home_themebox_item.view.*
+import kotlinx.android.synthetic.main.fragment_living_item_info.view.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -40,11 +49,20 @@ class ChoicePlaceholderFragment : Fragment() {
     lateinit var mAdapter1: ChoiceItemAdapter
     lateinit var mAdapter3: HomeBannerItemAdapter
     lateinit var themebox: View
+    lateinit var dialog: Dialog
+    lateinit var anim: Animation
+    val handler = Handler()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home_choiceall, container, false)
+        anim = AnimationUtils.loadAnimation(root.context, R.anim.loading)
+        dialog = Dialog(root.context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.activity_loading)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.loading_img.animation = anim
         themebox = root.findViewById<View>(R.id.fragment_home_theme_new1)
         if (!itemList1.isEmpty()) {
             itemList1.clear()
@@ -52,17 +70,36 @@ class ChoicePlaceholderFragment : Fragment() {
         if (!itemList2.isEmpty()) {
             itemList2.clear()
         }
+        var firstList = root.findViewById<RecyclerView>(R.id.main_listview1)
+        var secondList = root.findViewById<RecyclerView>(R.id.main_listview2)
+        val bannerList: SwipeViewPager = root.findViewById(R.id.fragment_home_banner)
         mAdapter1 = ChoiceItemAdapter(activity!! as Context, itemList1)
         mAdapter2 = ChoiceItemAdapter(activity!! as Context, itemList2)
         mAdapter3 = HomeBannerItemAdapter(activity!!.supportFragmentManager)
         getBitmap()
-        var firstList = root.findViewById<RecyclerView>(R.id.main_listview1)
-        var secondList = root.findViewById<RecyclerView>(R.id.main_listview2)
-        val bannerList: SwipeViewPager = root.findViewById(R.id.fragment_home_banner)
-        firstList.adapter = mAdapter1
-        secondList.adapter = mAdapter2
-        firstList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        secondList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        Thread(Runnable {
+            run {
+                handler.post(Runnable {
+                    run {
+                        dialog.show()
+                    }
+                })
+                try {
+                    Thread.sleep(1200)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+                handler.post(Runnable {
+                    run {
+                        firstList.adapter = mAdapter1
+                        secondList.adapter = mAdapter2
+                        firstList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                        secondList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                        dialog.dismiss()
+                    }
+                })
+            }
+        }).start()
         bannerList.setPagingEnabled(true)
         bannerList.adapter = mAdapter3
         return root
@@ -127,7 +164,7 @@ class ChoicePlaceholderFragment : Fragment() {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }
                         }
-                        for (j in 0 until todayJsonArray.length()) {
+                        for (j in 0 until 10) {
                             var id = todayJsonArray.getJSONObject(j).getString("product_id")
                             try {
                                 imageRequest = ImageRequest(
@@ -189,7 +226,6 @@ class ChoicePlaceholderFragment : Fragment() {
                                     }
                                 }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                                 Response.ErrorListener {
-                                    Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                     Log.e("error", "통신 오류")
                                 }
                             )
@@ -199,10 +235,9 @@ class ChoicePlaceholderFragment : Fragment() {
                             Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                         }
                     } else {
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message", message)
                     }
                 }, Response.ErrorListener {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     Log.e("error", "통신 오류")
                 })
             jsonObjectRequest.setShouldCache(false)
