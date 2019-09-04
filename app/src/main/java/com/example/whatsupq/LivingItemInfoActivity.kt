@@ -154,7 +154,7 @@ class LivingItemInfoActivity : BaseActivity() {
             cartDBHelper = CartDBHelper(this, null)
             val cursor = cartDBHelper.getCartProduct("CART_ESSENTIAL", product_id)
             if (cursor!!.isAfterLast) // 중복된 상품이 없다면
-                cartDBHelper.addToCart("CART_ESSENTIAL", product_id, 1)
+                cartDBHelper.addToCart("CART_ESSENTIAL", product_id, "name", 1000, 1, 1)
             else {
                 cursor.moveToFirst()
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
