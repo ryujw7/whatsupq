@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
+import kotlinx.android.synthetic.main.fragment_home_choiceall_item.view.*
 
-class ChoiceItem(var index : Int, val thumbnailImg: Bitmap)
+class ChoiceItem(var index : Int, var id : String, val thumbnailImg: Bitmap)
 
 
 class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceItem>) :
@@ -22,7 +23,6 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_home_choiceall_item, parent, false)
-
         return Holder(view)
     }
 
@@ -34,6 +34,11 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
         val item = itemList[position]
         (holder).apply{
             bind(item)
+            holder.thumbnail.setOnClickListener {
+                val intent = Intent(context, LivingItemInfoActivity::class.java)
+                intent.putExtra("product_id", itemList[position].id)
+                context.startActivity(intent)
+            }
         }
     }
 
@@ -45,10 +50,6 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
                 thumbnail.setImageBitmap(item.thumbnailImg)
             } else {
                 thumbnail?.setImageResource(R.drawable.ic_launcher_foreground)
-            }
-            thumbnail.setOnClickListener {
-                val intent = Intent(context, LivingItemInfoActivity::class.java)
-                context.startActivity(intent)
             }
         }
     }

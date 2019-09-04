@@ -57,14 +57,14 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
         }
         try {
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
-                "http://54.180.46.143:3000/api/product/themabox?category=${URLEncoder.encode(category,"utf-8")}&flag=$flag", null,
+                "http://54.180.46.143:3000/api/product/themebox?category=${URLEncoder.encode(category,"utf-8")}&flag=$flag", null,
                 Response.Listener {
                     var status = it.getString("status")
                     var isSuccess = it.getString("success")
                     var message = it.getString("message")
                     if (status.equals("200")) {
                         data = it.getJSONObject("data")
-                        themeBoxItemJSONArray = data.getJSONArray("packages ")
+                        themeBoxItemJSONArray = data.getJSONArray("themeboxes")
                         for (i in 0 until themeBoxItemJSONArray.length()) {
                             try {
                                 imageRequest = ImageRequest(

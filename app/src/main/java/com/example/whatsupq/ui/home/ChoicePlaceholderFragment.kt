@@ -84,7 +84,7 @@ class ChoicePlaceholderFragment : Fragment() {
         lateinit var themeBoxJsonObject: JSONObject
         lateinit var data: JSONObject
         lateinit var imageRequest: ImageRequest
-        lateinit var themebox_id : String
+        lateinit var themebox_id: String
         val imgQueue = Volley.newRequestQueue(context)
         val queue = Volley.newRequestQueue(context)
         try {
@@ -96,12 +96,12 @@ class ChoicePlaceholderFragment : Fragment() {
                     var message = it.getString("message")
                     if (status.equals("200")) {
                         data = it.getJSONObject("data")
-                        Log.e("dataset : " , data.toString())
+                        Log.e("dataset : ", data.toString())
                         specialJSONArray = data.getJSONArray("special")
                         todayJsonArray = data.getJSONArray("today")
                         productJsonArray = data.getJSONArray("product")
                         themeBoxJsonObject = data.getJSONObject("themebox")
-                        for(i in 0 until specialJSONArray.length()) {
+                        for (i in 0 until specialJSONArray.length()) {
                             specialList.add(specialJSONArray.getJSONObject(i).getString("main_img"))
                         }
                         for (i in 0 until specialJSONArray.length()) {
@@ -112,7 +112,7 @@ class ChoicePlaceholderFragment : Fragment() {
                                 imageRequest = ImageRequest(
                                     specialList[i],
                                     Listener<Bitmap> { response ->
-                                        mAdapter3.resIdList.add(BannerList(i,response))
+                                        mAdapter3.resIdList.add(BannerList(i, response))
                                         mAdapter3.sortList()
                                         mAdapter3.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
@@ -128,11 +128,12 @@ class ChoicePlaceholderFragment : Fragment() {
                             }
                         }
                         for (j in 0 until todayJsonArray.length()) {
+                            var id = todayJsonArray.getJSONObject(j).getString("product_id")
                             try {
                                 imageRequest = ImageRequest(
                                     todayJsonArray.getJSONObject(j).getString("main_img"),
                                     Listener<Bitmap> { response ->
-                                        itemList1.add(ChoiceItem(j, response))
+                                        itemList1.add(ChoiceItem(j, id, response))
                                         sortLIst(itemList1)
                                         mAdapter1.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
@@ -148,11 +149,12 @@ class ChoicePlaceholderFragment : Fragment() {
                             }
                         }
                         for (k in 0 until productJsonArray.length()) {
+                            var id = productJsonArray.getJSONObject(k).getString("product_id")
                             try {
                                 imageRequest = ImageRequest(
                                     productJsonArray.getJSONObject(k).getString("main_img"),
                                     Listener<Bitmap> { response ->
-                                        itemList2.add(ChoiceItem(k, response))
+                                        itemList2.add(ChoiceItem(k, id, response))
                                         sortLIst(itemList2)
                                         mAdapter2.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
@@ -210,10 +212,11 @@ class ChoicePlaceholderFragment : Fragment() {
         }
     }
 
-    fun selecter(choiceItem : ChoiceItem) : Int = choiceItem.index
-    fun sortLIst(itemList : ArrayList<ChoiceItem>) {
+    fun selecter(choiceItem: ChoiceItem): Int = choiceItem.index
+    fun sortLIst(itemList: ArrayList<ChoiceItem>) {
         itemList.sortBy { selecter(it) }
     }
+
     fun setRoundCorner(bitmap: Bitmap, pixel: Float): Bitmap {
         val output = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(output)

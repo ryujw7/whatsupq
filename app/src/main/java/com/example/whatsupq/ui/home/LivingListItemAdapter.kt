@@ -31,7 +31,7 @@ class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val item
         livingBeforeCharge.text = livingItem.livingBeforeCharge
         view.setOnClickListener {
             var intent = Intent(context.context, LivingItemInfoActivity::class.java)
-            intent.putExtra("id",livingItem.id)
+            intent.putExtra("product_id",livingItem.id)
             context.startActivity(intent)
         }
         return view
