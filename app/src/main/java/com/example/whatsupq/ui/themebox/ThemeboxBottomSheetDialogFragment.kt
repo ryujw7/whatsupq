@@ -28,6 +28,7 @@ class ThemeboxBottomSheetDialogFragment(cost: Int) : BottomSheetDialogFragment()
     val MAX_COUNT = 10
     var available = true
     var currentAmountOnDB = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         cartDBHelper = CartDBHelper(activity!!, null)
@@ -61,7 +62,6 @@ class ThemeboxBottomSheetDialogFragment(cost: Int) : BottomSheetDialogFragment()
             root.themebox_addcart_plus.isEnabled = (item_amount + currentAmountOnDB < MAX_COUNT)
             root.themebox_addcart_minus.isEnabled = (item_amount > 1)
             root.themebox_addcart_totalcost.text = (itemCost * item_amount).toString()
-
         }
         root.themebox_addcart_minus.setOnClickListener {
             item_amount--
