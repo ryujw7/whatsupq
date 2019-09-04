@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/sort_list"
+          android:title="       정렬"
+          android:enabled="false"
 
+    />
+    <item android:id="@+id/popular_sort"
+          android:title="인기 순으로"
+    android:iconTint="@color/robins_egg_blue"/>
+    <item android:id="@+id/expensive_sort"
+          android:title="가격 높은순"/>
+    <item android:id="@+id/cheap_sort"
+          android:title="가격 낮은순"/>
+    <item android:id="@+id/latest_sort"
+          android:title="가장 최근순"/>
 </menu>
