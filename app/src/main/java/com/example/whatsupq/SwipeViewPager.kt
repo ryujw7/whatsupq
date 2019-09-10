@@ -36,6 +36,9 @@ class SwipeViewPager : ViewPager {
         }
     }
 
+    override fun setOffscreenPageLimit(limit: Int) {
+        super.setOffscreenPageLimit(limit)
+    }
     fun setPagingEnabled(enabled: Boolean) {
         this.enabled1 = enabled
     }

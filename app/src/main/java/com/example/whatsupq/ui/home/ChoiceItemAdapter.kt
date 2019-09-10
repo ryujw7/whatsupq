@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
-import kotlinx.android.synthetic.main.fragment_home_choiceall_item.view.*
 
 class ChoiceItem(var index : Int, var id : String, val thumbnailImg: Bitmap)
 
@@ -43,7 +42,7 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val thumbnail = itemView.findViewById<ImageButton>(R.id.image_thumbnail)
+        val thumbnail: ImageButton = itemView.findViewById(R.id.image_thumbnail)
         fun bind(item: ChoiceItem) {
             thumbnail.scaleType = ImageView.ScaleType.FIT_XY
             if(item.thumbnailImg != null) {

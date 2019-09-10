@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -73,10 +74,11 @@ class LivingItemInfoActivity : BaseActivity() {
                     var message = it.getString("message")
                     if (status.equals("200")) {
                         data = it.getJSONObject("data")
+                        Log.e("data ", data.toString())
                         view.brand_name.text = data.getString("name")
                         view.item_name.text = data.getString("content")
-                        view.charge.text = data.getString("saled_price")
-                        view.beforecharge.text = data.getString("price")
+                        view.charge.text = data.getString("saled_price") + "원"
+                        view.beforecharge.text = data.getString("price") + "원"
                         try {
                             imageRequest = ImageRequest(
                                 data.getString("main_img"),
@@ -92,7 +94,6 @@ class LivingItemInfoActivity : BaseActivity() {
                         } catch (e: JSONException) {
                             Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                         }
-                        imgQueue.cache.clear()
                         imgArray = data.getJSONArray("content_img")
                         for (i in 0 until imgArray.length()) {
                             try {
@@ -141,6 +142,7 @@ class LivingItemInfoActivity : BaseActivity() {
                 }
                 handler.post(Runnable {
                     run {
+                        view.living_info_image_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                         view.living_info_image_list.adapter = mAdapter
                         fragment_living_item_info.addView(view)
                         dialog.dismiss()

@@ -1,4 +1,4 @@
-package com.example.whatsupq.ui.main.curation
+package com.example.whatsupq.ui.curation
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

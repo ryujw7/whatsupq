@@ -22,6 +22,7 @@ class HomePlaceholderFragment : Fragment() {
         val homePagerAdapter = HomePagerAdapter(root.context, childFragmentManager)
         val viewPager: SwipeViewPager = root.findViewById(R.id.view_pager_home)
         viewPager.setPagingEnabled(true)
+        viewPager.offscreenPageLimit = 3
         viewPager.adapter = homePagerAdapter
         val tabs_home: TabLayout = root.findViewById(R.id.tabs)
         tabs_home.setupWithViewPager(viewPager)

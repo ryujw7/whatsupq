@@ -4,8 +4,9 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@android:color/white"
               android:paddingBottom="60dp">
-    <ScrollView android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
                 android:layout_height="match_parent">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
@@ -47,35 +48,41 @@
                           android:fontFamily="@font/goyangilsanr"
                           android:textColor="#000000"
                           android:textSize="14sp"/>
-                <ImageView android:layout_marginTop="20dp"
-                           android:layout_width="280dp"
-                           android:layout_height="280dp"
-                           android:src="@mipmap/ic_launcher_round"
-                           android:layout_gravity="center_horizontal"/>
+                <include
+                        android:id="@+id/fragment_home_theme_curation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        layout="@layout/fragment_home_themebox_item"/>
             </LinearLayout>
             <View android:layout_width="match_parent"
                   android:layout_height="3dp"
                   android:background="@color/silver"/>
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:padding="15dp"
+                          android:paddingTop="15dp"
+                          android:paddingBottom="15dp"
                           android:orientation="vertical">
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="필요한 생필품만 담았어요"
                           android:fontFamily="@font/locussangsang"
                           android:textColor="#000000"
+                          android:paddingRight="15dp"
+                          android:paddingLeft="15dp"
                           android:textSize="17sp"/>
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="매번 사기 귀찮았던 생필품 정기배송으로 해결"
                           android:fontFamily="@font/goyangilsanr"
                           android:textColor="#000000"
+                          android:paddingRight="15dp"
+                          android:paddingLeft="15dp"
                           android:textSize="14sp"/>
                 <androidx.recyclerview.widget.RecyclerView android:id="@+id/curation_result_essential_recyclerview"
                                                            android:layout_width="match_parent"
                                                            android:layout_height="wrap_content"
-                                                           android:paddingVertical="15dp"
+                                                           android:padding="15dp"
                                                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                                            android:orientation="horizontal"/>
             </LinearLayout>
@@ -84,24 +91,29 @@
                   android:background="@color/silver"/>
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:padding="15dp"
+                          android:paddingTop="15dp"
+                          android:paddingBottom="15dp"
                           android:orientation="vertical">
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="놓치던 것들도 챙겨줄게요"
                           android:fontFamily="@font/locussangsang"
                           android:textColor="#000000"
-                          android:textSize="17sp"/>
+                          android:textSize="17sp"
+                          android:paddingRight="15dp"
+                          android:paddingLeft="15dp"/>
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="당신의 윤택한 자취 생활 함께 만들어봐요"
                           android:fontFamily="@font/goyangilsanr"
                           android:textColor="#000000"
-                          android:textSize="14sp"/>
+                          android:textSize="14sp"
+                          android:paddingRight="15dp"
+                          android:paddingLeft="15dp"/>
                 <androidx.recyclerview.widget.RecyclerView android:id="@+id/curation_result_optional_recyclerview"
                                                            android:layout_width="match_parent"
                                                            android:layout_height="wrap_content"
-                                                           android:paddingVertical="15dp"
+                                                           android:padding="15dp"
                                                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                                            android:orientation="horizontal"/>
             </LinearLayout>
@@ -124,6 +136,6 @@
                     android:textColor="@color/robins_egg_blue"
                     android:background="@drawable/button_buy_frequency"/>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

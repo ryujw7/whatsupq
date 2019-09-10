@@ -26,6 +26,7 @@ class MainActivity : BaseActivity() {
         val viewPager: SwipeViewPager = findViewById(R.id.view_pager)
         val mainBanner: ImageButton = findViewById(R.id.main_banner)
         viewPager.setPagingEnabled(false)
+        viewPager.offscreenPageLimit = 3
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs_bottom)
         val back: ImageButton = findViewById(R.id.back_btn)

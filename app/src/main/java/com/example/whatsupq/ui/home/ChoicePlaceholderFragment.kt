@@ -51,7 +51,10 @@ class ChoicePlaceholderFragment : Fragment() {
     lateinit var themebox: View
     lateinit var dialog: Dialog
     lateinit var anim: Animation
-    val handler = Handler()
+    lateinit var firstList : RecyclerView
+    lateinit var secondList : RecyclerView
+    lateinit var bannerList : SwipeViewPager
+    private val handler = Handler()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,16 +66,22 @@ class ChoicePlaceholderFragment : Fragment() {
         dialog.setContentView(R.layout.activity_loading)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.loading_img.animation = anim
-        themebox = root.findViewById<View>(R.id.fragment_home_theme_new1)
+        themebox = root.findViewById(R.id.fragment_home_theme_new1)
+        firstList = root.findViewById(R.id.main_listview1)
+        secondList = root.findViewById(R.id.main_listview2)
+        bannerList = root.findViewById(R.id.fragment_home_banner)
+
+        return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (!itemList1.isEmpty()) {
             itemList1.clear()
         }
         if (!itemList2.isEmpty()) {
             itemList2.clear()
         }
-        var firstList = root.findViewById<RecyclerView>(R.id.main_listview1)
-        var secondList = root.findViewById<RecyclerView>(R.id.main_listview2)
-        val bannerList: SwipeViewPager = root.findViewById(R.id.fragment_home_banner)
         mAdapter1 = ChoiceItemAdapter(activity!! as Context, itemList1)
         mAdapter2 = ChoiceItemAdapter(activity!! as Context, itemList2)
         mAdapter3 = HomeBannerItemAdapter(activity!!.supportFragmentManager)
@@ -102,9 +111,7 @@ class ChoicePlaceholderFragment : Fragment() {
         }).start()
         bannerList.setPagingEnabled(true)
         bannerList.adapter = mAdapter3
-        return root
     }
-
     fun newInstance(): ChoicePlaceholderFragment {
         val args = Bundle()
 
@@ -247,29 +254,9 @@ class ChoicePlaceholderFragment : Fragment() {
         }
     }
 
-    fun selecter(choiceItem: ChoiceItem): Int = choiceItem.index
-    fun sortLIst(itemList: ArrayList<ChoiceItem>) {
+    private fun selecter(choiceItem: ChoiceItem): Int = choiceItem.index
+    private fun sortLIst(itemList: ArrayList<ChoiceItem>) {
         itemList.sortBy { selecter(it) }
-    }
-
-    fun setRoundCorner(bitmap: Bitmap, pixel: Float): Bitmap {
-        val output = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(output)
-        val color = 0xff424242
-        val paint = Paint()
-        val rect = Rect(0, 0, bitmap.width, bitmap.height)
-        val rectf = RectF(rect)
-
-        paint.isAntiAlias = true
-        paint.color = color.toInt()
-        canvas.drawARGB(0, 0, 0, 0)
-        canvas.drawRoundRect(rectf, pixel, pixel, paint)
-
-        paint.setXfermode(PorterDuffXfermode(PorterDuff.Mode.SRC_IN))
-        canvas.drawBitmap(bitmap, rect, rect, paint)
-
-
-        return output
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.whatsupq.ui.main.curation
+package com.example.whatsupq.ui.curation
 
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -16,6 +16,10 @@ class CurationPriorityAdapter(startDragListener: OnStartDragListener, val priori
     CurationPriorityTouchHelperCallback.OnItemMoveListener {
 
     val mStartDragListener = startDragListener
+
+    fun getItemText(position: Int) : String {
+        return priorityList[position]
+    }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         Collections.swap(priorityList, fromPosition, toPosition)

@@ -4,30 +4,37 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
-import kotlinx.android.synthetic.main.living_info_image_item.view.*
-class LivingInfoImage(var index : Int, var image : Bitmap)
+import androidx.recyclerview.widget.RecyclerView
+import com.example.whatsupq.LivingItemInfoImageAdapter.LivingItemHolder
+
+class LivingInfoImage(var index: Int, var image: Bitmap)
 
 
-class LivingItemInfoImageAdapter(val context : LivingItemInfoActivity, val itemList : ArrayList<LivingInfoImage>) : BaseAdapter() {
-    override fun getItemId(p0: Int): Long {
-        return 0
+class LivingItemInfoImageAdapter(val context: LivingItemInfoActivity, val itemList: ArrayList<LivingInfoImage>) :
+    RecyclerView.Adapter<LivingItemHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LivingItemHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.living_info_image_item, parent, false)
+        return LivingItemHolder(view)
     }
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.living_info_image_item, null)
-        view.living_image_item.scaleType = ImageView.ScaleType.CENTER_CROP
-        view.living_image_item.setImageBitmap(itemList[p0].image)
-        return view
-    }
-
-    override fun getItem(p0: Int): Any {
-        return itemList[p0]
-    }
-
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return itemList.size
     }
 
+    override fun onBindViewHolder(holder: LivingItemHolder, position: Int) {
+        val item = itemList[position]
+        (holder).apply {
+            bind(item)
+        }
+    }
+
+    inner class LivingItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imgItem = itemView.findViewById<ImageView>(R.id.living_image_item)
+        fun bind(item: LivingInfoImage) {
+            imgItem.scaleType = ImageView.ScaleType.FIT_XY
+            imgItem.setImageBitmap(item.image)
+        }
+    }
 }

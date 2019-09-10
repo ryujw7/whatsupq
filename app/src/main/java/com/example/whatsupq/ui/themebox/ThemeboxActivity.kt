@@ -56,21 +56,21 @@ class ThemeboxActivity : BaseActivity() {
         dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.activity_loading)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.loading_img.animation = anim
-        val adapter = ThemeViewpagerAdapter(supportFragmentManager, imgSrcList)
-        themebox_indicator.setupWithViewPager(themebox_viewpager, true)
-        try {
-            val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
-                "http://54.180.46.143:3000/api/product/themebox/detail?themebox_id=$themeboxid",null,
-                Response.Listener {
-                    status = it.getString("status")
-                    isSuccess = it.getString("success")
-                    message = it.getString("message")
-                    if (status.equals("200")) {
-                        data = it.getJSONObject("data")
-                        Log.e("data", data.toString())
-                        price = data.getInt("price")
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.loading_img.animation = anim
+                        val adapter = ThemeViewpagerAdapter(supportFragmentManager, imgSrcList)
+                        themebox_indicator.setupWithViewPager(themebox_viewpager, true)
+                        try {
+                            val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
+                                "http://54.180.46.143:3000/api/product/themebox/detail?themebox_id=$themeboxid",null,
+                                Response.Listener {
+                                    status = it.getString("status")
+                                    isSuccess = it.getString("success")
+                                    message = it.getString("message")
+                                    if (status.equals("200")) {
+                                        data = it.getJSONObject("data")
+                                        Log.e("data", data.toString())
+                                        price = data.getInt("price")
                         themebox_cost.text = price.toString()
                         imgArray = data.getJSONArray("img")
                         val bottomSheetDialogFragment = ThemeboxBottomSheetDialogFragment(price, themeboxid)
@@ -112,22 +112,22 @@ class ThemeboxActivity : BaseActivity() {
         }
         Thread(Runnable {
             run {
-                handler.post(Runnable {
+                handler.post {
                     run {
                         dialog.show()
                     }
-                })
+                }
                 try {
                     Thread.sleep(1200)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
-                handler.post(Runnable {
+                handler.post {
                     run {
                         themebox_viewpager.adapter = adapter
                         dialog.dismiss()
                     }
-                })
+                }
             }
         }).start()
     }
