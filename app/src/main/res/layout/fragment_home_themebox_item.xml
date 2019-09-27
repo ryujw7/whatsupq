@@ -5,26 +5,25 @@
         android:layout_width="280dp"
         android:layout_height="320dp"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:orientation="vertical">
     <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/theme_image"
             android:layout_width="280dp"
             android:layout_height="320dp"
             android:background="@drawable/radius_rectangle"
             android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:riv_border_color="#000000"
             app:riv_corner_radius="17dp"
             app:riv_mutate_background="true"
             app:riv_oval="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
     />
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/theme_image"
-            android:gravity="bottom"
             android:orientation="vertical"
             android:paddingLeft="18dp"
             android:paddingBottom="18dp">

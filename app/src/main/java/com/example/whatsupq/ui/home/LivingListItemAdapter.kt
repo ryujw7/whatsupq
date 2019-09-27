@@ -26,7 +26,11 @@ class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val item
         livingImageView.setImageBitmap(livingItem.livingImg)
         livingImageView.scaleType = ImageView.ScaleType.FIT_XY
         livingBrand.text = livingItem.livingBrand
-        livingItemName.text = livingItem.livingName
+        if(livingItem.livingName.length >= 30) {
+            livingItemName.text = livingItem.livingName.substring(0,21) + "..."
+        } else {
+            livingItemName.text = livingItem.livingName
+        }
         livingCharge.text = livingItem.livingCharge
         livingBeforeCharge.text = livingItem.livingBeforeCharge
         view.setOnClickListener {

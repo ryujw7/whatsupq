@@ -85,5 +85,8 @@ class LoginActivity : BaseActivity() {
                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
             }
         }
+        back_btn.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 }

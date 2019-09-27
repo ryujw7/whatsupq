@@ -10,6 +10,9 @@ class ResultTradeActivity : BaseActivity() {
         search_order_history.setOnClickListener {
 
         }
+        back_btn.setOnClickListener {
+            finish()
+        }
         home_btn.setOnClickListener {
             finish()
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

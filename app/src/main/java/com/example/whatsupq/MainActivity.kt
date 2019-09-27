@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     lateinit var cartDBHelper: CartDBHelper
-
+    private var monKeyBackPressedListener : OnKeyBackPressedListener? = null
+    lateinit var tabs : TabLayout
+    lateinit var viewPager : SwipeViewPager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,12 +25,12 @@ class MainActivity : BaseActivity() {
         // 장바구니 DB 생성 끝
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: SwipeViewPager = findViewById(R.id.view_pager)
+        viewPager = findViewById(R.id.view_pager)
         val mainBanner: ImageButton = findViewById(R.id.main_banner)
         viewPager.setPagingEnabled(false)
         viewPager.offscreenPageLimit = 3
         viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs_bottom)
+        tabs = findViewById(R.id.tabs_bottom)
         val back: ImageButton = findViewById(R.id.back_btn)
         back.setVisibility(View.INVISIBLE)
         tabs.setupWithViewPager(viewPager)
@@ -59,5 +61,26 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
+        back_btn.setOnClickListener {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(monKeyBackPressedListener != null) {
+            monKeyBackPressedListener!!.onBackKey()
+        } else {
+            if(tabs.selectedTabPosition != 0) {
+                viewPager.currentItem = 0
+            } else {
+                super.onBackPressed()
+            }
+        }
+    }
+    fun setOnBackKeyPressedListener(onKeyBackPressedListener: OnKeyBackPressedListener?) {
+        monKeyBackPressedListener = onKeyBackPressedListener
+    }
+    interface OnKeyBackPressedListener {
+        fun onBackKey()
     }
 }

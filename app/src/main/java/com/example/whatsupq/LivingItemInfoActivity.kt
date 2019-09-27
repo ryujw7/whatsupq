@@ -50,7 +50,7 @@ class LivingItemInfoActivity : BaseActivity() {
     lateinit var imgArray: JSONArray
     lateinit var imageRequest: ImageRequest
     lateinit var imgQueue: RequestQueue
-    lateinit var queue : RequestQueue
+    lateinit var queue: RequestQueue
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_living_item_info)
@@ -142,7 +142,8 @@ class LivingItemInfoActivity : BaseActivity() {
                 }
                 handler.post(Runnable {
                     run {
-                        view.living_info_image_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                        view.living_info_image_list.layoutManager =
+                            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                         view.living_info_image_list.adapter = mAdapter
                         fragment_living_item_info.addView(view)
                         dialog.dismiss()
@@ -156,7 +157,14 @@ class LivingItemInfoActivity : BaseActivity() {
             cartDBHelper = CartDBHelper(this, null)
             val cursor = cartDBHelper.getCartProduct("CART_ESSENTIAL", product_id)
             if (cursor!!.isAfterLast) // 중복된 상품이 없다면
-                cartDBHelper.addToCart("CART_ESSENTIAL", product_id,view.item_name.text.toString() , view.charge.text.toString().toInt(), 1, 1)
+                cartDBHelper.addToCart(
+                    "CART_ESSENTIAL",
+                    product_id,
+                    view.item_name.text.toString(),
+                    view.charge.text.toString().replace("원", "").toInt(),
+                    1,
+                    1
+                )
             else {
                 cursor.moveToFirst()
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
@@ -165,6 +173,9 @@ class LivingItemInfoActivity : BaseActivity() {
                 }
             }
             // 장바구니 DB에 상품 추가 끝
+            finish()
+        }
+        back_btn.setOnClickListener {
             finish()
         }
     }

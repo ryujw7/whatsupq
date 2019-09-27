@@ -155,6 +155,9 @@ class BuyActivity : BaseActivity() {
             startActivity(Intent(this, ResultTradeActivity::class.java))
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
+        back_btn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun updateDate() {
