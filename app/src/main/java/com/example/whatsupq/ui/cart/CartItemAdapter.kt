@@ -18,6 +18,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.whatsupq.DB.CartDBHelper
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -225,24 +226,9 @@ class CartItemAdapter(
                             if (status.equals("200")) {
                                 data = it.getJSONObject("data")
                                 Log.e("data", data.toString())
-                                try {
-                                    imageRequest = ImageRequest(
-                                        data.getString("main_img"),
-                                        Response.Listener<Bitmap> { response ->
-                                            view.cart_item_img.setImageBitmap(response)
-                                        }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                        Response.ErrorListener {
-                                            Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
-                                            Log.e("error", "통신 오류")
-                                        }
-                                    )
-                                    imgQueue.add(imageRequest)
-                                } catch (e: JSONException) {
-                                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
-                                }
+                                Glide.with(view.context).load(data.getString("main_img")).into(view.cart_item_img)
                             }
                         }, Response.ErrorListener {
-                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                             Log.e("error", "통신 오류")
                         }) {
 
@@ -263,24 +249,9 @@ class CartItemAdapter(
                                 data = it.getJSONObject("data")
                                 var imgArray = data.getJSONArray("img")
                                 Log.e("data", data.toString())
-                                try {
-                                    imageRequest = ImageRequest(
-                                        imgArray.getString(3),
-                                        Response.Listener<Bitmap> { response ->
-                                            view.cart_item_img.setImageBitmap(response)
-                                        }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                        Response.ErrorListener {
-                                            Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
-                                            Log.e("error", "통신 오류")
-                                        }
-                                    )
-                                    imgQueue.add(imageRequest)
-                                } catch (e: JSONException) {
-                                    Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
-                                }
+                                Glide.with(view.context).load(imgArray[imgArray.length()-1].toString()).into(view.cart_item_img)
                             }
                         }, Response.ErrorListener {
-                            Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                             Log.e("error", "통신 오류")
                         }) {
 

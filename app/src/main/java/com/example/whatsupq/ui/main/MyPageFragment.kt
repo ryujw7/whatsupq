@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -63,7 +62,7 @@ class MyPageFragment : Fragment() { // 아마 파라미터는 수정되어야 �
                             root.mypage_email.text = data.getString("email")
                             SharedPreferenceController.setUserToken(context!!.applicationContext, token)
                         } else {
-                            Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()
+                            Log.d("message : ", message)
                         }
                     }, Response.ErrorListener {
                         token = ""
@@ -84,7 +83,7 @@ class MyPageFragment : Fragment() { // 아마 파라미터는 수정되어야 �
                 SharedPreferenceController.clearUserToken(root.context.applicationContext)
                 Log.e("token : ", token)
                 root= inflater.inflate(R.layout.mypage_notfound, container, false)
-                Toast.makeText(context!!.applicationContext, token, Toast.LENGTH_SHORT).show()
+                Log.d("message : ", message)
                 fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
             }
         } else {

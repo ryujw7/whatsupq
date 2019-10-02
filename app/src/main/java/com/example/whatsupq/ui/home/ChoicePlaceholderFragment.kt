@@ -161,7 +161,6 @@ class ChoicePlaceholderFragment : Fragment() {
                                         mAdapter3.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )
@@ -182,7 +181,6 @@ class ChoicePlaceholderFragment : Fragment() {
                                         mAdapter1.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )
@@ -203,7 +201,6 @@ class ChoicePlaceholderFragment : Fragment() {
                                         mAdapter2.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )

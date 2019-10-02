@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.whatsupq.LivingItemInfoImageAdapter.LivingItemHolder
 
-class LivingInfoImage(var index: Int, var image: Bitmap)
+class LivingInfoImage(var index: Int, var image: String)
 
 
 class LivingItemInfoImageAdapter(val context: LivingItemInfoActivity, val itemList: ArrayList<LivingInfoImage>) :
@@ -34,7 +35,7 @@ class LivingItemInfoImageAdapter(val context: LivingItemInfoActivity, val itemLi
         val imgItem = itemView.findViewById<ImageView>(R.id.living_image_item)
         fun bind(item: LivingInfoImage) {
             imgItem.scaleType = ImageView.ScaleType.FIT_XY
-            imgItem.setImageBitmap(item.image)
+            Glide.with(context).load(item.image).into(imgItem)
         }
     }
 }

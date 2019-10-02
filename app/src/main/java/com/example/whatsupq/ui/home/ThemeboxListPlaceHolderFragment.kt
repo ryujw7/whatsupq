@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ListView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageRequest
@@ -94,7 +93,7 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
                             }
                         }
                     } else {
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     }
                 }, Response.ErrorListener {
                     Log.e("error", "통신 오류")

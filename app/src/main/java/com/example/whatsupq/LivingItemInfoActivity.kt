@@ -1,5 +1,6 @@
 package com.example.whatsupq
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -7,33 +8,28 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.whatsupq.DB.CartDBHelper
-import com.example.whatsupq.ui.home.LivingItem
+import com.example.whatsupq.ui.themebox.ThemeboxBottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_living_item_info.*
 import kotlinx.android.synthetic.main.activity_loading.*
-import kotlinx.android.synthetic.main.fragment_living_item_info.*
 import kotlinx.android.synthetic.main.fragment_living_item_info.view.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.InterruptedException
-import java.net.URLEncoder
 
 class LivingItemInfoActivity : BaseActivity() {
 
@@ -51,6 +47,7 @@ class LivingItemInfoActivity : BaseActivity() {
     lateinit var imageRequest: ImageRequest
     lateinit var imgQueue: RequestQueue
     lateinit var queue: RequestQueue
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_living_item_info)
@@ -79,47 +76,22 @@ class LivingItemInfoActivity : BaseActivity() {
                         view.item_name.text = data.getString("content")
                         view.charge.text = data.getString("saled_price") + "원"
                         view.beforecharge.text = data.getString("price") + "원"
-                        try {
-                            imageRequest = ImageRequest(
-                                data.getString("main_img"),
-                                Response.Listener<Bitmap> { response ->
-                                    view.living_info_main_image.setImageBitmap(response)
-                                }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                Response.ErrorListener {
-                                    Toast.makeText(this, "통신 오류", Toast.LENGTH_SHORT).show()
-                                    Log.e("error", "통신 오류")
-                                }
-                            )
-                            imgQueue.add(imageRequest)
-                        } catch (e: JSONException) {
-                            Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+                        val bottomSheetDialogFragment =
+                            LivingItemBottomSheetDialogFragment(view.charge.text.toString().replace("원", ""), view.item_name.text.toString(), product_id)
+                        living_item_info_addcart.setOnClickListener {
+                            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
                         }
+                        Glide.with(this).load(data.getString("main_img")).into(view.living_info_main_image)
                         imgArray = data.getJSONArray("content_img")
                         for (i in 0 until imgArray.length()) {
-                            try {
-                                imageRequest = ImageRequest(
-                                    imgArray.getString(i),
-                                    Response.Listener<Bitmap> { response ->
-                                        itemList.add(LivingInfoImage(i, response))
-                                        sortLIst()
-                                        mAdapter.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Toast.makeText(this, "통신 오류", Toast.LENGTH_SHORT).show()
-                                        Log.e("error", "통신 오류")
-                                    }
-                                )
-                                imgQueue.add(imageRequest)
-                            } catch (e: JSONException) {
-                                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
-                            }
+                            itemList.add(LivingInfoImage(i, imgArray[i].toString()))
+                            mAdapter.notifyDataSetChanged()
                         }
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     } else {
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     }
                 }, Response.ErrorListener {
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     Log.e("error", "통신 오류")
                 }) {
 
@@ -152,29 +124,6 @@ class LivingItemInfoActivity : BaseActivity() {
             }
         }).start()
 
-        living_item_info_addcart.setOnClickListener {
-            // 장바구니 DB에 상품 추가
-            cartDBHelper = CartDBHelper(this, null)
-            val cursor = cartDBHelper.getCartProduct("CART_ESSENTIAL", product_id)
-            if (cursor!!.isAfterLast) // 중복된 상품이 없다면
-                cartDBHelper.addToCart(
-                    "CART_ESSENTIAL",
-                    product_id,
-                    view.item_name.text.toString(),
-                    view.charge.text.toString().replace("원", "").toInt(),
-                    1,
-                    1
-                )
-            else {
-                cursor.moveToFirst()
-                val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
-                if (amount < 10) {
-                    cartDBHelper.updateAmount("CART_ESSENTIAL", product_id, amount + 1)
-                }
-            }
-            // 장바구니 DB에 상품 추가 끝
-            finish()
-        }
         back_btn.setOnClickListener {
             finish()
         }

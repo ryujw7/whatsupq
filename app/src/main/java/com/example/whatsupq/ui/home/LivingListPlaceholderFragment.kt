@@ -112,7 +112,6 @@ class LivingListPlaceholderFragment : Fragment() {
                                         listAdapter.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )
@@ -122,7 +121,7 @@ class LivingListPlaceholderFragment : Fragment() {
                             }
                         }
                     } else {
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     }
                 }, Response.ErrorListener {
                     Log.e("error", "통신 오류")

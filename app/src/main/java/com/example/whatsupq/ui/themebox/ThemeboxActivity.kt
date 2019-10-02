@@ -80,33 +80,17 @@ class ThemeboxActivity : BaseActivity() {
                         themebox_addcart.setOnClickListener {
                             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
                         }
-                        for (imgIndex in 0 until imgArray.length() - 1) {
-                            try {
-                                imageRequest = ImageRequest(
-                                    imgArray.getString(imgIndex),
-                                    Response.Listener<Bitmap> { response ->
-                                        imgSrcList.add(LivingInfoImage(imgIndex, response))
-                                        sortList()
-                                        adapter.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Toast.makeText(this, "통신 오류", Toast.LENGTH_SHORT).show()
-                                        Log.e("error", "통신 오류")
-                                    }
-                                )
-                                imgQueue.add(imageRequest)
-                            } catch (e: JSONException) {
-                                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
-                            }
+                        for (i in 0 until imgArray.length() - 1) {
+                            imgSrcList.add(LivingInfoImage(i, imgArray[i].toString()))
+                            adapter.notifyDataSetChanged()
                         }
                         imgQueue.cache.clear()
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     } else {
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Log.d("message : ", message)
                     }
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     Log.e("error", "통신 오류")
                 })
             queue.add(jsonObjectRequest)
@@ -121,7 +105,7 @@ class ThemeboxActivity : BaseActivity() {
                     }
                 }
                 try {
-                    Thread.sleep(1200)
+                    Thread.sleep(1500)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }

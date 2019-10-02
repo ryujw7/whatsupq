@@ -20,7 +20,7 @@ class ThemeboxFragment(val imgSrcList: ArrayList<LivingInfoImage>) : Fragment() 
         return view
     }
 
-    fun selector(livingInfoImage: LivingInfoImage): Int = livingInfoImage.index
+    fun selector(livingInfoImage : LivingInfoImage): Int = livingInfoImage.index
     fun sortList() {
         imgSrcList.sortBy { selector(it) }
     }

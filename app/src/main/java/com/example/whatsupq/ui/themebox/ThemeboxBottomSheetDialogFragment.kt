@@ -1,8 +1,6 @@
 package com.example.whatsupq.ui.themebox
 
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_themebox_bottom_sheet_dialog.view.*
 
 
-class ThemeboxBottomSheetDialogFragment(var cost: Int,var product_id : String) : BottomSheetDialogFragment() {
+class ThemeboxBottomSheetDialogFragment(var cost: Int, var product_id: String) : BottomSheetDialogFragment() {
 
     lateinit var cartDBHelper: CartDBHelper
 
@@ -41,8 +39,7 @@ class ThemeboxBottomSheetDialogFragment(var cost: Int,var product_id : String) :
                 root.themebox_addcart_plus.isEnabled = false
                 Toast.makeText(context!!, "최대 구매할수 있는 수량은 ${MAX_COUNT}개 입니다.", Toast.LENGTH_SHORT).show()
                 available = false
-            }
-            else if (currentAmountOnDB == MAX_COUNT - 1){
+            } else if (currentAmountOnDB == MAX_COUNT - 1) {
                 root.themebox_addcart_plus.isEnabled = false
             }
         }
@@ -94,7 +91,7 @@ class ThemeboxBottomSheetDialogFragment(var cost: Int,var product_id : String) :
             val d = dialog as BottomSheetDialog
             val bottomSheetInternal = d.findViewById<View>(R.id.design_bottom_sheet)
             BottomSheetBehavior.from(bottomSheetInternal!!).state =
-                    BottomSheetBehavior.STATE_EXPANDED
+                BottomSheetBehavior.STATE_EXPANDED
         }
         dialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         return dialog

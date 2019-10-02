@@ -17,7 +17,6 @@ import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,20 +27,16 @@ import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.whatsupq.R
-import com.example.whatsupq.ui.home.BannerList
-import com.example.whatsupq.ui.home.ChoiceItem
 import com.example.whatsupq.ui.themebox.ThemeboxActivity
 import kotlinx.android.synthetic.main.activity_loading.*
 import kotlinx.android.synthetic.main.fragment_curation_init.view.*
 import kotlinx.android.synthetic.main.fragment_curation_result.view.*
 import kotlinx.android.synthetic.main.fragment_curation_set.view.*
-import kotlinx.android.synthetic.main.fragment_curation_set_item.view.*
 import kotlinx.android.synthetic.main.fragment_home_themebox_item.view.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.net.URLEncoder
-import kotlin.math.max
 
 /**
  * A placeholder fragment containing a simple view.
@@ -217,7 +212,6 @@ class CurationPlaceholderFragment : Fragment(),
                                         mAdapter1.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )
@@ -243,7 +237,6 @@ class CurationPlaceholderFragment : Fragment(),
                                         mAdapter2.notifyDataSetChanged()
                                     }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
                                     Response.ErrorListener {
-                                        Toast.makeText(context, "통신 오류", Toast.LENGTH_SHORT).show()
                                         Log.e("error", "통신 오류")
                                     }
                                 )

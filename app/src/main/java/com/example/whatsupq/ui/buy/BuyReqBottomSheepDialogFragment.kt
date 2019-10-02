@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_buy.*
 import kotlinx.android.synthetic.main.activity_buy_request_bottom_sheet_dialog.*
 import kotlinx.android.synthetic.main.activity_buy_request_bottom_sheet_dialog.view.*
 
-class BuyReqBottomSheepDialogFragment() : BottomSheetDialogFragment() {
+class BuyReqBottomSheepDialogFragment : BottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.activity_buy_request_bottom_sheet_dialog, container, false)
         view.buy_request_group.setOnCheckedChangeListener { radioGroup, i ->
