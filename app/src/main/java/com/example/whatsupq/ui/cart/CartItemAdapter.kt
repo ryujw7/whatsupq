@@ -2,7 +2,6 @@ package com.example.whatsupq.ui.cart
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.RequestQueue
@@ -29,8 +27,6 @@ import org.json.JSONObject
 import java.text.DecimalFormat
 
 class CartItemAdapter(val context: Context, val category_item_list: MutableMap<String, ArrayList<CartItem>>, val cartDBHelper: CartDBHelper) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
     val VIEW_TYPE_CATEGORY = 0
     val VIEW_TYPE_ITEM = 1
     var category_list = category_item_list.keys.toTypedArray()
@@ -193,6 +189,7 @@ class CartItemAdapter(val context: Context, val category_item_list: MutableMap<S
     }
 
     class ViewHolder_item(val context: Context, v: View) : RecyclerView.ViewHolder(v) {
+        val format = DecimalFormat("###,###")
         lateinit var data: JSONObject
         lateinit var imageRequest: ImageRequest
         lateinit var imgQueue: RequestQueue

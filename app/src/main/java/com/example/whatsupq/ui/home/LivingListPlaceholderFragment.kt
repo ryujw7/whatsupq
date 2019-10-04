@@ -37,10 +37,10 @@ class LivingListPlaceholderFragment : Fragment() {
                 R.id.popular_sort -> {
                     flag = "1"
                 }
-                R.id.cheap_sort -> {
+                R.id.expensive_sort -> {
                     flag = "2"
                 }
-                R.id.expensive_sort -> {
+                R.id.cheap_sort -> {
                     flag = "3"
                 }
                 R.id.latest_sort -> {

@@ -62,6 +62,7 @@
                 android:background="@color/robins_egg_blue">
 
             <TextView
+                    android:id="@+id/living_item_info_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

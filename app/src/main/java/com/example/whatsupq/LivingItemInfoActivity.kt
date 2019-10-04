@@ -78,10 +78,13 @@ class LivingItemInfoActivity : BaseActivity() {
                         Log.e("data ", data.toString())
                         view.brand_name.text = data.getString("name")
                         view.item_name.text = data.getString("content")
-                        view.charge.text = data.getString("saled_price") + "원"
-                        view.beforecharge.text = data.getString("price") + "원"
+                        charge = data.getString("saled_price").toInt()
+                        beforecharge = data.getString("price").toInt()
+                        view.charge.text = format.format(charge) + "원"
+                        view.beforecharge.text = format.format(beforecharge) + "원"
+                        living_item_info_price.text = format.format(charge) + "원"
                         val bottomSheetDialogFragment =
-                            LivingItemBottomSheetDialogFragment(view.charge.text.toString().replace("원", ""), view.item_name.text.toString(), product_id)
+                            LivingItemBottomSheetDialogFragment(charge.toString(), view.item_name.text.toString(), product_id)
                         living_item_info_addcart.setOnClickListener {
                             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
                         }

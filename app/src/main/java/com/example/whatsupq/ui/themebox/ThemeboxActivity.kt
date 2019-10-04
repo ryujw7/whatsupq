@@ -75,7 +75,7 @@ class ThemeboxActivity : BaseActivity() {
                         data = it.getJSONObject("data")
                         Log.e("data", data.toString())
                         price = data.getInt("price")
-                        themebox_cost.text = price.toString()
+                        themebox_cost.text = format.format(price)
                         imgArray = data.getJSONArray("img")
                         val bottomSheetDialogFragment = ThemeboxBottomSheetDialogFragment(price, themeboxid)
                         themebox_addcart.setOnClickListener {

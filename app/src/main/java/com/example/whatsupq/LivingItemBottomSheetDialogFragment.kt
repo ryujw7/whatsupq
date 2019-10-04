@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_living_bottom_sheet_dialog.view.*
 import kotlinx.android.synthetic.main.activity_living_item_info.view.*
+import java.text.DecimalFormat
 
 class LivingItemBottomSheetDialogFragment(var cost: String, var itemName : String, var product_id: String) : BottomSheetDialogFragment() {
 
@@ -23,6 +24,8 @@ class LivingItemBottomSheetDialogFragment(var cost: String, var itemName : Strin
     val MAX_COUNT = 10
     var available = true
     var currentAmountOnDB = 0
+
+    val format = DecimalFormat("###,###")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         cartDBHelper = CartDBHelper(activity!!, null)
@@ -42,7 +45,9 @@ class LivingItemBottomSheetDialogFragment(var cost: String, var itemName : Strin
                 root.living_addcart_plus.isEnabled = false
             }
         }
-        root.living_addcart_totalcost.text = (cost.toInt()  * item_amount).toString()
+        root.living_addcart_minus.isEnabled = item_amount > 1
+        root.living_addcart_totalcost.text = format.format(cost.toInt() * item_amount)
+        root.living_addcart_amount.text = item_amount.toString()
         root.living_addcart_frequency.setOnCheckedChangeListener { radioGroup, i ->
             var frequencyString = root.findViewById<RadioButton>(i).text
             frequency = frequencyString[0].toString().toInt()
@@ -53,19 +58,19 @@ class LivingItemBottomSheetDialogFragment(var cost: String, var itemName : Strin
             root.living_addcart_amount.text = item_amount.toString()
             root.living_addcart_plus.isEnabled = (item_amount + currentAmountOnDB < MAX_COUNT)
             root.living_addcart_minus.isEnabled = (item_amount > 1)
-            root.living_addcart_totalcost.text = (cost.toInt() * item_amount).toString()
+            root.living_addcart_totalcost.text = format.format(cost.toInt() * item_amount)
         }
         root.living_addcart_minus.setOnClickListener {
             item_amount--
             root.living_addcart_amount.text = item_amount.toString()
             root.living_addcart_plus.isEnabled = (item_amount + currentAmountOnDB < MAX_COUNT)
             root.living_addcart_minus.isEnabled = (item_amount > 1)
-            root.living_addcart_totalcost.text = (cost.toInt()  * item_amount).toString()
+            root.living_addcart_totalcost.text = format.format(cost.toInt() * item_amount)
         }
         root.living_addcart_final.setOnClickListener {
             cartDBHelper = CartDBHelper(root.context, null)
             val cursor = cartDBHelper.getCartProduct("CART_ESSENTIAL", product_id)
-            if (cursor!!.isAfterLast) // 중복된 상품이 없다면
+            if (cursor!!.isAfterLast) { // 중복된 상품이 없다면
                 cartDBHelper.addToCart(
                     "CART_ESSENTIAL",
                     product_id,
@@ -74,11 +79,15 @@ class LivingItemBottomSheetDialogFragment(var cost: String, var itemName : Strin
                     item_amount,
                     frequency
                 )
+                Toast.makeText(context!!, "상품을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
+            }
             else {
                 cursor.moveToFirst()
                 val amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"))
-                if (amount < 10) {
+                if (amount < MAX_COUNT) {
                     cartDBHelper.updateAmount("CART_ESSENTIAL", product_id, amount + 1)
+                    cartDBHelper.updateFrequency("CART_ESSENTIAL", product_id, frequency)
+                    Toast.makeText(context!!, "상품을 장바구니에 담았습니다", Toast.LENGTH_SHORT).show()
                 }
             }
             // 장바구니 DB에 상품 추가 끝

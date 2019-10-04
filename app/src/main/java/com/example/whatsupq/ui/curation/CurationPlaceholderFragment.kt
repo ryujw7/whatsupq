@@ -129,8 +129,8 @@ class CurationPlaceholderFragment : Fragment(), CurationPriorityAdapter.OnStartD
                     }
                 }
                 root.curation_set_click.setOnClickListener {
-                    curationEditor.putString("PRICE_MIN", root.curation_set_range_min.text.toString())
-                    curationEditor.putString("PRICE_MAX", root.curation_set_range_max.text.toString())
+                    curationEditor.putInt("PRICE_MIN", root.curation_set_range.selectedMinValue.toInt())
+                    curationEditor.putInt("PRICE_MAX", root.curation_set_range.selectedMaxValue.toInt())
                     curationEditor.putString("CATEGORY_FIRST", priorityAdapter.getItemText(0))
                     curationEditor.putString("CATEGORY_SECOND", priorityAdapter.getItemText(1))
                     curationEditor.putString("CATEGORY_LAST", priorityAdapter.getItemText(4))
@@ -230,17 +230,7 @@ class CurationPlaceholderFragment : Fragment(), CurationPriorityAdapter.OnStartD
             optionalProdList.clear()
         }
         try {
-            val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
-                "http://54.180.46.143:3000/api/product/custom?first=${URLEncoder.encode(
-                    firstCategory,
-                    "utf-8"
-                )}&second=${URLEncoder.encode(
-                    secondCategory,
-                    "utf-8"
-                )}&fifth=${URLEncoder.encode(
-                    lastCategory,
-                    "utf-8"
-                )}&minprice=$minPrice&maxprice=$maxPrice", null,
+            val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, "http://54.180.46.143:3000/api/product/custom?first=${URLEncoder.encode(curationSetting.getString("CATEGORY_FIRST", "ERROR"), "utf-8")}&second=${URLEncoder.encode(curationSetting.getString("CATEGORY_SECOND", "ERROR"), "utf-8")}&fifth=${URLEncoder.encode(curationSetting.getString("CATEGORY_LAST", "ERROR"), "utf-8")}&minprice=${curationSetting.getInt("PRICE_MIN", 0)}&maxprice=${curationSetting.getInt("PRICE_MAX", 100000)}", null,
                 Response.Listener {
                     var status = it.getString("status")
                     var isSuccess = it.getString("success")
