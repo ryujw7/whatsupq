@@ -48,6 +48,10 @@ class LivingItemInfoActivity : BaseActivity() {
     lateinit var imgQueue: RequestQueue
     lateinit var queue: RequestQueue
     @SuppressLint("WrongConstant")
+
+    var charge = 0
+    var beforecharge = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_living_item_info)

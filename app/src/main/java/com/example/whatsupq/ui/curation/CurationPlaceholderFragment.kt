@@ -3,6 +3,7 @@ package com.example.whatsupq.ui.curation
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -17,6 +18,8 @@ import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,12 +40,12 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.net.URLEncoder
+import java.text.DecimalFormat
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class CurationPlaceholderFragment : Fragment(),
-    CurationPriorityAdapter.OnStartDragListener {
+class CurationPlaceholderFragment : Fragment(), CurationPriorityAdapter.OnStartDragListener {
 
     lateinit var root: View
 
@@ -50,60 +53,102 @@ class CurationPlaceholderFragment : Fragment(),
     val priorityList = arrayListOf("수면", "먹는것", "인테리어", "옷관리", "청소")
     private var essentialProdList = ArrayList<ProdInfo>()
     private var optionalProdList = ArrayList<ProdInfo>()
-    lateinit var firstList : RecyclerView
-    lateinit var secondList : RecyclerView
+    lateinit var firstList: RecyclerView
+    lateinit var secondList: RecyclerView
     lateinit var mAdapter1: CurationResultAdapter
     lateinit var mAdapter2: CurationResultAdapter
     lateinit var themebox: View
     lateinit var dialog: Dialog
     lateinit var anim: Animation
-    lateinit var firstCategory : String
-    lateinit var secondCategory : String
-    lateinit var lastCategory : String
-    lateinit var maxPrice : String
-    lateinit var minPrice : String
     private val handler = Handler()
 
-    override fun onStartDrag(holder: CurationPriorityAdapter.ViewHolder) {
-        mItemTouchHelper.startDrag(holder)
-    }
-
-    var pageState = 0 // 0 : Init , 1 : Set , 2 : Result
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    lateinit var curationSetting: SharedPreferences
+    lateinit var curationEditor: SharedPreferences.Editor
+    private var pageState: String? = null
+    private var curationSettingFlag = 0
+    val format = DecimalFormat("###,###")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        curationSetting = context!!.getSharedPreferences("setting", Context.MODE_PRIVATE)
+        curationEditor = curationSetting.edit()
+        pageState = curationSetting.getString("PAGESTATE", "INITIAL")
         when (pageState) {
-            0 -> {
+            "INITIAL" -> {
                 root = inflater.inflate(R.layout.fragment_curation_init, container, false)
                 root.curation_init_click.setOnClickListener {
-                    pageState = 1
+                    curationEditor.putString("PAGESTATE", "SETTING")
+                    curationEditor.apply()
                     fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
                 }
             }
-            1 -> {
+            "SETTING" -> {
                 root = inflater.inflate(R.layout.fragment_curation_set, container, false)
+                root.curation_set_click.isEnabled = false
                 root.curation_set_range.setOnRangeSeekbarChangeListener { minValue, maxValue ->
-                    root.curation_set_range_min.text = minValue.toString() + '원'
-                    root.curation_set_range_max.text = maxValue.toString() + '원'
+                    root.curation_set_range_min.text = format.format(minValue) + '원'
+                    root.curation_set_range_max.text = format.format(maxValue) + '원'
                 }
                 val priorityAdapter = CurationPriorityAdapter(this, priorityList)
                 val mCallback = CurationPriorityTouchHelperCallback(priorityAdapter)
                 mItemTouchHelper = ItemTouchHelper(mCallback)
                 mItemTouchHelper.attachToRecyclerView(root.curation_set_priority_recycerview)
                 root.curation_set_priority_recycerview.adapter = priorityAdapter
+                root.curation_set_room_type.setOnCheckedChangeListener { radioGroup, i ->
+                    val current = root.findViewById<RadioButton>(i).tag
+                    when (current) {
+                        "room_type_1" -> {
+                        }
+                        "room_type_2" -> {
+                        }
+                        "room_type_3" -> {
+                        }
+                        "room_type_4" -> {
+                        }
+                        else -> {
+                        }
+                    }
+                    curationSettingFlag = curationSettingFlag or 1
+                    if (curationSettingFlag == 3) {
+                        root.curation_set_click.isEnabled = true
+                    }
+
+                }
+                root.curation_set_room_year.setOnCheckedChangeListener { radioGroup, i ->
+                    val current = root.findViewById<RadioButton>(i).tag
+                    when (current) {
+                        "room_year_1" -> curationEditor.putString("ROOM_PERIOD", "1")
+                        "room_year_2" -> curationEditor.putString("ROOM_PERIOD", "2")
+                        "room_year_3" -> curationEditor.putString("ROOM_PERIOD", "3")
+                        "room_year_4" -> curationEditor.putString("ROOM_PERIOD", "4")
+                        else -> {
+                        }
+                    }
+                    curationEditor.apply()
+                    curationSettingFlag = curationSettingFlag or 2
+                    if (curationSettingFlag == 3) {
+                        root.curation_set_click.isEnabled = true
+                    }
+                }
                 root.curation_set_click.setOnClickListener {
-                    minPrice = root.curation_set_range_min.text.toString()
-                    maxPrice = root.curation_set_range_max.text.toString()
-                    firstCategory = priorityAdapter.getItemText(0)
-                    secondCategory = priorityAdapter.getItemText(1)
-                    lastCategory = priorityAdapter.getItemText(4)
-                    pageState = 2
+                    curationEditor.putString("PRICE_MIN", root.curation_set_range_min.text.toString())
+                    curationEditor.putString("PRICE_MAX", root.curation_set_range_max.text.toString())
+                    curationEditor.putString("CATEGORY_FIRST", priorityAdapter.getItemText(0))
+                    curationEditor.putString("CATEGORY_SECOND", priorityAdapter.getItemText(1))
+                    curationEditor.putString("CATEGORY_LAST", priorityAdapter.getItemText(4))
+                    curationEditor.putString("PAGESTATE", "RESULT")
+                    curationEditor.apply()
                     fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
                 }
             }
-            else -> {
+            "RESULT" -> {
                 root = inflater.inflate(R.layout.fragment_curation_result, container, false)
+                val userType = curationSetting.getString("ROOM_PERIOD", "ERROR")
+                root.curation_result_yourType.text = when (userType) {
+                    "1" -> "준비중인 타입 텍스트"
+                    "2" -> "1년 미만 타입 텍스트"
+                    "3" -> "중간 타입 텍스트"
+                    "4" -> "자취 오래한 타입 텍스트"
+                    else -> "엥 이게 나올리가 없는데"
+                }
                 mAdapter1 = CurationResultAdapter(essentialProdList)
                 mAdapter2 = CurationResultAdapter(optionalProdList)
                 getBitmap()
@@ -116,12 +161,11 @@ class CurationPlaceholderFragment : Fragment(),
                 dialog.setContentView(R.layout.activity_loading)
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.loading_img.animation = anim
-                root.curation_result_essential_recyclerview.adapter =
-                    CurationResultAdapter(essentialProdList)
-                root.curation_result_optional_recyclerview.adapter =
-                    CurationResultAdapter(optionalProdList)
+                root.curation_result_essential_recyclerview.adapter = CurationResultAdapter(essentialProdList)
+                root.curation_result_optional_recyclerview.adapter = CurationResultAdapter(optionalProdList)
                 root.curation_result_click.setOnClickListener {
-                    pageState = 1
+                    curationEditor.putString("PAGESTATE", "SETTING")
+                    curationEditor.apply()
                     fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
                 }
                 Thread(Runnable {
@@ -148,15 +192,28 @@ class CurationPlaceholderFragment : Fragment(),
                     }
                 }).start()
             }
+            else -> {
+                root = inflater.inflate(R.layout.fragment_curation_init, container, false)
+                root.curation_init_click.setOnClickListener {
+                    curationEditor.putString("PAGESTATE", "SETTING")
+                    curationEditor.apply()
+                    fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+                }
+            }
         }
 
         return root
+    }
+
+    override fun onStartDrag(holder: CurationPriorityAdapter.ViewHolder) {
+        mItemTouchHelper.startDrag(holder)
     }
 
     private fun selecter(prodInfo: ProdInfo): Int = prodInfo.index
     private fun sortLIst(itemList: ArrayList<ProdInfo>) {
         itemList.sortBy { selecter(it) }
     }
+
     fun getBitmap() {
         lateinit var regularJsonArray: JSONArray
         lateinit var regularNotJsonArray: JSONArray

@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
+import java.text.DecimalFormat
 
 class LivingItem(var index : Int, var id : String , var livingImg: Bitmap, var livingBrand: String, var livingName: String,var livingCharge: String,var livingBeforeCharge: String)
 
 class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val itemList:ArrayList<LivingItem>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+
+        val format = DecimalFormat("###,###")
         val view: View = LayoutInflater.from(context.context).inflate(R.layout.fragment_home_living_list_item, null)
 
         val livingImageView = view.findViewById<ImageView>(R.id.item_image)
@@ -31,8 +34,8 @@ class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val item
         } else {
             livingItemName.text = livingItem.livingName
         }
-        livingCharge.text = livingItem.livingCharge
-        livingBeforeCharge.text = livingItem.livingBeforeCharge
+        livingCharge.text = format.format(livingItem.livingCharge.toInt()) + "원"
+        livingBeforeCharge.text = format.format(livingItem.livingBeforeCharge.toInt()) + "원"
         view.setOnClickListener {
             var intent = Intent(context.context, LivingItemInfoActivity::class.java)
             intent.putExtra("product_id",livingItem.id)

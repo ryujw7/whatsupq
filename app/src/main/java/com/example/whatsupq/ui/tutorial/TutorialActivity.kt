@@ -1,23 +1,23 @@
 package com.example.whatsupq.ui.tutorial
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.whatsupq.BaseActivity
-import com.example.whatsupq.MainActivity
 import com.example.whatsupq.R
-import com.example.whatsupq.ui.buy.BuyActivity
-import com.example.whatsupq.ui.themebox.ThemeboxActivity
 import kotlinx.android.synthetic.main.activity_tutorial.*
+
+lateinit var tutorialChecker: SharedPreferences
 
 class TutorialActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
+        tutorialChecker = getSharedPreferences("INIT", Context.MODE_PRIVATE)
         tutorial_viewpager.adapter = TutorialViewpagerAdapter(supportFragmentManager)
-        tutorial_viewpager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+        tutorial_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
                 tutorial_btn.isEnabled = (position == 2)
             }
@@ -28,12 +28,11 @@ class TutorialActivity : BaseActivity() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             }
         })
-        tutorial_indicator.setupWithViewPager(tutorial_viewpager,true)
+        tutorial_indicator.setupWithViewPager(tutorial_viewpager, true)
         tutorial_btn.setOnClickListener {
-//            intent = Intent(this, MainActivity::class.java)
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            tutorialChecker.edit().putBoolean("INIT", false).apply()
         }
     }
 }

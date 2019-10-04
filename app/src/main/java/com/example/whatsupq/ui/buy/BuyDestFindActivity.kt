@@ -1,10 +1,15 @@
 package com.example.whatsupq.ui.buy
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.webkit.WebSettings
+import android.widget.EditText
+import androidx.fragment.app.DialogFragment
 import com.example.whatsupq.BaseActivity
 import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_webview.*

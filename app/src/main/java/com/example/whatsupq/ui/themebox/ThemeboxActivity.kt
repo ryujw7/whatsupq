@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_living_item_info.view.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.DecimalFormat
 
 class ThemeboxActivity : BaseActivity() {
     var price = 0

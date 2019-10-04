@@ -26,20 +26,15 @@ import kotlinx.android.synthetic.main.activity_cart_category.view.*
 import kotlinx.android.synthetic.main.activity_cart_item.view.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.DecimalFormat
 
-class CartItemAdapter(
-        val context: Context,
-        val category_item_list: MutableMap<String, ArrayList<CartItem>>,
-        val cartDBHelper: CartDBHelper
-) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CartItemAdapter(val context: Context, val category_item_list: MutableMap<String, ArrayList<CartItem>>, val cartDBHelper: CartDBHelper) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     val VIEW_TYPE_CATEGORY = 0
     val VIEW_TYPE_ITEM = 1
     var category_list = category_item_list.keys.toTypedArray()
     var category_index = arrayListOf<Int>()
-
     init {
         categoryPositionCalculate()
     }
@@ -105,13 +100,11 @@ class CartItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
             VIEW_TYPE_CATEGORY -> {
-                val view = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.activity_cart_category, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_cart_category, parent, false)
                 return ViewHolder_category(context, view)
             }
             else -> {
-                val view = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.activity_cart_item, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_cart_item, parent, false)
                 return ViewHolder_item(context, view)
             }
         }
@@ -147,11 +140,7 @@ class CartItemAdapter(
 
                 }
                 itemView.cart_item_delete.setOnClickListener {
-                    category_item_list[category_list[categoryIndex]]!!.removeAt(
-                            positionForItem(
-                                    position
-                            )
-                    )
+                    category_item_list[category_list[categoryIndex]]!!.removeAt(positionForItem(position))
                     when (category_list[findCategoryIndexOfItem(position)]) {
                         "생필품" -> cartDBHelper.removeAtCart("CART_ESSENTIAL", item.product_id)
                         "테마박스" -> cartDBHelper.removeAtCart("CART_BOX_THEME", item.product_id)
@@ -261,7 +250,8 @@ class CartItemAdapter(
                     Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                 }
             }
-            view.cart_item_cost.text = item.total_cost.toString()
+            item.total_cost = item.cost * item.amount
+            view.cart_item_cost.text = format.format(item.total_cost)
             view.cart_item_check.text = item.name
             view.cart_item_plus.isEnabled = (item.amount < MAXAMOUNT)
             view.cart_item_plus.addTextChangedListener(object : TextWatcher {

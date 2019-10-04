@@ -1,7 +1,9 @@
 package com.example.whatsupq.ui.buy
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import com.example.whatsupq.R
 import kotlinx.android.synthetic.main.activity_buy.*
 import android.view.animation.Animation
 import android.view.animation.Transformation
+import android.widget.EditText
 import com.example.whatsupq.ResultTradeActivity
 import java.util.*
 
@@ -78,15 +81,21 @@ class BuyActivity : BaseActivity() {
                 when (buy_expand_destination_target.visibility) {
                     View.VISIBLE -> {
                         buy_expand_destination_target_btn.setImageResource(R.drawable.expand)
+                        buy_destination_simple.visibility = View.VISIBLE
                     }
                     else -> {
                         buy_expand_destination_target_btn.setImageResource(R.drawable.collapse)
+                        buy_destination_simple.visibility = View.GONE
                     }
                 }
                 toggleExpand(buy_expand_destination_target)
             }
         }
         buy_destination_register.setOnClickListener {
+            intent = Intent(this, BuyDestFindActivity::class.java)
+            startActivityForResult(intent,2000)
+        }
+        buy_destination_modify.setOnClickListener {
             intent = Intent(this, BuyDestFindActivity::class.java)
             startActivityForResult(intent,2000)
         }
@@ -234,12 +243,24 @@ class BuyActivity : BaseActivity() {
         if (requestCode == 2000) {
             if (resultCode == Activity.RESULT_OK) {
                 destination_post = data!!.getStringExtra("zoneCode")
-                destination_address = data!!.getStringExtra("address")
-                destination_specific = data!!.getStringExtra("buildingName")
+                destination_address = data!!.getStringExtra("address") + data!!.getStringExtra("buildingName")
                 buy_destination_simple.text = destination_address
                 buy_destination_post.text = destination_post
                 buy_destination_address.text = destination_address
-                buy_destination_specific.text = destination_specific
+                buy_destination_register.visibility = View.GONE
+                if(buy_expand_destination_target.visibility == View.GONE){
+                    toggleExpand(buy_expand_destination_target)
+                }
+                val specific = AlertDialog.Builder(this)
+                specific.setTitle("상세주소 추가")
+                val input = EditText(this)
+                specific.setView(input)
+                specific.setPositiveButton("입력 완료", DialogInterface.OnClickListener { dialogInterface, i ->
+                    destination_specific = input.text.toString()
+                    buy_destination_specific.text = destination_specific
+                })
+                specific.show()
+
             }
         }
     }

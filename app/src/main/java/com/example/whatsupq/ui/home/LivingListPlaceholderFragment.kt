@@ -104,8 +104,8 @@ class LivingListPlaceholderFragment : Fragment() {
                                                 response,
                                                 livingItemJSONArray.getJSONObject(i).getString("name"),
                                                 livingItemJSONArray.getJSONObject(i).getString("content"),
-                                                livingItemJSONArray.getJSONObject(i).getString("saled_price") + "원",
-                                                livingItemJSONArray.getJSONObject(i).getString("price") + "원"
+                                                livingItemJSONArray.getJSONObject(i).getString("saled_price"),
+                                                livingItemJSONArray.getJSONObject(i).getString("price")
                                             )
                                         )
                                         sortLIst()

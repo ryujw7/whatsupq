@@ -85,7 +85,7 @@ class CartActivity : BaseActivity() {
                 }
             }
         }
-        cart_total_cost.text = total.toString()
+        cart_total_cost.text = format.format(total)
         cart_order.isEnabled = !isEmpty
     }
 }
