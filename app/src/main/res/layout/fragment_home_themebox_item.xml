@@ -10,10 +10,10 @@
             android:id="@+id/theme_image"
             android:layout_width="280dp"
             android:layout_height="320dp"
-            android:background="@drawable/radius_rectangle"
+            android:background="@android:color/transparent"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
-            app:riv_border_color="#000000"
+            app:riv_border_color="@android:color/transparent"
             app:riv_corner_radius="17dp"
             app:riv_mutate_background="true"
             app:riv_oval="false"
@@ -24,6 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/theme_image"
+            android:layout_alignRight="@+id/theme_image"
+            android:layout_alignLeft="@+id/theme_image"
             android:orientation="vertical"
             android:paddingLeft="18dp"
             android:paddingBottom="18dp">
@@ -32,10 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/locussangsang"
-                android:lineHeight="15sp"
+                android:lineHeight="18sp"
                 android:text=""
                 android:textColor="@android:color/white"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
         <TextView
                 android:id="@+id/theme_subtitle"
                 android:layout_width="wrap_content"
@@ -43,6 +45,6 @@
                 android:fontFamily="@font/locussangsang"
                 android:text=""
                 android:textColor="@color/silver"
-                android:textSize="15sp"/>
+                android:textSize="12sp"/>
     </LinearLayout>
 </RelativeLayout>

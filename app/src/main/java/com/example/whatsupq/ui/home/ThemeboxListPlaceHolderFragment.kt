@@ -32,10 +32,12 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
         listView.adapter = listAdapter
         return root
     }
-    fun selecter(themeboxItem: ThemeboxItem) : Int = themeboxItem.index
+
+    fun selecter(themeboxItem: ThemeboxItem): Int = themeboxItem.index
     fun sortLIst() {
         itemList.sortBy { selecter(it) }
     }
+
     fun newInstance(category: String, flag: String): ThemeboxListPlaceHolderFragment {
         val args = Bundle()
         val frag = ThemeboxListPlaceHolderFragment()
@@ -55,8 +57,11 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
             itemList.clear()
         }
         try {
-            var url = "http://54.180.46.143:3000/api/product/themebox?category=${URLEncoder.encode(category,"utf-8")}&flag=$flag"
-            if(category == "19") {
+            var url = "http://54.180.46.143:3000/api/product/themebox?category=${URLEncoder.encode(
+                category,
+                "utf-8"
+            )}&flag=$flag"
+            if (category == "19") {
                 url = "http://54.180.46.143:3000/api/product/themebox?category=$category&flag=$flag"
             }
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET,
@@ -67,27 +72,21 @@ class ThemeboxListPlaceHolderFragment : Fragment() {
                     var message = it.getString("message")
                     if (status.equals("200")) {
                         data = it.getJSONObject("data")
+                        Log.e("data", data.toString())
                         themeBoxItemJSONArray = data.getJSONArray("themeboxes")
                         for (i in 0 until themeBoxItemJSONArray.length()) {
                             try {
-                                imageRequest = ImageRequest(
-                                    themeBoxItemJSONArray.getJSONObject(i).getString("main_img"),
-                                    Response.Listener<Bitmap> { response ->
-                                        itemList.add(
-                                            ThemeboxItem(
-                                                i,
-                                                themeBoxItemJSONArray.getJSONObject(i).getString("themebox_id"),
-                                                response
-                                            )
-                                        )
-                                        sortLIst()
-                                        listAdapter.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Log.e("error", "통신 오류")
-                                    }
+                                itemList.add(
+                                    ThemeboxItem(
+                                        i,
+                                        themeBoxItemJSONArray.getJSONObject(i).getString("themebox_id"),
+                                        themeBoxItemJSONArray.getJSONObject(i).getString("name"),
+                                        themeBoxItemJSONArray.getJSONObject(i).getString("content"),
+                                        themeBoxItemJSONArray.getJSONObject(i).getString("main_img")
+                                    )
                                 )
-                                imgQueue.add(imageRequest)
+                                sortLIst()
+                                listAdapter.notifyDataSetChanged()
                             } catch (e: JSONException) {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }

@@ -94,48 +94,40 @@ class LivingListPlaceholderFragment : Fragment() {
                         livingItemJSONArray = data.getJSONArray("product")
                         for (i in 0 until livingItemJSONArray.length()) {
                             try {
-                                imageRequest = ImageRequest(
-                                    livingItemJSONArray.getJSONObject(i).getString("main_img"),
-                                    Response.Listener<Bitmap> { response ->
-                                        itemList.add(
-                                            LivingItem(
-                                                i,
-                                                livingItemJSONArray.getJSONObject(i).getString("product_id"),
-                                                response,
-                                                livingItemJSONArray.getJSONObject(i).getString("name"),
-                                                livingItemJSONArray.getJSONObject(i).getString("content"),
-                                                livingItemJSONArray.getJSONObject(i).getString("saled_price"),
-                                                livingItemJSONArray.getJSONObject(i).getString("price")
-                                            )
-                                        )
-                                        sortLIst()
-                                        listAdapter.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Log.e("error", "통신 오류")
-                                    }
+                                itemList.add(
+                                    LivingItem(
+                                        i,
+                                        livingItemJSONArray.getJSONObject(i).getString("product_id"),
+                                        livingItemJSONArray.getJSONObject(i).getString("main_img"),
+                                        livingItemJSONArray.getJSONObject(i).getString("name"),
+                                        livingItemJSONArray.getJSONObject(i).getString("content"),
+                                        livingItemJSONArray.getJSONObject(i).getString("saled_price"),
+                                        livingItemJSONArray.getJSONObject(i).getString("price")
+                                    )
                                 )
-                                imgQueue.add(imageRequest)
-                            } catch (e: JSONException) {
-                                Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
-                            }
+                                sortLIst()
+                                listAdapter.notifyDataSetChanged()
+                        } catch (e: JSONException) {
+                            Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                         }
-                    } else {
-                        Log.d("message : ", message)
                     }
-                }, Response.ErrorListener {
-                    Log.e("error", "통신 오류")
-                }) {
-                override fun getParams(): MutableMap<String, String> {
-                    val hashMap = HashMap<String, String>()
-                    hashMap["category"] = category
-                    hashMap["flag"] = flag
-                    return hashMap
-                }
+                } else {
+                Log.d("message : ", message)
             }
-            queue.add(jsonObjectRequest)
-        } catch (e: JSONException) {
-            Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
+        }, Response.ErrorListener {
+            Log.e("error", "통신 오류")
+        }) {
+            override fun getParams(): MutableMap<String, String> {
+                val hashMap = HashMap<String, String>()
+                hashMap["category"] = category
+                hashMap["flag"] = flag
+                return hashMap
+            }
         }
+        queue.add(jsonObjectRequest)
+    } catch (e: JSONException)
+    {
+        Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
     }
+}
 }

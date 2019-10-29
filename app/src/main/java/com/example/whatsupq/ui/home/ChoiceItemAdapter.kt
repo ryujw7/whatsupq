@@ -10,11 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import com.example.whatsupq.ui.home.ChoiceItemAdapter.Holder
 
-class ChoiceItem(var index : Int, var id : String, val thumbnailImg: Bitmap)
+class ChoiceItem(var index : Int, var id : String, val thumbnailImg: String)
 
 
 class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceItem>) :
@@ -46,7 +47,7 @@ class ChoiceItemAdapter(val context : Context, val itemList: ArrayList<ChoiceIte
         fun bind(item: ChoiceItem) {
             thumbnail.scaleType = ImageView.ScaleType.FIT_XY
             if(item.thumbnailImg != null) {
-                thumbnail.setImageBitmap(item.thumbnailImg)
+                Glide.with(context).load(item.thumbnailImg).into(thumbnail)
             } else {
                 thumbnail?.setImageResource(R.drawable.ic_launcher_foreground)
             }

@@ -25,6 +25,7 @@ import com.android.volley.Response.Listener
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.whatsupq.R
 import com.example.whatsupq.SwipeViewPager
 import com.example.whatsupq.ui.themebox.ThemeboxActivity
@@ -51,9 +52,9 @@ class ChoicePlaceholderFragment : Fragment() {
     lateinit var themebox: View
     lateinit var dialog: Dialog
     lateinit var anim: Animation
-    lateinit var firstList : RecyclerView
-    lateinit var secondList : RecyclerView
-    lateinit var bannerList : SwipeViewPager
+    lateinit var firstList: RecyclerView
+    lateinit var secondList: RecyclerView
+    lateinit var bannerList: SwipeViewPager
     private val handler = Handler()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,6 +113,7 @@ class ChoicePlaceholderFragment : Fragment() {
         bannerList.setPagingEnabled(true)
         bannerList.adapter = mAdapter3
     }
+
     fun newInstance(): ChoicePlaceholderFragment {
         val args = Bundle()
 
@@ -173,19 +175,9 @@ class ChoicePlaceholderFragment : Fragment() {
                         for (j in 0 until 10) {
                             var id = todayJsonArray.getJSONObject(j).getString("product_id")
                             try {
-                                imageRequest = ImageRequest(
-                                    todayJsonArray.getJSONObject(j).getString("main_img"),
-                                    Listener<Bitmap> { response ->
-                                        itemList1.add(ChoiceItem(j, id, response))
-                                        sortLIst(itemList1)
-                                        mAdapter1.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.MATRIX, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Log.e("error", "통신 오류")
-                                    }
-                                )
-                                imageRequest.setShouldCache(false)
-                                imgQueue.add(imageRequest)
+                                itemList1.add(ChoiceItem(j, id, todayJsonArray.getJSONObject(j).getString("main_img")))
+                                sortLIst(itemList1)
+                                mAdapter1.notifyDataSetChanged()
                             } catch (e: JSONException) {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }
@@ -193,46 +185,36 @@ class ChoicePlaceholderFragment : Fragment() {
                         for (k in 0 until productJsonArray.length()) {
                             var id = productJsonArray.getJSONObject(k).getString("product_id")
                             try {
-                                imageRequest = ImageRequest(
-                                    productJsonArray.getJSONObject(k).getString("main_img"),
-                                    Listener<Bitmap> { response ->
-                                        itemList2.add(ChoiceItem(k, id, response))
-                                        sortLIst(itemList2)
-                                        mAdapter2.notifyDataSetChanged()
-                                    }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                                    Response.ErrorListener {
-                                        Log.e("error", "통신 오류")
-                                    }
+                                itemList2.add(
+                                    ChoiceItem(
+                                        k,
+                                        id,
+                                        productJsonArray.getJSONObject(k).getString("main_img")
+                                    )
                                 )
-                                imageRequest.setShouldCache(false)
-                                imgQueue.add(imageRequest)
+                                sortLIst(itemList2)
+                                mAdapter2.notifyDataSetChanged()
                             } catch (e: JSONException) {
                                 Log.d("JSON 오류 : ", "JSON이 비어있거나 삽입할 수 없음")
                             }
                         }
                         try {
                             themebox_id = themeBoxJsonObject.getString("themebox_id")
-                            imageRequest = ImageRequest(
-                                themeBoxJsonObject.getString("main_img"),
-                                Listener<Bitmap> { response ->
-                                    val float = 12
-                                    themebox.theme_image.scaleType = ImageView.ScaleType.CENTER_CROP
-                                    themebox.theme_image.setColorFilter(
-                                        Color.parseColor("#BDBDBD"),
-                                        PorterDuff.Mode.MULTIPLY
-                                    )
-                                    themebox.theme_image.setImageBitmap(response)
-                                    themebox.theme_image.clipToOutline = true
-                                    themebox.theme_image.setOnClickListener {
-                                        val intent = Intent(context, ThemeboxActivity::class.java)
-                                        intent.putExtra("themebox_id", themebox_id)
-                                        startActivity(intent)
-                                    }
-                                }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                                Response.ErrorListener {
-                                    Log.e("error", "통신 오류")
-                                }
+                            val float = 12
+                            themebox.theme_image.scaleType = ImageView.ScaleType.CENTER_CROP
+                            themebox.theme_image.setColorFilter(
+                                Color.parseColor("#BDBDBD"),
+                                PorterDuff.Mode.MULTIPLY
                             )
+                            Glide.with(this).load(themeBoxJsonObject.getString("main_img")).into(themebox.theme_image)
+                            themebox.theme_title.text = themeBoxJsonObject.getString("name")
+                            themebox.theme_subtitle.text = themeBoxJsonObject.getString("content")
+                            themebox.theme_image.clipToOutline = true
+                            themebox.theme_image.setOnClickListener {
+                                val intent = Intent(context, ThemeboxActivity::class.java)
+                                intent.putExtra("themebox_id", themebox_id)
+                                startActivity(intent)
+                            }
                             imageRequest.setShouldCache(false)
                             imgQueue.add(imageRequest)
                         } catch (e: JSONException) {

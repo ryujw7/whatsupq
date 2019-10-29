@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.example.whatsupq.LivingItemInfoActivity
 import com.example.whatsupq.R
 import java.text.DecimalFormat
 
-class LivingItem(var index : Int, var id : String , var livingImg: Bitmap, var livingBrand: String, var livingName: String,var livingCharge: String,var livingBeforeCharge: String)
+class LivingItem(var index : Int, var id : String , var livingImg: String, var livingBrand: String, var livingName: String,var livingCharge: String,var livingBeforeCharge: String)
 
 class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val itemList:ArrayList<LivingItem>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
@@ -26,7 +27,7 @@ class LivingListItemAdapter(val context: LivingListPlaceholderFragment, val item
         val livingItem = itemList[p0]
 
         livingItem.id = itemList[p0].id
-        livingImageView.setImageBitmap(livingItem.livingImg)
+        Glide.with(this.context).load(itemList[p0].livingImg).into(livingImageView)
         livingImageView.scaleType = ImageView.ScaleType.FIT_XY
         livingBrand.text = livingItem.livingBrand
         if(livingItem.livingName.length >= 30) {
